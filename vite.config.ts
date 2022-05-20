@@ -6,4 +6,7 @@ export default defineConfig({
   build: {
     outDir: 'build',
   },
+  resolve: {
+    alias: [{ find: '@', replacement: '/src' }],
+  },
 });

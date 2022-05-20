@@ -1,11 +1,11 @@
-import React from 'react';
-import './App.css';
+import { AppProvider } from '@/providers/AppProvider';
+import { AppRoutes } from '@/routes';
 
 function App() {
   return (
-    <div className="App">
-      FE
-    </div>
+    <AppProvider>
+      <AppRoutes />
+    </AppProvider>
   );
 }
 
