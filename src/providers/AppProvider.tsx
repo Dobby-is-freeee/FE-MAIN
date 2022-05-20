@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { Temp } from '@/components';
 import { store } from '@/stores';
+import { GlobalStyle } from '@/GlobalStyle';
 
 interface AppProviderProps {
   children: ReactNode;
@@ -12,7 +13,7 @@ interface AppProviderProps {
 export const AppProvider = ({ children }: AppProviderProps) => {
   return (
     <Provider store={store}>
-      {/* TODO: 예시를 위한 버튼 */}
+      <GlobalStyle />
       <Temp />
       <BrowserRouter>{children}</BrowserRouter>
     </Provider>
