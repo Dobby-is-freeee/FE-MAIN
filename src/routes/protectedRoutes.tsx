@@ -1,6 +1,7 @@
+import { Outlet } from 'react-router-dom';
+
 import { Studio } from '@/features/studio';
 import { Layouts } from '@/features/studio/components';
-import { Outlet } from 'react-router-dom';
 
 export const protectedRoutes = [
   {
