@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { SAMPLE_IMAGE } from '../constants';
+import { SAMPLE_IMAGE } from '@/features/studio/constants';
 
 const Wrap = styled.header`
   width: 100%;

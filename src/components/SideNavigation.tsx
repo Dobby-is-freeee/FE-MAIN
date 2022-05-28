@@ -2,7 +2,7 @@ import { Fragment, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
-import { SAMPLE_IMAGE } from '../constants';
+import { SAMPLE_IMAGE } from '@/features/studio/constants';
 
 const Wrap = styled.div`
   background-color: #202a44;
@@ -73,6 +73,10 @@ interface MenuItem {
 }
 
 const menuItems: MenuItem[] = [
+  {
+    value: '홈화면',
+    path: '/',
+  },
   {
     value: '샘플1',
     path: '/sample1/page1',
