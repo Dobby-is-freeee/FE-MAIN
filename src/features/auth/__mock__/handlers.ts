@@ -22,7 +22,6 @@ const requestSignin = (
       return res(ctx.status(200), ctx.json({ success: false, code: 202 }));
     }
   }
-
   return res(ctx.status(200), ctx.json({ success: false, code: 400 }));
 };
 

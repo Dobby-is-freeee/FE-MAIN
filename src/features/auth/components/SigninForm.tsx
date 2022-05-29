@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { isEmail } from '@/features/auth/libs/validator';
 
 import useInput from '@/features/auth/hooks/useInput';
+import useBoolean from '@/features/auth/hooks/useBoolean';
 
 import Input from '@/features/auth/components/Input';
 import Button from '@/features/auth/components/Button';
@@ -34,6 +35,8 @@ function SigninForm({ onSubmit }: SigninFormPropTypes) {
     },
   });
 
+  const [autoSignin, toggleAutoSignin] = useBoolean({ defaultValue: false });
+
   const [error, setError] = useState<{ type: 'email' | 'password'; message: string } | undefined>();
 
   const handleSubmit = useCallback(
@@ -44,10 +47,11 @@ function SigninForm({ onSubmit }: SigninFormPropTypes) {
       if (!isValidEmail) return setError({ type: 'email', message: '이메일 양식 맞지 않음' });
       if (error === undefined) {
         const result = await onSubmit({ email, password });
-        if (result !== undefined) setError({ type: result.type, message: result.message });
+        if (result !== undefined) return setError({ type: result.type, message: result.message });
+        localStorage.setItem('autoSignin', `${autoSignin}`);
       }
     },
-    [email, password, isValidEmail, error, onSubmit],
+    [email, password, isValidEmail, error, autoSignin, onSubmit],
   );
 
   return (
@@ -66,7 +70,7 @@ function SigninForm({ onSubmit }: SigninFormPropTypes) {
         errorMessage={error?.type === 'password' ? error?.message : undefined}
       />
       <OptionsWrapper>
-        <AutoSigninCheck />
+        <AutoSigninCheck checked={autoSignin} onChange={toggleAutoSignin} />
         <div>{`비밀번호 찾기 ->`}</div>
       </OptionsWrapper>
       <Button type="submit" disabled={error !== undefined} status="confirm">
