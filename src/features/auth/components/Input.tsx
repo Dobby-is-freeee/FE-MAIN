@@ -43,9 +43,9 @@ const StyledInput = styled.input<{ isError: boolean }>`
 `;
 
 const ErrorText = styled.div`
-  position: absolute;
+  /* position: absolute; */
   margin-top: 0.3rem;
   color: #ff0000;
   font-size: 1.25rem;
-  white-space: nowrap;
+  white-space: pre-line;
 `;

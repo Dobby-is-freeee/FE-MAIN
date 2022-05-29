@@ -10,8 +10,29 @@ function SigninContainer() {
   const handleSignin = useCallback<SigninFormPropTypes['onSubmit']>(async ({ email, password }) => {
     try {
       await requestSignin({ email: email, password: password });
-    } catch (e) {
-      console.log(e);
+      // todo check error
+    } catch (e: any) {
+      if (!e.success) {
+        if (e.code === 201) {
+          return {
+            type: 'email',
+            message: '가입된 이메일이 아닙니다.\n 아직 가입을 안하셨다면 회원가입 후 로그인해주세요.',
+          };
+        }
+
+        if (e.code === 202) {
+          return {
+            type: 'password',
+            message: '비밀번호가 틀렸습니다.\n 비밀번호를 잊으셨다면 비밀번호 찾기를 진행해주세요.',
+          };
+        }
+
+        if (e.code === 400) {
+          return { type: 'password', message: '입력값 확인이 필요함' };
+        }
+      }
+
+      throw e;
     }
   }, []);
 

@@ -1,16 +1,22 @@
 import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
 
-import { isEmail } from '../libs/validator';
+import { isEmail } from '@/features/auth/libs/validator';
 
-import useInput from '../hooks/useInput';
+import useInput from '@/features/auth/hooks/useInput';
 
-import Input from './Input';
-import Button from './Button';
-import AutoSigninCheck from './AutoSigninCheck';
+import Input from '@/features/auth/components/Input';
+import Button from '@/features/auth/components/Button';
+import AutoSigninCheck from '@/features/auth/components/AutoSigninCheck';
 
 export interface SigninFormPropTypes {
-  onSubmit: ({ email, password }: { email: string; password: string }) => void;
+  onSubmit: ({
+    email,
+    password,
+  }: {
+    email: string;
+    password: string;
+  }) => Promise<void | { type: 'email' | 'password'; message: string }>;
 }
 
 function SigninForm({ onSubmit }: SigninFormPropTypes) {
@@ -31,14 +37,17 @@ function SigninForm({ onSubmit }: SigninFormPropTypes) {
   const [error, setError] = useState<{ type: 'email' | 'password'; message: string } | undefined>();
 
   const handleSubmit = useCallback(
-    (e: React.FormEvent<HTMLFormElement>) => {
+    async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       if (email === '') return setError({ type: 'email', message: '이메일 작성 필요' });
       if (password === '') return setError({ type: 'password', message: '비밀번호 작성 필요' });
       if (!isValidEmail) return setError({ type: 'email', message: '이메일 양식 맞지 않음' });
-      error === undefined && onSubmit({ email, password });
+      if (error === undefined) {
+        const result = await onSubmit({ email, password });
+        if (result !== undefined) setError({ type: result.type, message: result.message });
+      }
     },
-    [email, password, isValidEmail, onSubmit],
+    [email, password, isValidEmail, error, onSubmit],
   );
 
   return (
@@ -69,15 +78,15 @@ function SigninForm({ onSubmit }: SigninFormPropTypes) {
 
 export default SigninForm;
 
-const StyledInput = styled(Input)`
+const StyledInput = styled(Input)<{ errorMessage: string | undefined }>`
   display: block;
 
   &:nth-of-type(1) {
-    margin-bottom: 2rem;
+    margin-bottom: ${({ errorMessage }) => (errorMessage ? '1rem' : '2rem')};
   }
 
   &:nth-of-type(2) {
-    margin-bottom: 1.5rem;
+    margin-bottom: ${({ errorMessage }) => (errorMessage ? '1rem' : '1.5rem')};
   }
 `;
 
