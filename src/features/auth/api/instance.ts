@@ -1,5 +1,6 @@
 import axios, { Method } from 'axios';
 
+// todo add API_URL
 const BASE_URL = '/mock';
 
 const instance = axios.create({ baseURL: BASE_URL });
