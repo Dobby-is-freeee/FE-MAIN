@@ -6,7 +6,7 @@ export interface InputPropTypes {
   errorMessage?: string;
 }
 
-function Input({ className, errorMessage, ...others }: React.InputHTMLAttributes<HTMLInputElement> & InputPropTypes) {
+function InputWithError({ className, errorMessage, ...others }: React.InputHTMLAttributes<HTMLInputElement> & InputPropTypes) {
   return (
     <>
       <Wrapper className={className}>
@@ -17,7 +17,7 @@ function Input({ className, errorMessage, ...others }: React.InputHTMLAttributes
   );
 }
 
-export default Input;
+export default InputWithError;
 
 const Wrapper = styled.div`
   position: relative;
@@ -43,9 +43,9 @@ const StyledInput = styled.input<{ isError: boolean }>`
 `;
 
 const ErrorText = styled.div`
-  position: absolute;
+  /* position: absolute; */
   margin-top: 0.3rem;
   color: #ff0000;
   font-size: 1.25rem;
-  white-space: nowrap;
+  white-space: pre-line;
 `;

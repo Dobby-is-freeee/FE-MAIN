@@ -1,5 +1,6 @@
 import axios, { Method } from 'axios';
 
+// todo add API_URL
 const BASE_URL = '/mock';
 
 const instance = axios.create({ baseURL: BASE_URL });
@@ -20,7 +21,6 @@ export function createFormData(obj: { [key: string]: string } = {}) {
 
 export const createRequest = async <T>({ endpoint, method, body }: RequestConfig): Promise<T> => {
   const { data } = await instance({ url: endpoint, method: method, data: createFormData(body) });
-  console.log(data.code);
 
   if (data.code !== 200) throw data;
   return data;

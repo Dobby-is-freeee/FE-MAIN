@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 function AutoSigninCheck({ ...others }: React.InputHTMLAttributes<HTMLInputElement>) {
-  const { checked, className } = others;
+  const { checked = false, className } = others;
 
   return (
     <StyledLabel checked={checked} className={className}>
@@ -14,7 +14,7 @@ function AutoSigninCheck({ ...others }: React.InputHTMLAttributes<HTMLInputEleme
 
 export default AutoSigninCheck;
 
-const StyledLabel = styled.label<{ checked: boolean | undefined }>`
+const StyledLabel = styled.label<{ checked: boolean }>`
   display: inline-block;
   position: relative;
   margin-left: 1.5rem;
