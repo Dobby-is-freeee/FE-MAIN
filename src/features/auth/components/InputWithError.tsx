@@ -1,12 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Input from '@/features/auth/components/Input';
+
 export interface InputPropTypes {
   className?: string;
   errorMessage?: string;
 }
 
-function InputWithError({ className, errorMessage, ...others }: React.InputHTMLAttributes<HTMLInputElement> & InputPropTypes) {
+function InputWithError({
+  className,
+  errorMessage,
+  ...others
+}: React.InputHTMLAttributes<HTMLInputElement> & InputPropTypes) {
   return (
     <>
       <Wrapper className={className}>
@@ -25,21 +31,8 @@ const Wrapper = styled.div`
   height: 100%;
 `;
 
-const StyledInput = styled.input<{ isError: boolean }>`
-  width: 100%;
-  height: 100%;
-  padding: 1rem 1.5rem;
+const StyledInput = styled(Input)<{ isError: boolean }>`
   border: 1px solid ${({ isError }) => (isError ? '#ff0000' : 'black')};
-  border-radius: 0.3rem;
-  font-size: 1.25rem;
-
-  &::placeholder {
-    color: gray;
-  }
-
-  &:focus {
-    outline: none;
-  }
 `;
 
 const ErrorText = styled.div`
