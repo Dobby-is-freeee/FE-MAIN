@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
-import Button from '../components/Button';
 
-export interface EmailAuthContainerPropTypes {}
+import Button from '@/features/auth/components/Button';
 
-function EmailAuthContainer() {
+export interface EmailAuthContainerPropTypes {
+  successAuth: () => void;
+}
+
+function EmailAuthContainer({ successAuth }: EmailAuthContainerPropTypes) {
+  const handleClickButton = useCallback(() => {
+    successAuth();
+  }, [successAuth]);
+
   return (
     <Article>
       <Title>이메일 인증</Title>
@@ -18,7 +25,10 @@ function EmailAuthContainer() {
         <li>인증메일 유효기간: ~ 2022.05.10 15:33</li>
         <li>
           <ResendWrapper>
-            이메일을 받지 못하셨나요?<Button status="confirm">이메일 다시 보내기</Button>
+            이메일을 받지 못하셨나요?
+            <Button status="confirm" onClick={handleClickButton}>
+              이메일 다시 보내기
+            </Button>
           </ResendWrapper>
         </li>
       </Order>

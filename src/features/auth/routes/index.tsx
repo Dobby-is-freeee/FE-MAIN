@@ -9,6 +9,7 @@ import Signin from './Signin';
 import Signup from './Signup';
 import Password from './Password';
 import EmailAuth from './EmailAuth';
+import Complete from './Complete';
 
 if (process.env.NODE_ENV === 'development') {
   serviceWorker.start({ onUnhandledRequest: 'bypass' });
@@ -22,6 +23,7 @@ function AuthRoutes() {
         <Route path="signup" element={<Signup />} />
         <Route path="email" element={<EmailAuth />} />
         <Route path="password" element={<Password />} />
+        <Route path="complete" element={<Complete />} />
       </Route>
     </Routes>
   );
