@@ -6,9 +6,11 @@ import PasswordInput from '@/features/auth/components/PasswordInput';
 import CheckBox from '@/features/auth/components/CheckBox';
 import Button from '@/features/auth/components/Button';
 
-export interface SignupFormPropTypes {}
+export interface SignupFormPropTypes {
+  onSubmit: () => void;
+}
 
-function SignupForm() {
+function SignupForm({ onSubmit }: SignupFormPropTypes) {
   return (
     <Wrapper>
       <Input placeholder="이름" />
@@ -17,7 +19,9 @@ function SignupForm() {
       <StyledCheckBox>
         사이드킥 이용 약관 및 개인정보 취급방침에 대한 내용을 모두 확인하였으며, 이에 동의합니다.
       </StyledCheckBox>
-      <SignupButton status="confirm">가입하기</SignupButton>
+      <SignupButton status="confirm" onClick={onSubmit}>
+        가입하기
+      </SignupButton>
     </Wrapper>
   );
 }

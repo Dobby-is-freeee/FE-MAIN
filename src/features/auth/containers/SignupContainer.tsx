@@ -1,18 +1,23 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 
 import SignupForm from '@/features/auth/components/SignupForm';
 import Button from '@/features/auth/components/Button';
 
 export interface SignupContainerPropTypes {
+  successSignup: () => void;
   onClickSignin: () => void;
 }
 
-function SignupContainer({ onClickSignin }: SignupContainerPropTypes) {
+function SignupContainer({ successSignup, onClickSignin }: SignupContainerPropTypes) {
+  const handleSubmit = useCallback(() => {
+    successSignup();
+  }, [successSignup]);
+
   return (
     <Article>
       <Title>회원가입</Title>
-      <SignupForm />
+      <SignupForm onSubmit={handleSubmit} />
       <Division />
       <GoggleButton>Google 계정으로 시작하기</GoggleButton>
       <SigninText>
