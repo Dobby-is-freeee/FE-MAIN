@@ -1,5 +1,4 @@
-name: "Auto Assign Action"
-
+name: 'Auto Assign Action'
 on:
   pull_request:
     types: [opened, ready_for_review]
@@ -9,14 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: kentaro-m/auto-assign-action@v1.2.0
-      with:
-        configuration-path: '.github/auto_assign.yml'
-
-        
-
-
-
-
+        with:
+          configuration-path: '.github/auto_assign.yml'
 # 참고
 # https://zzsza.github.io/development/2020/06/06/github-action/
 # https://github.com/marketplace/actions/auto-assign-action
