@@ -1,18 +1,5 @@
-import React from 'react';
+import { InputHTMLAttributes } from 'react';
 import styled from 'styled-components';
-
-function AutoSigninCheck({ ...others }: React.InputHTMLAttributes<HTMLInputElement>) {
-  const { checked = false, className } = others;
-
-  return (
-    <StyledLabel checked={checked} className={className}>
-      <HiddenCheck checked={checked} {...others} />
-      자동 로그인
-    </StyledLabel>
-  );
-}
-
-export default AutoSigninCheck;
 
 const StyledLabel = styled.label<{ checked: boolean }>`
   display: inline-block;
@@ -42,3 +29,18 @@ const HiddenCheck = styled.input.attrs<{ type: string }>({
 })`
   display: none;
 `;
+
+export interface AutoSigninCheckProps extends InputHTMLAttributes<HTMLInputElement> {}
+
+function AutoSigninCheck(props: AutoSigninCheckProps) {
+  const { checked = false, className, ...rest } = props;
+
+  return (
+    <StyledLabel checked={checked} className={className}>
+      <HiddenCheck checked={checked} {...rest} />
+      자동 로그인
+    </StyledLabel>
+  );
+}
+
+export default AutoSigninCheck;

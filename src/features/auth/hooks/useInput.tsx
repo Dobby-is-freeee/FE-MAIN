@@ -1,12 +1,12 @@
 import { useCallback, useRef, useState } from 'react';
 
-export interface useInputPropTypes {
+export interface useInputProps {
   initialValue?: string;
   validator?: (value: string) => boolean;
   preProcessor?: (value: string) => string;
 }
 
-function useInput({ initialValue, validator, preProcessor }: useInputPropTypes) {
+function useInput({ initialValue, validator, preProcessor }: useInputProps) {
   const isValid = useRef<boolean>(false);
 
   const [value, setValue] = useState<string>(initialValue ?? '');

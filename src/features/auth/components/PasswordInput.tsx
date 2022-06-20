@@ -1,26 +1,9 @@
-import React from 'react';
+import { InputHTMLAttributes } from 'react';
 import styled from 'styled-components';
 
 import useBoolean from '@/features/auth/hooks/useBoolean';
 
 import Input from '@/features/auth/components/Input';
-
-export interface PasswordInputPropTypes {
-  className?: string;
-}
-
-function PasswordInput({ className, ...others }: React.InputHTMLAttributes<HTMLInputElement> & PasswordInputPropTypes) {
-  const [isShow, toggleShow] = useBoolean({ defaultValue: false });
-
-  return (
-    <Wrapper className={className}>
-      <Input type={isShow ? 'text' : 'password'} {...others} />
-      <div onClick={toggleShow}>눈</div>
-    </Wrapper>
-  );
-}
-
-export default PasswordInput;
 
 const Wrapper = styled.div`
   display: flex;
@@ -42,3 +25,20 @@ const Wrapper = styled.div`
     cursor: pointer;
   }
 `;
+
+export interface PasswordInputProps extends InputHTMLAttributes<HTMLInputElement> {}
+
+function PasswordInput(props: PasswordInputProps) {
+  const { className, ...rest } = props;
+
+  const [isShow, toggleShow] = useBoolean({ defaultValue: false });
+
+  return (
+    <Wrapper className={className}>
+      <Input type={isShow ? 'text' : 'password'} {...rest} />
+      <div onClick={toggleShow}>눈</div>
+    </Wrapper>
+  );
+}
+
+export default PasswordInput;

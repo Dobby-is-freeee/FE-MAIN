@@ -1,17 +1,5 @@
-import React from 'react';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
-
-function BaseLayout() {
-  return (
-    <Section>
-      <Logo>logo</Logo>
-      <Outlet />
-    </Section>
-  );
-}
-
-export default BaseLayout;
 
 const Logo = styled.div`
   position: absolute;
@@ -38,3 +26,14 @@ const Section = styled.section`
     box-sizing: border-box;
   }
 `;
+
+function BaseLayout() {
+  return (
+    <Section>
+      <Logo>logo</Logo>
+      <Outlet />
+    </Section>
+  );
+}
+
+export default BaseLayout;

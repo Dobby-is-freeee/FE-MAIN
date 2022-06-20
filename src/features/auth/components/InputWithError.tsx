@@ -1,29 +1,7 @@
-import React from 'react';
+import { InputHTMLAttributes } from 'react';
 import styled from 'styled-components';
 
 import Input from '@/features/auth/components/Input';
-
-export interface InputPropTypes {
-  className?: string;
-  errorMessage?: string;
-}
-
-function InputWithError({
-  className,
-  errorMessage,
-  ...others
-}: React.InputHTMLAttributes<HTMLInputElement> & InputPropTypes) {
-  return (
-    <>
-      <Wrapper className={className}>
-        <StyledInput isError={!!errorMessage} {...others} />
-        {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
-      </Wrapper>
-    </>
-  );
-}
-
-export default InputWithError;
 
 const Wrapper = styled.div`
   position: relative;
@@ -42,3 +20,22 @@ const ErrorText = styled.div`
   font-size: 1.25rem;
   white-space: pre-line;
 `;
+
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  errorMessage?: string;
+}
+
+function InputWithError(props: InputProps) {
+  const { className, errorMessage, ...rest } = props;
+
+  return (
+    <>
+      <Wrapper className={className}>
+        <StyledInput isError={!!errorMessage} {...rest} />
+        {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
+      </Wrapper>
+    </>
+  );
+}
+
+export default InputWithError;

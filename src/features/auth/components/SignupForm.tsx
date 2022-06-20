@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 import Input from '@/features/auth/components/Input';
@@ -6,11 +5,11 @@ import PasswordInput from '@/features/auth/components/PasswordInput';
 import CheckBox from '@/features/auth/components/CheckBox';
 import Button from '@/features/auth/components/Button';
 
-export interface SignupFormPropTypes {
+export interface SignupFormProps {
   onSubmit: () => void;
 }
 
-function SignupForm({ onSubmit }: SignupFormPropTypes) {
+function SignupForm({ onSubmit }: SignupFormProps) {
   return (
     <Wrapper>
       <Input placeholder="이름" />

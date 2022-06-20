@@ -10,7 +10,36 @@ import InputWithError from '@/features/auth/components/InputWithError';
 import Button from '@/features/auth/components/Button';
 import AutoSigninCheck from '@/features/auth/components/AutoSigninCheck';
 
-export interface SigninFormPropTypes {
+const StyledInputWithError = styled(InputWithError)<{ errorMessage: string | undefined }>`
+  display: block;
+
+  &:nth-of-type(1) {
+    margin-bottom: ${({ errorMessage }) => (errorMessage ? '1rem' : '2rem')};
+  }
+
+  &:nth-of-type(2) {
+    margin-bottom: ${({ errorMessage }) => (errorMessage ? '1rem' : '1.5rem')};
+  }
+`;
+
+const StyledForm = styled.form`
+  margin-bottom: 3rem;
+  width: 100%;
+`;
+
+const OptionsWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 2.75rem;
+
+  & > div {
+    cursor: pointer;
+    font-size: 1.25rem;
+  }
+`;
+
+export interface SigninFormProps {
   onSubmit: ({
     email,
     password,
@@ -21,7 +50,9 @@ export interface SigninFormPropTypes {
   onClick: () => void;
 }
 
-function SigninForm({ onSubmit, onClick }: SigninFormPropTypes) {
+function SigninForm(props: SigninFormProps) {
+  const { onClick, onSubmit } = props;
+
   const [email, setEmail, isValidEmail] = useInput({
     validator: isEmail,
     preProcessor: (value) => {
@@ -81,32 +112,3 @@ function SigninForm({ onSubmit, onClick }: SigninFormPropTypes) {
 }
 
 export default SigninForm;
-
-const StyledInputWithError = styled(InputWithError)<{ errorMessage: string | undefined }>`
-  display: block;
-
-  &:nth-of-type(1) {
-    margin-bottom: ${({ errorMessage }) => (errorMessage ? '1rem' : '2rem')};
-  }
-
-  &:nth-of-type(2) {
-    margin-bottom: ${({ errorMessage }) => (errorMessage ? '1rem' : '1.5rem')};
-  }
-`;
-
-const StyledForm = styled.form`
-  margin-bottom: 3rem;
-  width: 100%;
-`;
-
-const OptionsWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin-bottom: 2.75rem;
-
-  & > div {
-    cursor: pointer;
-    font-size: 1.25rem;
-  }
-`;

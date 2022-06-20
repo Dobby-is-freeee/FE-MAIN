@@ -1,42 +1,7 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import styled from 'styled-components';
 
 import Button from '@/features/auth/components/Button';
-
-export interface EmailAuthContainerPropTypes {
-  successAuth: () => void;
-}
-
-function EmailAuthContainer({ successAuth }: EmailAuthContainerPropTypes) {
-  const handleClickButton = useCallback(() => {
-    successAuth();
-  }, [successAuth]);
-
-  return (
-    <Article>
-      <Title>이메일 인증</Title>
-      <Order>
-        <li>
-          <InfoWrapper>
-            <span>user123@gmail.com</span>(으)로 인증 메일을 보냈습니다.
-            <br /> 이메일 인증을 마치면 가입이 완료됩니다.
-          </InfoWrapper>
-        </li>
-        <li>인증메일 유효기간: ~ 2022.05.10 15:33</li>
-        <li>
-          <ResendWrapper>
-            이메일을 받지 못하셨나요?
-            <Button status="confirm" onClick={handleClickButton}>
-              이메일 다시 보내기
-            </Button>
-          </ResendWrapper>
-        </li>
-      </Order>
-    </Article>
-  );
-}
-
-export default EmailAuthContainer;
 
 const Article = styled.article`
   width: 30rem;
@@ -101,3 +66,38 @@ const ResendWrapper = styled.div`
     height: 3.75rem;
   }
 `;
+
+export interface EmailAuthContainerProps {
+  successAuth: () => void;
+}
+
+function EmailAuthContainer({ successAuth }: EmailAuthContainerProps) {
+  const handleClickButton = useCallback(() => {
+    successAuth();
+  }, [successAuth]);
+
+  return (
+    <Article>
+      <Title>이메일 인증</Title>
+      <Order>
+        <li>
+          <InfoWrapper>
+            <span>user123@gmail.com</span>(으)로 인증 메일을 보냈습니다.
+            <br /> 이메일 인증을 마치면 가입이 완료됩니다.
+          </InfoWrapper>
+        </li>
+        <li>인증메일 유효기간: ~ 2022.05.10 15:33</li>
+        <li>
+          <ResendWrapper>
+            이메일을 받지 못하셨나요?
+            <Button status="confirm" onClick={handleClickButton}>
+              이메일 다시 보내기
+            </Button>
+          </ResendWrapper>
+        </li>
+      </Order>
+    </Article>
+  );
+}
+
+export default EmailAuthContainer;

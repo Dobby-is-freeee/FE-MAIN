@@ -1,5 +1,3 @@
-import React from 'react';
-
 import CompleteContainer from '@/features/auth/containers/CompleteContainer';
 
 function Complete() {

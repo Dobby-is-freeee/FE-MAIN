@@ -1,21 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
 
 import Button from '@/features/auth/components/Button';
-
-export interface CompleteContainerPropTypes {}
-
-function CompleteContainer() {
-  return (
-    <Article>
-      <Title>가입을 환영합니다.</Title>
-      <Text>{`프로필을 입력하고,\n 멤버들과 함께 사이드프로젝트를 시작하세요.`}</Text>
-      <Button status="confirm">프로필 입력하기</Button>
-    </Article>
-  );
-}
-
-export default CompleteContainer;
 
 const Article = styled.article`
   width: 30rem;
@@ -40,3 +25,17 @@ const Text = styled.div`
   text-align: center;
   margin-bottom: 3rem;
 `;
+
+export interface CompleteContainerProps {}
+
+function CompleteContainer() {
+  return (
+    <Article>
+      <Title>가입을 환영합니다.</Title>
+      <Text>{`프로필을 입력하고,\n 멤버들과 함께 사이드프로젝트를 시작하세요.`}</Text>
+      <Button status="confirm">프로필 입력하기</Button>
+    </Article>
+  );
+}
+
+export default CompleteContainer;

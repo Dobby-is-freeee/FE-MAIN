@@ -1,25 +1,27 @@
 import { createRequest } from './instance';
 
-export const requestSignin = ({ email, password }: { email: string; password: string }) =>
+export interface RequestSigninParams {
+  email: string;
+  password: string;
+}
+
+export const requestSignin = (params: RequestSigninParams) =>
   createRequest<{ success: boolean; code: number }>({
     method: 'POST',
     endpoint: '/members/login',
-    body: { email: email, password: password },
+    body: { ...params },
   });
 
-export const requestSignUp = ({
-  name,
-  email,
-  password,
-  position,
-}: {
+export interface RequestSignUpParams {
   name: string;
   email: string;
   password: string;
   position: string;
-}) =>
+}
+
+export const requestSignUp = (params: RequestSignUpParams) =>
   createRequest<{ success: boolean; code: number; message: string }>({
     method: 'POST',
     endpoint: '/members/login',
-    body: { name: name, email: email, password: password, position: position },
+    body: { ...params },
   });

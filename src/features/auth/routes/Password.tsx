@@ -1,6 +1,6 @@
 import React from 'react';
 
-export interface PasswordPropTypes {}
+export interface PasswordProps {}
 
 function Password() {
   return <div>Password</div>;

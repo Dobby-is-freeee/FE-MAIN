@@ -1,4 +1,4 @@
-import React from 'react';
+import { InputHTMLAttributes, ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 
 const Label = styled.label<{ checked: boolean | undefined }>`
@@ -34,17 +34,16 @@ const HiddenCheckBox = styled.input.attrs<{ type: string }>({
   display: none;
 `;
 
-function CheckBox({
-  children,
-  ...others
-}: React.InputHTMLAttributes<HTMLInputElement> & {
-  children: React.ReactNode | string;
-}) {
-  const { checked, className } = others;
+export interface CheckBoxProps extends InputHTMLAttributes<HTMLInputElement> {
+  children: ReactNode;
+}
+
+function CheckBox(props: CheckBoxProps) {
+  const { checked, className, children, ...rest } = props;
 
   return (
     <Label className={className} checked={true}>
-      <HiddenCheckBox checked={checked} {...others} />
+      <HiddenCheckBox checked={checked} {...rest} />
       {children}
     </Label>
   );

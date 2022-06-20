@@ -1,10 +1,10 @@
 import { useCallback, useState } from 'react';
 
-export interface useBooleanPropTypes {
+export interface useBooleanProps {
   defaultValue: boolean;
 }
 
-function useBoolean({ defaultValue = false }: useBooleanPropTypes) {
+function useBoolean({ defaultValue = false }: useBooleanProps) {
   const [value, setValue] = useState(defaultValue);
 
   const toggleBoolean = useCallback(() => {

@@ -1,28 +1,7 @@
-import React from 'react';
+import React, { ButtonHTMLAttributes } from 'react';
 import styled from 'styled-components';
 
-export interface ButtonPropTypes {
-  status?: 'normal' | 'confirm';
-  children: React.ReactNode;
-}
-
-function Button({
-  children,
-  status = 'normal',
-  ...others
-}: React.ButtonHTMLAttributes<HTMLButtonElement> & ButtonPropTypes) {
-  const { className } = others;
-
-  return (
-    <StyledButton className={className} status={status} {...others}>
-      {children}
-    </StyledButton>
-  );
-}
-
-export default Button;
-
-const StyledButton = styled.button<{ status: NonNullable<ButtonPropTypes['status']> }>`
+const StyledButton = styled.button<{ status: NonNullable<ButtonProps['status']> }>`
   width: 100%;
   height: 100%;
   padding: 1rem 0;
@@ -42,3 +21,20 @@ const StyledButton = styled.button<{ status: NonNullable<ButtonPropTypes['status
     cursor: not-allowed;
   }
 `;
+
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  status?: 'normal' | 'confirm';
+  children: React.ReactNode;
+}
+
+function Button(props: ButtonProps) {
+  const { className, children, status = 'normal', ...rest } = props;
+
+  return (
+    <StyledButton className={className} status={status} {...rest}>
+      {children}
+    </StyledButton>
+  );
+}
+
+export default Button;

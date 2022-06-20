@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-export interface InputPropTypes {}
+export interface InputProps {}
 
 export default styled.input.attrs<{ autoComplete: string; spellCheck: boolean }>({
   autoComplete: 'off',
   spellCheck: false,
-})<InputPropTypes>`
+})<InputProps>`
   width: 100%;
   height: 100%;
   padding: 1rem 1.5rem;

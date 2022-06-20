@@ -1,4 +1,3 @@
-import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import { serviceWorker } from '@/features/auth/__mock__/browser';
