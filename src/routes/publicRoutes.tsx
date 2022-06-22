@@ -1,4 +1,8 @@
-import Auth from '@/features/auth';
+import { Login } from '@/features/login';
 
-// todo check
-export const publicRoutes = [{ path: '/auth/*', element: <Auth /> }];
+export const publicRoutes = [
+  {
+    path: '/*',
+    element: <Login />,
+  },
+];
