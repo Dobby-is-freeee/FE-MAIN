@@ -1,1 +1,1 @@
-export * from './Temp';
+export * from './TypoGraphy';
