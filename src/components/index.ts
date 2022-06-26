@@ -1,1 +1,2 @@
-export * from './TypoGraphy';
+export * from './Title';
+export * from './Input';

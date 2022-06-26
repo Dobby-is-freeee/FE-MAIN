@@ -6,6 +6,7 @@ export const GlobalStyle = createGlobalStyle`
 
 	*,
 	body {
+		box-sizing: border-box;
 		font-family: "SUIT", sans-serif;
 		font-size: 14px;
 	}
