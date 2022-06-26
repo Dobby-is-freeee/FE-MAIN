@@ -1,7 +1,7 @@
 import { ArgTypes, ComponentMeta, ComponentStory } from '@storybook/react';
 import { ComponentProps } from 'react';
 
-import { Title } from '../TypoGraphy/Title';
+import { Title } from '../Title';
 
 type MyArgTypes = Partial<Record<keyof ComponentProps<typeof Title>, ArgTypes[string]>>;
 
