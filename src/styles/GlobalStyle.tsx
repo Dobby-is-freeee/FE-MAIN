@@ -4,7 +4,13 @@ import reset from 'styled-reset';
 export const GlobalStyle = createGlobalStyle`
 	${reset}
 
-	* {
-		font-family: "SUIT";
+	*,
+	body {
+		font-family: "SUIT", sans-serif;
+		font-size: 14px;
+	}
+
+	small {
+		font-size: 12px;
 	}
 `;
