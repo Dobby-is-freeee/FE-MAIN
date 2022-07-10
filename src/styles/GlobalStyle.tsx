@@ -3,6 +3,7 @@ import reset from 'styled-reset';
 
 export const GlobalStyle = createGlobalStyle`
 	${reset}
+	@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
 	*,
 	body {
