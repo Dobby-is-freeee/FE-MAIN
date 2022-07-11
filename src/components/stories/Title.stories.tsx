@@ -9,7 +9,7 @@ const argTypes: MyArgTypes = {};
 
 export default {
   component: Title,
-  title: 'components/TypoGraphy/Title',
+  title: 'components/Title',
   argTypes,
 } as ComponentMeta<typeof Title>;
 
