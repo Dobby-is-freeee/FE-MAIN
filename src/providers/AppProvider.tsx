@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
 import { store } from '@/stores';
-import { GlobalStyle } from '@/GlobalStyle';
+import { GlobalStyle } from '@/styles/GlobalStyle';
 
 interface AppProviderProps {
   children: ReactNode;
