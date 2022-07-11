@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-<<<<<<< HEAD
 
 export const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
@@ -46,10 +45,4 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-=======
-import reset from 'styled-reset';
-
-export const GlobalStyle = createGlobalStyle`
-	${reset}
->>>>>>> download develop branch
 `;
