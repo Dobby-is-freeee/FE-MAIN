@@ -4,7 +4,7 @@ import { AddProfile } from '@/assets/images';
 import styled from 'styled-components';
 
 type ProfileFormValues = {
-  imgURL: string;
+  imgFile: string;
   nickname: string;
   position: string;
   phone: string;
@@ -28,12 +28,20 @@ export const Profile = () => {
   const [nameAsNickname, setNameAsNickname] = useState<string | undefined>(undefined);
 
   const submitHandler = (data: ProfileFormValues) => {
+    const formData = new FormData();
+    formData.append('file', data.imgFile[0]);
     const profileData = {
-      data,
+      formData,
       keywords,
     };
-    return profileData;
-  };
+    console.log(profileData);
+
+    //backend api 필요!
+    // const response = fetch('api_endpoint', {
+    //   method: 'POST',
+    //   body: JSON.stringify(profileData),
+    // }).then((res) => res.json());
+  };;
 
   const keywordChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -55,7 +63,7 @@ export const Profile = () => {
   };
 
   const Form = styled.form`
-    width: 500px;
+    width: 600px;
     margin: 5rem auto;
   `;
   const FormGroup = styled.div`
@@ -83,11 +91,31 @@ export const Profile = () => {
 
   const Field = styled.div`
     display: flex;
-    align-items: center;
     border-bottom: 1.5px solid #e3e3e3;
     padding: 1rem 0;
     &:last-child {
       border-bottom: none;
+    }
+    > div {
+      display: flex;
+      align-items: center;
+      gap: 2em;
+      p:first-child {
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+      p:last-child {
+        font-size: 12px;
+      }
+    }
+  `;
+
+  const Label = styled.label`
+    width: 120px;
+    font-size: 14px;
+    span {
+      margin-left: 2px;
+      color: #eb5656;
     }
   `;
 
@@ -111,22 +139,28 @@ export const Profile = () => {
           </FormGroupTitle>
           <FieldGroup>
             <Field>
-              <label>
+              <Label>
                 이미지<span>*</span>
-              </label>
+              </Label>
               <div>
-                <input type="file" {...register('imgURL', { required: true })} />
+                <input
+                  style={{ display: 'none' }}
+                  type="file"
+                  {...register('imgFile', { required: true })}
+                  accept="image/*"
+                />
+                <img src={AddProfile} />
                 <div>
                   <p>이미지를 업로드하세요</p>
                   <p>Apro go에서 팀원들이 회원님을 쉽게 알아볼 수 있습니다.</p>
                 </div>
-                {errors.imgURL && <p>이미지를 업로드해주세요</p>}
+                {errors.imgFile && <p>이미지를 업로드해주세요</p>}
               </div>
             </Field>
             <Field>
-              <label>
+              <Label>
                 닉네임<span>*</span>
-              </label>
+              </Label>
               <div>
                 <input
                   type="text"
@@ -141,9 +175,9 @@ export const Profile = () => {
               </div>
             </Field>
             <Field>
-              <label>
+              <Label>
                 포지션<span>*</span>
-              </label>
+              </Label>
               <div>
                 <input
                   type="text"
@@ -154,9 +188,9 @@ export const Profile = () => {
               </div>
             </Field>
             <Field>
-              <label>
+              <Label>
                 키워드 (3개)<span>*</span>
-              </label>
+              </Label>
               <ul>
                 {keywords.map((keyword, index) => {
                   return (
@@ -184,18 +218,18 @@ export const Profile = () => {
           </FormGroupTitle>
           <FieldGroup>
             <Field>
-              <label>
+              <Label>
                 나의 대표 연락처<span>*</span>
-              </label>
+              </Label>
               <div>
                 <input type="text" {...register('phone', { required: true })} placeholder="000-0000-0000" />
                 {errors.phone && <p>필수항목을 입력해주세요</p>}
               </div>
             </Field>
             <Field>
-              <label>
+              <Label>
                 포트폴리오 사이트<span>*</span>
-              </label>
+              </Label>
               <input
                 type="text"
                 {...register('portfolioURL')}
