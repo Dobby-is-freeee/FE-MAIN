@@ -53,12 +53,7 @@ const MenuItemList = styled.li<{ isActiveMenu: boolean }>`
     `}
 
   &:hover {
-    background-color: rgba(78, 53, 231, 0.1);
-    color: ${({ theme }) => theme.colors.primary};
-
-    path {
-      color: ${({ theme }) => theme.colors.primary};
-    }
+    background-color: #f6f5fe;
   }
 `;
 const MenuItemText = styled.span`
