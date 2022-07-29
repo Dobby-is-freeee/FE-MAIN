@@ -2,7 +2,8 @@ import { Fragment, ReactNode, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
-import { SAMPLE_IMAGE } from '@/features/studio/constants';
+import { LogoLarge, MyProfileBlack, ProjectBlack, SettingBlack } from '@/assets/images';
+import { Link } from 'react-router-dom';
 
 const Wrap = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
@@ -17,7 +18,7 @@ const Wrap = styled.div`
   line-height: 24px;
   font-weight: 500;
 `;
-const Logo = styled.div`
+const LogoWrap = styled.div`
   width: 234px;
   height: 80px;
   margin: 0 0 60px 0;
@@ -45,12 +46,23 @@ const MenuItemList = styled.li<{ isActiveMenu: boolean }>`
     css`
       background-color: rgba(78, 53, 231, 0.1);
       color: ${({ theme }) => theme.colors.primary};
+
+      path {
+        color: ${({ theme }) => theme.colors.primary};
+      }
     `}
 
   &:hover {
     background-color: rgba(78, 53, 231, 0.1);
     color: ${({ theme }) => theme.colors.primary};
+
+    path {
+      color: ${({ theme }) => theme.colors.primary};
+    }
   }
+`;
+const MenuItemText = styled.span`
+  padding-left: 9px;
 `;
 const SubMenuItemWrap = styled.ul``;
 const SubMenuItemList = styled.li<{ isActiveMenu: boolean }>`
@@ -69,10 +81,12 @@ const SubMenuItemList = styled.li<{ isActiveMenu: boolean }>`
     background-color: rgba(78, 53, 231, 0.1);
   }
 `;
-const SettingMenu = styled.div`
+const SettingLink = styled(Link)`
   cursor: pointer;
   display: flex;
   align-items: center;
+  text-decoration: none;
+  color: ${({ theme }) => theme.colors.black};
   padding-left: 27px;
   height: 56px;
   margin-bottom: 80px;
@@ -86,11 +100,21 @@ interface MenuItem {
 
 const menuItems: MenuItem[] = [
   {
-    value: <>내 프로젝트</>,
+    value: (
+      <>
+        <ProjectBlack />
+        <MenuItemText>내 프로젝트</MenuItemText>
+      </>
+    ),
     path: '/',
   },
   {
-    value: <>내 프로필</>,
+    value: (
+      <>
+        <MyProfileBlack />
+        <MenuItemText>내 프로필</MenuItemText>
+      </>
+    ),
     path: '/profile',
   },
 ];
@@ -121,9 +145,9 @@ export const SideNavigation = () => {
 
   return (
     <Wrap>
-      <Logo>
-        <img src={SAMPLE_IMAGE} alt="logo" />
-      </Logo>
+      <LogoWrap>
+        <LogoLarge />
+      </LogoWrap>
 
       <MenuItemWrap>
         {menuItems.map(({ path, value, children }) => (
@@ -154,7 +178,10 @@ export const SideNavigation = () => {
         ))}
       </MenuItemWrap>
 
-      <SettingMenu>환경설정</SettingMenu>
+      <SettingLink to="/setting">
+        <SettingBlack />
+        <MenuItemText>환경설정</MenuItemText>
+      </SettingLink>
     </Wrap>
   );
 };
