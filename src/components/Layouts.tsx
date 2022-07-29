@@ -5,13 +5,14 @@ import { SideNavigation } from './SideNavigation';
 
 const Wrap = styled.div`
   display: flex;
-  flex-direction: column;
   width: 100%;
   min-height: 100vh;
 `;
 
 const LayoutMainContentWrap = styled.div`
   display: flex;
+  flex-direction: column;
+  width: 100%;
 `;
 
 const MainContent = styled.section`
@@ -25,12 +26,10 @@ interface LayoutsProps {
 export const Layouts = ({ children }: LayoutsProps) => {
   return (
     <Wrap>
-      <Header />
+      <SideNavigation />
 
       <LayoutMainContentWrap>
-        <div>
-          <SideNavigation />
-        </div>
+        <Header />
         <MainContent>{children}</MainContent>
       </LayoutMainContentWrap>
     </Wrap>

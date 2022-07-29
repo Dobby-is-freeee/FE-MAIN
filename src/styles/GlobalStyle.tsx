@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
+import { theme } from './theme';
 
 export const GlobalStyle = createGlobalStyle`
 	${reset}
@@ -10,6 +11,7 @@ export const GlobalStyle = createGlobalStyle`
 		box-sizing: border-box;
 		font-family: "SUIT", sans-serif;
 		font-size: 14px;
+		color : ${theme.colors.black};
 	}
 
 	small {

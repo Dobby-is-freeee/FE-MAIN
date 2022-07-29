@@ -1,22 +1,26 @@
-import { Fragment, useState } from 'react';
+import { Fragment, ReactNode, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
 import { SAMPLE_IMAGE } from '@/features/studio/constants';
 
 const Wrap = styled.div`
-  background-color: #202a44;
-  color: #ffffff;
+  background-color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.black};
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 45px);
-  width: 300px;
-  padding: 24px 0;
+  align-content: space-between;
+  border-right: 1px solid ${({ theme }) => theme.colors.gray1};
+  width: 234px;
+  min-height: 100vh;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
 `;
 const Logo = styled.div`
-  width: 100px;
-  height: 100%;
-  margin: 0 auto;
+  width: 234px;
+  height: 80px;
+  margin: 0 0 60px 0;
 
   img {
     width: 100%;
@@ -26,26 +30,26 @@ const Logo = styled.div`
 const MenuItemWrap = styled.ul`
   display: flex;
   flex-direction: column;
-  padding-top: 36px;
-
-  li ~ li {
-    margin-top: 14px;
-  }
+  height: 100%;
 `;
 const MenuItemList = styled.li<{ isActiveMenu: boolean }>`
   cursor: pointer;
   display: flex;
   align-items: center;
-  padding: 18px 24px;
+  transition: all 300ms;
+  padding-left: 27px;
+  height: 56px;
 
   ${({ isActiveMenu }) =>
     isActiveMenu &&
     css`
-      background-color: #2e2252;
+      background-color: rgba(78, 53, 231, 0.1);
+      color: ${({ theme }) => theme.colors.primary};
     `}
 
   &:hover {
-    background-color: #2e2252;
+    background-color: rgba(78, 53, 231, 0.1);
+    color: ${({ theme }) => theme.colors.primary};
   }
 `;
 const SubMenuItemWrap = styled.ul``;
@@ -58,56 +62,36 @@ const SubMenuItemList = styled.li<{ isActiveMenu: boolean }>`
   ${({ isActiveMenu }) =>
     isActiveMenu &&
     css`
-      background-color: #2e2252;
+      background-color: rgba(78, 53, 231, 0.1);
     `}
 
   &:hover {
-    background-color: #2e2252;
+    background-color: rgba(78, 53, 231, 0.1);
   }
+`;
+const SettingMenu = styled.div`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding-left: 27px;
+  height: 56px;
+  margin-bottom: 80px;
 `;
 
 interface MenuItem {
-  value: string;
+  value: string | ReactNode;
   path: string;
   children?: MenuItem[];
 }
 
 const menuItems: MenuItem[] = [
   {
-    value: '홈화면',
+    value: <>내 프로젝트</>,
     path: '/',
   },
   {
-    value: '샘플1',
-    path: '/sample1/page1',
-    children: [
-      {
-        value: '샘플하위페이지1',
-        path: '/sample1/page1',
-      },
-      {
-        value: '샘플하위페이지2',
-        path: '/sample1/page2',
-      },
-      {
-        value: '샘플하위페이지3',
-        path: '/sample1/page3',
-      },
-    ],
-  },
-  {
-    value: '샘플2',
-    path: '/sample2',
-  },
-  {
-    value: '샘플3',
-    path: '/sample3/page1',
-    children: [
-      {
-        value: '샘플3하위페이지1',
-        path: '/sample3/page1',
-      },
-    ],
+    value: <>내 프로필</>,
+    path: '/profile',
   },
 ];
 
@@ -169,6 +153,8 @@ export const SideNavigation = () => {
           </Fragment>
         ))}
       </MenuItemWrap>
+
+      <SettingMenu>환경설정</SettingMenu>
     </Wrap>
   );
 };
