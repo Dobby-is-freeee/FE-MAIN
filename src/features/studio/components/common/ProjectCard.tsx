@@ -1,58 +1,82 @@
 import styled from 'styled-components';
 
-import { SAMPLE_IMAGE } from '../../constants';
-import { ProjectStatus, ProjectItem } from '../../containers/ProjectCardContainer';
+import { Icon01, Member } from '@/assets/images';
+import { ProjectItem, ProjectStatus } from '../../containers/ProjectCardContainer';
+import { LineButton } from '@/components/LineButton';
 
 const Wrap = styled.div`
-  padding: 12px;
-  border: 1px solid #dbdbdb;
-  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid ${({ theme }) => theme.colors.gray1};
+  border-radius: 6px;
+  width: 254px;
+  height: 252px;
 `;
+
 const ProjectCardBody = styled.div`
   display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin-bottom: 4px;
 `;
-const ProjectImage = styled.div`
-  width: 80px;
-  height: 80px;
-  margin-right: 12px;
 
-  img {
-    width: 100%;
-    height: 100%;
-  }
+const ProjectIconWrap = styled.div`
+  background-color: #677bf9;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 10px;
 `;
+
 const ProjectInfo = styled.div`
-  line-height: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `;
+
 const ProjectName = styled.div`
-  font-size: 14px;
   font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: -0.0025em;
 `;
+
 const ProjectCreateDate = styled.div`
+  font-weight: 400;
   font-size: 12px;
+
+  color: ${({ theme }) => theme.colors.gray3};
 `;
-const ProjectMember = styled.div`
-  font-size: 13px;
+
+const ProjectButton = styled(LineButton)`
+  margin: 0 auto;
+  margin-bottom: 20px;
+  width: 214px;
 `;
+
 const ProjectCardFooter = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 8px;
+  flex: 1;
+  padding: 0 20px;
+  background-color: ${({ theme }) => theme.colors.darkWhite};
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
 `;
-const ProjectCardMessage = styled.span`
+
+const ProjectMember = styled.span`
+  display: flex;
+  align-items: center;
+  color: ${({ theme }) => theme.colors.gray3};
+  font-weight: 400;
+  font-size: 12px;
+  gap: 4px;
   font-size: 13px;
 `;
-const ProjectCardButton = styled.button`
-  background-color: #333;
-  color: #fff;
-  padding: 4px 12px;
-  cursor: pointer;
 
-  &:disabled {
-    opacity: 0.3;
-    pointer-events: none;
-  }
+const ProjectStatusText = styled.span`
+  font-weight: 500;
+  font-size: 12px;
 `;
 
 interface ProjectStatusValue {
@@ -75,22 +99,22 @@ export const ProjectCard = ({ id, createDate, projectName, status, totalMember }
   return (
     <Wrap>
       <ProjectCardBody>
-        <ProjectImage>
-          <img src={SAMPLE_IMAGE} alt="project image" />
-        </ProjectImage>
+        <ProjectIconWrap>
+          <Icon01 />
+        </ProjectIconWrap>
+
         <ProjectInfo>
           <ProjectName>{projectName}</ProjectName>
           <ProjectCreateDate>{createDate}</ProjectCreateDate>
-          <ProjectMember>현재 {totalMember}명이 함께하는 중</ProjectMember>
         </ProjectInfo>
       </ProjectCardBody>
-
-      {/* TODO: divider로 변환 */}
-      <hr />
-
+      <ProjectButton>바로가기</ProjectButton>
       <ProjectCardFooter>
-        <ProjectCardMessage>{STATUS_DIC[status].message}</ProjectCardMessage>
-        <ProjectCardButton disabled={STATUS_DIC[status].disabled}>{STATUS_DIC[status].buttonText}</ProjectCardButton>
+        <ProjectMember>
+          <Member />
+          현재 {totalMember}명이 참가중
+        </ProjectMember>
+        <ProjectStatusText>{STATUS_DIC[status].buttonText}</ProjectStatusText>
       </ProjectCardFooter>
     </Wrap>
   );

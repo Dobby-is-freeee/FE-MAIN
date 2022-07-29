@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Button = styled.button`
-  font-family: 'Pretendard', sans-serif;
+  font-family: 'Pretendard', 'SUIT', sans-serif;
   background-color: ${({ theme }) => theme.colors.white};
   color: ${({ theme }) => theme.colors.black};
   outline: none;
@@ -9,7 +9,7 @@ const Button = styled.button`
   border-radius: 6px;
   cursor: pointer;
   font-weight: 700;
-  width: 150px;
+  width: 100%;
   height: 38px;
   font-size: 14px;
   line-height: 22px;
@@ -20,7 +20,7 @@ const Button = styled.button`
     background-color: rgba(205, 204, 208, 0.25);
   }
 
-  &:focus {
+  &:active {
     background-color: rgba(205, 204, 208, 0.55);
   }
 

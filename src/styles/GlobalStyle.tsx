@@ -10,6 +10,8 @@ export const GlobalStyle = createGlobalStyle`
 		box-sizing: border-box;
 		font-family: "SUIT", sans-serif;
 		font-size: 14px;
+	  line-height: 18px;
+	  letter-spacing: -0.0025em;
 	}
 
 	small {

@@ -12,9 +12,10 @@ const TitleWrap = styled(Title)`
 `;
 
 const ProjectCardWrap = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 60px;
 `;
 
 interface InviteProjectCardsProps {
@@ -23,7 +24,7 @@ interface InviteProjectCardsProps {
 
 export const InviteProjectCards = ({ inviteProjects }: InviteProjectCardsProps) => {
   return (
-    <div>
+    <>
       <TitleWrap level={2}>초대받은 프로젝트</TitleWrap>
 
       <ProjectCardWrap>
@@ -38,6 +39,6 @@ export const InviteProjectCards = ({ inviteProjects }: InviteProjectCardsProps) 
           />
         ))}
       </ProjectCardWrap>
-    </div>
+    </>
   );
 };
