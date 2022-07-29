@@ -3,18 +3,28 @@ import styled from 'styled-components';
 import { SAMPLE_IMAGE } from '@/features/studio/constants';
 
 const Wrap = styled.header`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
-  height: 45px;
-  border-bottom: 1px solid #f0f0f0;
-  padding: 0 12px;
+  height: 104px;
+  padding: 0 32px;
 `;
 
-const HeaderInner = styled.div`
+const HeaderText = styled.div`
+  /* TODO: 폰트 추가 */
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0.0025em;
+  color: ${({ theme }) => theme.colors.black};
+`;
+
+const HeaderUserInfo = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  width: 100%;
-  height: 100%;
 `;
 
 const UserProfileImage = styled.span`
@@ -31,11 +41,12 @@ const UserProfileImage = styled.span`
 export const Header = () => {
   return (
     <Wrap>
-      <HeaderInner>
+      <HeaderText>김프로님의 스튜디오</HeaderText>
+      <HeaderUserInfo>
         <UserProfileImage>
           <img src={SAMPLE_IMAGE} alt="user profile image" />
         </UserProfileImage>
-      </HeaderInner>
+      </HeaderUserInfo>
     </Wrap>
   );
 };
