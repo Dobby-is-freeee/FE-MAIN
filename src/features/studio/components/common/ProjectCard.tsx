@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { SAMPLE_IMAGE } from '../constants';
-import { ProjectItem, ProjectStatus } from '../routes';
+import { SAMPLE_IMAGE } from '../../constants';
+import { ProjectStatus, ProjectItem } from '../../containers/ProjectCardContainer';
 
 const Wrap = styled.div`
   padding: 12px;
