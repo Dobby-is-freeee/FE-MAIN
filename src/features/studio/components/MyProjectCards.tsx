@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { Title } from '@/components';
 import { ProjectItem, ProjectStatus } from '../containers/ProjectCardContainer';
-import { ProjectCard } from './common/ProjectCard';
+import { ProjectCard } from './common';
 import { LineButton } from '@/components/LineButton';
 
 const TitleWrap = styled(Title)`
