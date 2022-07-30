@@ -1,5 +1,10 @@
 import { PageContainer } from '../components/common';
+import { StudioCreateFormContainer } from '../containers/StudioCreateFormContainer';
 
 export const StudioCreate = () => {
-  return <PageContainer>g2</PageContainer>;
+  return (
+    <PageContainer>
+      <StudioCreateFormContainer />
+    </PageContainer>
+  );
 };

@@ -5,8 +5,8 @@ import { Error } from '@/assets/images';
 import { Modal, Title } from '@/components';
 import { LineButton } from '@/components/LineButton';
 import { useToggle } from 'react-use';
-import { ProjectItem, ProjectStatus } from '../containers/ProjectCardContainer';
-import { ProjectCard } from './common';
+import { ProjectItem, ProjectStatus } from '../../containers/ProjectCardContainer';
+import { ProjectCard } from '../common';
 
 const TitleWrap = styled(Title)`
   color: ${({ theme }) => theme.colors.black};
