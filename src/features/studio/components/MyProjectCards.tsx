@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Error } from '@/assets/images';
@@ -89,6 +90,7 @@ interface MyProjectCardsProps {
 
 export const MyProjectCards = ({ myProjects }: MyProjectCardsProps) => {
   const [visible, handleToggle] = useToggle(false);
+  const navigate = useNavigate();
 
   const handleModalCancel = () => {
     handleToggle(false);
@@ -96,6 +98,7 @@ export const MyProjectCards = ({ myProjects }: MyProjectCardsProps) => {
 
   const handleModalConfirm = () => {
     handleToggle(false);
+    navigate('/studio/create');
   };
 
   return (

@@ -101,7 +101,7 @@ const menuItems: MenuItem[] = [
         <MenuItemText>내 프로젝트</MenuItemText>
       </>
     ),
-    path: '/',
+    path: '/studio',
   },
   {
     value: (
