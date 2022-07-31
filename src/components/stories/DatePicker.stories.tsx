@@ -1,7 +1,7 @@
 /* eslint-disable no-alert */
 import { ComponentProps, useState } from 'react';
 import { ComponentStory, ComponentMeta, ArgTypes } from '@storybook/react';
-import { DatePicker } from '../DatePicker';
+import { DatePicker, generateDayValue } from '../DatePicker';
 import { DayValue } from '@hassanmojab/react-modern-calendar-datepicker';
 
 type MyArgTypes = Partial<Record<keyof ComponentProps<typeof DatePicker>, ArgTypes[string]>>;
@@ -26,6 +26,13 @@ const Template: ComponentStory<typeof DatePicker> = ({ ...props }) => {
 export const Default = Template.bind({});
 Default.args = {
   inputPlaceholder: '시작일',
+  maximumDate: generateDayValue(new Date()),
+};
+
+export const EndPicker = Template.bind({});
+EndPicker.args = {
+  maximumDate: null,
+  inputPlaceholder: '종료일',
 };
 
 export const Disabled = Template.bind({});

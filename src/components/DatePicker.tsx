@@ -184,8 +184,9 @@ export function makeTensDigit(digit: number) {
   return digit > 9 ? digit : `0${digit}`;
 }
 
-export interface CustomPickerProps extends DatePickerProps<DayValue> {
+export interface CustomPickerProps extends Omit<DatePickerProps<DayValue>, 'maximumDate'> {
   disabled?: boolean;
+  maximumDate?: Day | null;
 }
 
 export const DatePicker = ({ disabled, maximumDate, value, ...props }: CustomPickerProps) => {
@@ -286,7 +287,7 @@ export const DatePicker = ({ disabled, maximumDate, value, ...props }: CustomPic
         locale={locale}
         colorPrimary={theme.colors.primary}
         shouldHighlightWeekends
-        maximumDate={maximumDate || generateDayValue(new Date())}
+        maximumDate={maximumDate ?? undefined}
         {...props}
       />
     </DatePickerStyle>
