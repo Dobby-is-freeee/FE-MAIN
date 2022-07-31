@@ -1,3 +1,4 @@
+// TODO: 상태에 따라 컴포넌트 의존 낮추기 ex) single, multi, inputMode - chkim
 import React, { useCallback, useMemo, useState } from 'react';
 import {
   default as ReactSelect,
@@ -13,7 +14,11 @@ import styled from 'styled-components';
 import { Close, Dropdown } from '@/assets/images';
 import { theme } from '@/styles';
 
-function getSelectValue(value: ValueType, options: SelectOption[]): OptionType {
+function getSelectValue(value?: ValueType, options?: SelectOption[]): OptionType {
+  if (!value) {
+    return [];
+  }
+
   if (Array.isArray(value)) {
     return options?.filter((option) => value.includes(option.value)) as OptionType;
   }
@@ -61,7 +66,7 @@ interface SelectProps extends Omit<Props<SelectOption>, 'value' | 'onInputChange
   /**
    * Select의 값을 설정한다. options의 value 값을 넣어야 한다.
    */
-  value: ValueType;
+  value?: ValueType;
   /**
    * input을 이용해 Tag를 만들 수 있다.
    */
@@ -284,6 +289,7 @@ export const Select = ({
       inputValue={inputValue}
       value={inputMode ? inputValues : selectValue}
       options={options}
+      closeMenuOnSelect={isMulti ? false : props.closeMenuOnSelect}
       menuIsOpen={inputMode ? false : props.menuIsOpen}
       isSearchable={inputMode ? true : isSearchable}
       isClearable={inputMode ? false : isClearable}
