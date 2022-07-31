@@ -2,7 +2,6 @@ import AddProfile from '../images/ic_add_profile.svg';
 import Calendar from '../images/ic_calendar.svg';
 
 import Confirm from '../images/ic_confirm.svg';
-import Dropdown from '../images/ic_dropdown.svg';
 import Error1 from '../images/ic_error-1.svg';
 import EyeHidden from '../images/ic_eye_hidden.svg';
 import EyeOpen from '../images/ic_eye_n.svg';
@@ -34,6 +33,7 @@ import { ReactComponent as Close } from '../images/ic_close.svg';
 import { ReactComponent as Icon01 } from '../images/ic_icon01.svg';
 import { ReactComponent as LogoLarge } from '../images/logo_l.svg';
 import { ReactComponent as Error } from '../images/ic_error.svg';
+import { ReactComponent as Dropdown } from '../images/ic_dropdown.svg';
 
 export {
   AddProfile,
