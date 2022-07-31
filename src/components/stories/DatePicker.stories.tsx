@@ -1,7 +1,7 @@
 /* eslint-disable no-alert */
 import { ComponentProps, useState } from 'react';
 import { ComponentStory, ComponentMeta, ArgTypes } from '@storybook/react';
-import { CustomDatePicker as DatePicker } from '../DatePicker';
+import { DatePicker } from '../DatePicker';
 import { DayValue } from '@hassanmojab/react-modern-calendar-datepicker';
 
 type MyArgTypes = Partial<Record<keyof ComponentProps<typeof DatePicker>, ArgTypes[string]>>;

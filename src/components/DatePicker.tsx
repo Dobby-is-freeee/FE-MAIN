@@ -1,5 +1,10 @@
 import styled, { css } from 'styled-components';
-import DatePicker, { DatePickerProps, DayValue, Day } from '@hassanmojab/react-modern-calendar-datepicker';
+import {
+  default as ReactDatePicker,
+  DatePickerProps,
+  DayValue,
+  Day,
+} from '@hassanmojab/react-modern-calendar-datepicker';
 import '@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css';
 
 import { Calendar } from '@/assets/images';
@@ -22,10 +27,10 @@ const DatePickerStyle = styled.div<{ disabled?: boolean }>`
     transition: border-color 300ms linear;
     outline: none;
     background: url(${Calendar}) no-repeat 16px 15px;
+    text-align: left;
+    padding-left: 48px;
 
     &::placeholder {
-      padding-left: 32px;
-      text-align: left;
       color: ${({ theme }) => theme.colors.gray2};
     }
 
@@ -183,7 +188,7 @@ export interface CustomPickerProps extends DatePickerProps<DayValue> {
   disabled?: boolean;
 }
 
-export const CustomDatePicker = ({ disabled, maximumDate, value, ...props }: CustomPickerProps) => {
+export const DatePicker = ({ disabled, maximumDate, value, ...props }: CustomPickerProps) => {
   const locale = {
     months: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
 
@@ -268,14 +273,14 @@ export const CustomDatePicker = ({ disabled, maximumDate, value, ...props }: Cus
   const formatInputText = () => {
     if (value) {
       const { year, month, day } = value;
-      return `${year}-${makeTensDigit(month)}-${makeTensDigit(day)}`;
+      return `${year}.${makeTensDigit(month)}.${makeTensDigit(day)}`;
     }
     return '';
   };
 
   return (
     <DatePickerStyle disabled={disabled}>
-      <DatePicker
+      <ReactDatePicker
         formatInputText={formatInputText}
         value={value}
         locale={locale}
