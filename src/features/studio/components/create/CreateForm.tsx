@@ -3,7 +3,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Star } from '@/assets/images';
-import { Title } from '@/components';
 import { IconGeneratorType, PickerChangeHandlerArgs } from '../../containers/StudioCreateFormContainer';
 import { IconGenerator } from './IconGenerator';
 import { ProjectInformation } from './ProjectInformation';
@@ -12,7 +11,7 @@ import { ProjectInviteModal } from './ProjectInviteModal';
 const CreateFormWrap = styled.form``;
 
 const FieldGroup = styled.div`
-  padding: 1.5rem;
+  padding: 6px 0;
   border: 1.5px solid ${({ theme }) => theme.colors.gray1};
   border-radius: 5px;
 `;
@@ -21,7 +20,7 @@ export const Field = styled.div`
   display: flex;
   align-items: center;
   border-bottom: 1.5px solid #e3e3e3;
-  padding: 1rem 0;
+  padding: 22px 28px;
 
   &:last-child {
     border-bottom: none;
@@ -75,16 +74,12 @@ export const CreateForm = ({
   };
 
   return (
-    <>
-      <Title level={3}>새 프로젝트</Title>
-
-      <CreateFormWrap onSubmit={handleSubmit}>
-        <FieldGroup>
-          <ProjectInformation startDate={startDate} endDate={endDate} onPickerChange={onPickerChange} />
-          <IconGenerator onGeneratorTypeClick={onGeneratorTypeClick} iconGeneratorType={iconGeneratorType} />
-          <ProjectInviteModal isVisible={isInviteModalVisible} onToggle={onInviteModalVisibleToggle} />
-        </FieldGroup>
-      </CreateFormWrap>
-    </>
+    <CreateFormWrap onSubmit={handleSubmit}>
+      <FieldGroup>
+        <ProjectInformation startDate={startDate} endDate={endDate} onPickerChange={onPickerChange} />
+        <IconGenerator onGeneratorTypeClick={onGeneratorTypeClick} iconGeneratorType={iconGeneratorType} />
+        <ProjectInviteModal isVisible={isInviteModalVisible} onToggle={onInviteModalVisibleToggle} />
+      </FieldGroup>
+    </CreateFormWrap>
   );
 };
