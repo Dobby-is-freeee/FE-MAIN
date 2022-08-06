@@ -17,4 +17,12 @@ export const GlobalStyle = createGlobalStyle`
 	small {
 		font-size: 12px;
 	}
+
+	button {
+		cursor: pointer;
+		outline: none;
+		border :none;
+		padding: 0;
+		margin: 0;
+	}
 `;

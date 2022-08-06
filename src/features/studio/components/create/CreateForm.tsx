@@ -3,8 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Star } from '@/assets/images';
-import { Input, Title } from '@/components';
-import { LineButton } from '@/components/LineButton';
+import { Title } from '@/components';
 import { IconGeneratorType, PickerChangeHandlerArgs } from '../../containers/StudioCreateFormContainer';
 import { IconGenerator } from './IconGenerator';
 import { ProjectInformation } from './ProjectInformation';

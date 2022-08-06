@@ -1,9 +1,27 @@
-import { Dropdown, Icon01 } from '@/assets/images';
-import { useRef } from 'react';
+import { Dropdown } from '@/assets/images';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import { useClickAway } from 'react-use';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+import { COLORS, ICON_INDEX, ICON_SVGS } from '../../constants';
 import { IconGeneratorType } from '../../containers/StudioCreateFormContainer';
 import { Field, Label, RequiredIcon } from './CreateForm';
+
+interface OpenButtonStyleProps {
+  isOpen: boolean;
+}
+
+interface ListItemStyleProps {
+  selectedIndex?: number;
+}
+
+interface ColorItemStyleProps extends ListItemStyleProps {
+  bgColor: string;
+}
+
+interface PreviewIconStyleProps {
+  bgColor: string;
+}
 
 const Wrap = styled.div`
   display: flex;
@@ -37,11 +55,11 @@ const ColorBlockWrap = styled.div`
   margin-top: 6px;
 `;
 
-const ColorBlock = styled.div`
+const ColorBlock = styled.div<PreviewIconStyleProps>`
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background-color: red;
+  background-color: ${({ bgColor }) => bgColor};
 `;
 
 const Separator = styled.span`
@@ -54,10 +72,6 @@ const PreviewField = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
-interface PreviewIconStyleProps {
-  bgColor: string;
-}
 
 const PreviewIcon = styled.div<PreviewIconStyleProps>`
   position: relative;
@@ -82,20 +96,95 @@ const PreviewIcon = styled.div<PreviewIconStyleProps>`
   }
 `;
 
-const OpenButton = styled.button`
-  border: none;
+const OpenButton = styled.button<OpenButtonStyleProps>`
   background-color: transparent;
-  cursor: pointer;
-  padding: 0;
   margin-left: 4px;
   width: 28px;
   height: 28px;
+
+  svg {
+    transform: rotate(${({ isOpen }) => (isOpen ? '180deg' : '0deg')});
+  }
 `;
 
 const OpenedSelectList = styled.div`
   position: absolute;
+  top: 88px;
+`;
+
+const SelectListItemWrap = styled.div`
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(4, 40px);
+  gap: 8px;
   background-color: ${({ theme }) => theme.colors.white};
-  bottom: 0;
+  border: 1px solid ${({ theme }) => theme.colors.gray2};
+  padding: 20px;
+  box-shadow: 0px 4px 8px rgba(29, 29, 29, 0.08);
+  border-radius: 4px;
+  z-index: 10;
+`;
+
+const ListItem = styled.button<ListItemStyleProps>`
+  background-color: transparent;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+
+  ${({ selectedIndex, theme }) => {
+    if (typeof selectedIndex === 'undefined') {
+      return;
+    }
+
+    const index = selectedIndex + 1;
+
+    if (index === 1) {
+      return css`
+        &:first-child {
+          border: 1px solid ${theme.colors.gray2};
+          box-shadow: 0px 4px 8px rgba(29, 29, 29, 0.08);
+          border-radius: 4px;
+        }
+      `;
+    }
+
+    return css`
+      &:nth-of-type(${index}) {
+        border: 1px solid ${theme.colors.gray2};
+        box-shadow: 0px 4px 8px rgba(29, 29, 29, 0.08);
+        border-radius: 4px;
+      }
+    `;
+  }}
+`;
+
+const ColorItem = styled.button<ColorItemStyleProps>`
+  background-color: ${({ bgColor }) => bgColor};
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+
+  ${({ selectedIndex, theme }) => {
+    if (typeof selectedIndex === 'undefined') {
+      return;
+    }
+
+    const index = selectedIndex + 1;
+
+    if (index === 1) {
+      return css`
+        &:first-child {
+          border: 2px solid ${theme.colors.gray2};
+        }
+      `;
+    }
+
+    return css`
+      &:nth-of-type(${index}) {
+        border: 2px solid ${theme.colors.gray2};
+      }
+    `;
+  }}
 `;
 
 interface IconGeneratorProps {
@@ -107,17 +196,73 @@ export const IconGenerator = ({ onGeneratorTypeClick, iconGeneratorType }: IconG
   const isIcon = iconGeneratorType === 'icon';
   const isColor = iconGeneratorType === 'color';
 
-  const refGenerator = useRef(null);
+  const refColorGenerator = useRef(null);
+  const refIconGenerator = useRef(null);
+
+  const [iconIndex, setIconIndex] = useState(0);
+  const [colorIndex, setColorIndex] = useState(0);
+
+  const renderIcon = useCallback((index: number) => ICON_SVGS[index](), []);
+  const renderColor = useCallback((index: number) => COLORS[index], []);
+
+  const handleSelectOptionCurried = (index: number, type: IconGeneratorType) => () => {
+    if (type === 'icon') {
+      return setIconIndex(index);
+    }
+
+    if (type === 'color') {
+      return setColorIndex(index);
+    }
+  };
 
   const handleGeneratorTypeClickCurried = (type: IconGeneratorType | null) => () => {
+    if (type === 'icon' && isIcon) {
+      return onGeneratorTypeClick(null);
+    }
+
+    if (type === 'color' && isColor) {
+      return onGeneratorTypeClick(null);
+    }
+
     onGeneratorTypeClick(type);
   };
 
-  const handleAway = () => {
+  const handleColorAway = () => {
+    if (!isColor) {
+      return;
+    }
     onGeneratorTypeClick(null);
   };
 
-  useClickAway(refGenerator, handleAway);
+  const handleIconAway = () => {
+    if (!isIcon) {
+      return;
+    }
+    onGeneratorTypeClick(null);
+  };
+
+  const renderIconItems = useMemo(() => {
+    return Array.from({ length: ICON_INDEX }).map((_, index) => (
+      <ListItem key={index} selectedIndex={iconIndex} onClick={handleSelectOptionCurried(index, 'icon')}>
+        {renderIcon(index)}
+      </ListItem>
+    ));
+  }, [renderIcon, iconIndex]);
+
+  const renderColorItems = useMemo(() => {
+    return COLORS.map((color, index) => (
+      <ColorItem
+        bgColor={color}
+        key={color}
+        onClick={handleSelectOptionCurried(index, 'color')}
+        selectedIndex={colorIndex}>
+        <div />
+      </ColorItem>
+    ));
+  }, [colorIndex]);
+
+  useClickAway(refColorGenerator, handleColorAway);
+  useClickAway(refIconGenerator, handleIconAway);
 
   return (
     <Field>
@@ -128,37 +273,41 @@ export const IconGenerator = ({ onGeneratorTypeClick, iconGeneratorType }: IconG
       <Wrap>
         <InnerField>
           <FieldName>Icon</FieldName>
-          <IconBlockWrap>
-            <Icon01 />
-            <OpenButton type="button" onClick={handleGeneratorTypeClickCurried('icon')}>
+          <IconBlockWrap ref={refIconGenerator}>
+            {renderIcon(iconIndex)}
+            <OpenButton type="button" onClick={handleGeneratorTypeClickCurried('icon')} isOpen={isIcon}>
               <Dropdown />
             </OpenButton>
-
-            {isIcon && <OpenedSelectList ref={refGenerator}>g2</OpenedSelectList>}
+            {isIcon && (
+              <OpenedSelectList>
+                <SelectListItemWrap>{renderIconItems}</SelectListItemWrap>
+              </OpenedSelectList>
+            )}
           </IconBlockWrap>
         </InnerField>
 
         <InnerField>
           <FieldName>Color</FieldName>
 
-          <ColorBlockWrap>
-            <ColorBlock />
+          <ColorBlockWrap ref={refColorGenerator}>
+            <ColorBlock bgColor={renderColor(colorIndex)} />
 
-            <OpenButton type="button" onClick={handleGeneratorTypeClickCurried('color')}>
+            <OpenButton type="button" onClick={handleGeneratorTypeClickCurried('color')} isOpen={isColor}>
               <Dropdown />
             </OpenButton>
+            {isColor && (
+              <OpenedSelectList>
+                <SelectListItemWrap>{renderColorItems}</SelectListItemWrap>
+              </OpenedSelectList>
+            )}
           </ColorBlockWrap>
-
-          {isColor && <OpenedSelectList ref={refGenerator}>컬러욤</OpenedSelectList>}
         </InnerField>
 
         <Separator />
 
         <PreviewField>
           <FieldName>Preview</FieldName>
-          <PreviewIcon bgColor="#677BF9">
-            <Icon01 />
-          </PreviewIcon>
+          <PreviewIcon bgColor={renderColor(colorIndex)}>{renderIcon(iconIndex)}</PreviewIcon>
         </PreviewField>
       </Wrap>
     </Field>
