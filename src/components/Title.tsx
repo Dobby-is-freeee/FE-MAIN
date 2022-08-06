@@ -19,12 +19,13 @@ const Heading = styled(CreateTitle)<Pick<TitleProps, 'level'>>`
     if (level === 1) {
       return css`
         font-size: 30px;
-        font-weight: bold;
+        font-weight: 400;
       `;
     }
 
     if (level === 2) {
       return css`
+        font-weight: 700;
         font-size: 24px;
       `;
     }
@@ -32,12 +33,13 @@ const Heading = styled(CreateTitle)<Pick<TitleProps, 'level'>>`
     if (level === 3) {
       return css`
         font-size: 18px;
-        font-weight: bold;
+        font-weight: 400;
       `;
     }
 
     if (level === 4) {
       return css`
+        font-weight: 700;
         font-size: 16px;
       `;
     }

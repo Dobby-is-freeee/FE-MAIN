@@ -3,7 +3,6 @@
     "id": 1,
     "projectName": "Zamit",
     "createDate": "2021-08-14",
-
     "totalMember": 4,
     "status": "wait"
   },
@@ -11,7 +10,6 @@
     "id": 2,
     "projectName": "Home Ing",
     "createDate": "2021-10-14",
-
     "totalMember": 2,
     "status": "create"
   },
