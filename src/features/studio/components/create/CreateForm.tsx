@@ -7,6 +7,7 @@ import { IconGeneratorType, PickerChangeHandlerArgs } from '../../containers/Stu
 import { IconGenerator } from './IconGenerator';
 import { ProjectInformation } from './ProjectInformation';
 import { ProjectInviteModal } from './ProjectInviteModal';
+import { LineButton } from '@/components';
 
 const CreateFormWrap = styled.form``;
 
@@ -36,6 +37,23 @@ export const Label = styled.label`
   font-size: 18px;
   line-height: 26px;
   margin-right: 68px;
+`;
+
+const FormFooter = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+`;
+
+const FooterExtraText = styled.small`
+  color: #666666;
+`;
+
+const FooterButtons = styled.span`
+  display: flex;
+  gap: 8px;
+  width: 241px;
 `;
 
 export const RequiredIcon = styled.span`
@@ -74,12 +92,23 @@ export const CreateForm = ({
   };
 
   return (
-    <CreateFormWrap onSubmit={handleSubmit}>
-      <FieldGroup>
-        <ProjectInformation startDate={startDate} endDate={endDate} onPickerChange={onPickerChange} />
-        <IconGenerator onGeneratorTypeClick={onGeneratorTypeClick} iconGeneratorType={iconGeneratorType} />
-        <ProjectInviteModal isVisible={isInviteModalVisible} onToggle={onInviteModalVisibleToggle} />
-      </FieldGroup>
-    </CreateFormWrap>
+    <>
+      <CreateFormWrap onSubmit={handleSubmit}>
+        <FieldGroup>
+          <ProjectInformation startDate={startDate} endDate={endDate} onPickerChange={onPickerChange} />
+          <IconGenerator onGeneratorTypeClick={onGeneratorTypeClick} iconGeneratorType={iconGeneratorType} />
+          <ProjectInviteModal isVisible={isInviteModalVisible} onToggle={onInviteModalVisibleToggle} />
+        </FieldGroup>
+      </CreateFormWrap>
+
+      <FormFooter>
+        <FooterExtraText>*프로젝트 정보는 프로젝트를 만든 후에도 수정할 수 있어요.</FooterExtraText>
+
+        <FooterButtons>
+          <LineButton>취소</LineButton>
+          <LineButton kind="primary">프로젝트 만들기</LineButton>
+        </FooterButtons>
+      </FormFooter>
+    </>
   );
 };

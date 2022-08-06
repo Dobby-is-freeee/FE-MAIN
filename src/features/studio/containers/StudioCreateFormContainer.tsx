@@ -4,12 +4,19 @@ import { useToggle } from 'react-use';
 import styled from 'styled-components';
 
 import { generateDayValue, Title } from '@/components';
-import { CreateForm } from '../components/create/CreateForm';
+import { CreateForm, RequiredIcon } from '../components/create/CreateForm';
 
-const TitleWrap = styled(Title)`
+const TitleWrap = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 20px;
-  font-weight: 500;
 `;
+
+const RequiredInformation = styled.span`
+  color: ${({ theme }) => theme.colors.point};
+`;
+
 export type PickerType = 'start' | 'end';
 export type IconGeneratorType = 'icon' | 'color';
 
@@ -40,7 +47,13 @@ export const StudioCreateFormContainer = () => {
 
   return (
     <>
-      <TitleWrap level={2}>새 프로젝트</TitleWrap>
+      <TitleWrap>
+        <Title level={2}>새 프로젝트</Title>
+        <RequiredInformation>
+          <RequiredIcon />
+          필수 입력 항목
+        </RequiredInformation>
+      </TitleWrap>
       <CreateForm
         startDate={startDate}
         endDate={endDate}
