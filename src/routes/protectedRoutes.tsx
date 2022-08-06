@@ -1,12 +1,25 @@
-import { Studio } from '@/features/studio';
+import { Outlet } from 'react-router-dom';
+
+import { Layouts } from '@/components';
+import { StudioRoutes } from '@/features/studio/routes';
 
 export const protectedRoutes = [
   {
     path: '/',
-    element: <Studio />,
-  },
-  {
-    path: '*',
-    element: <div>empty</div>,
+    element: (
+      <Layouts>
+        <Outlet />
+      </Layouts>
+    ),
+    children: [
+      {
+        path: '/studio/*',
+        element: <StudioRoutes />,
+      },
+      {
+        path: '*',
+        element: <div>empty</div>,
+      },
+    ],
   },
 ];
