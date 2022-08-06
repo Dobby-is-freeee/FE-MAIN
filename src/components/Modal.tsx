@@ -1,11 +1,12 @@
 import styled, { keyframes } from 'styled-components';
+import ReactDOM from 'react-dom';
 
 import { Close } from '@/assets/images';
 import { Title } from './Title';
 
 interface ModalBodyStyleProps {
-  width: number;
-  height: number;
+  width: number | string;
+  height: number | string;
 }
 
 const blowUpModal = keyframes`
@@ -30,6 +31,7 @@ const ModalWrap = styled.div`
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 10;
   width: 100%;
   height: 100%;
 `;
@@ -50,13 +52,12 @@ const ModalBody = styled.div<ModalBodyStyleProps>`
   flex-direction: column;
   justify-content: space-between;
   background-color: #fff;
-  width: ${({ width }) => `${width}px`};
-  height: ${({ height }) => `${height}px`};
+  width: ${({ width }) => `${typeof width === 'number' ? `${width}px` : width}`};
+  height: ${({ height }) => `${typeof height === 'number' ? `${height}px` : height}`};
   top: 50%;
   left: 50%;
   transform-origin: -10% -10%;
   transform: translate(-50%, -50%);
-  z-index: 10;
   border-radius: 6px;
   animation: ${blowUpModal} 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 `;
@@ -98,10 +99,9 @@ const ModalContent = styled.div`
   flex: 1;
   padding: 28px;
 `;
-
 const ModalFooter = styled.div`
   border-top: 1px solid ${({ theme }) => theme.colors.gray2};
-  padding: 16px 9px 16px 28px;
+  padding: 8px 9px 8px 28px;
 `;
 
 export interface ModalProps {
@@ -109,8 +109,8 @@ export interface ModalProps {
   content?: string | React.ReactNode;
   title?: string | React.ReactNode;
   footer?: React.ReactNode;
-  width?: number;
-  height?: number;
+  width?: number | string;
+  height?: number | string;
 
   onClose?: () => void;
 }
@@ -157,7 +157,7 @@ export const Modal = ({ visible, content, title, footer, width = 450, height = 2
     return <ModalFooter>{footer}</ModalFooter>;
   };
 
-  return (
+  return ReactDOM.createPortal(
     <ModalWrap>
       <ModalBackground onClick={onClose} />
       <ModalBody width={width} height={height}>
@@ -165,6 +165,7 @@ export const Modal = ({ visible, content, title, footer, width = 450, height = 2
         {renderContent()}
         {renderFooter()}
       </ModalBody>
-    </ModalWrap>
+    </ModalWrap>,
+    document.getElementById('portal') as HTMLElement,
   );
 };

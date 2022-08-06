@@ -11,6 +11,10 @@ import { Calendar } from '@/assets/images';
 import { theme } from '@/styles';
 
 const DatePickerStyle = styled.div<{ disabled?: boolean }>`
+  * {
+    z-index: 1;
+  }
+
   .DatePicker__input {
     cursor: pointer;
     border: 1px solid ${({ theme }) => theme.colors.gray2};
