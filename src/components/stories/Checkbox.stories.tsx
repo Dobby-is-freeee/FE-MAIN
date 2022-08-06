@@ -1,7 +1,7 @@
 /* eslint-disable no-alert */
 import { ComponentProps } from 'react';
 import { ComponentStory, ComponentMeta, ArgTypes } from '@storybook/react';
-import { CheckBox } from '../Checkbox';
+import { CheckBox } from '../CheckBox';
 
 type MyArgTypes = Partial<Record<keyof ComponentProps<typeof CheckBox>, ArgTypes[string]>>;
 const argTypes: MyArgTypes = {};

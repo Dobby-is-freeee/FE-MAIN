@@ -15,31 +15,33 @@ const CreateTitle = ({ level = 1, children, ...props }: CreateTitleProps) => {
 export interface TitleProps extends CreateTitleProps {}
 
 const Heading = styled(CreateTitle)<Pick<TitleProps, 'level'>>`
+  font-family: 'Pretendard', sans-serif;
+
   ${({ level }) => {
     if (level === 1) {
       return css`
         font-size: 30px;
-        font-weight: 400;
+        font-weight: bold;
       `;
     }
 
     if (level === 2) {
       return css`
-        font-weight: 700;
+        font-weight: 500;
         font-size: 24px;
       `;
     }
 
     if (level === 3) {
       return css`
+        font-weight: 700;
         font-size: 18px;
-        font-weight: 400;
       `;
     }
 
     if (level === 4) {
       return css`
-        font-weight: 700;
+        font-weight: 500;
         font-size: 16px;
       `;
     }

@@ -8,7 +8,8 @@ const Button = styled.button`
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  width: 150px;
+  font-weight: 500;
+  width: 100%;
   height: 56px;
   font-size: 16px;
   line-height: 22px;
@@ -19,7 +20,7 @@ const Button = styled.button`
     background-color: #3b2c97;
   }
 
-  &:focus {
+  &:active {
     background-color: #2c245a;
   }
 
