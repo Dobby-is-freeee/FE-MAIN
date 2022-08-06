@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 
 import MOCK_PROJECT_ITEMS from '../_fixtures/projectItems.json';
-import { MyProjectCards } from '../components/MyProjectCards';
-import { InviteProjectCards } from '../components/InviteProjectCards';
+import { MyProjectCards } from '../components/main/MyProjectCards';
+import { InviteProjectCards } from '../components/main/InviteProjectCards';
 
 const Wrap = styled.div`
   width: 100%;
-  padding: 24px;
 `;
 
 export type ProjectStatus = 'wait' | 'invited' | 'create' | 'ended';

@@ -4,7 +4,7 @@ const Container = styled.section`
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
-  padding: 60px 0;
+  padding: 60px 24px;
 `;
 
 interface PageContainerProps {
