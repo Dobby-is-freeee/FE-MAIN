@@ -8,12 +8,12 @@ import { Link } from 'react-router-dom';
 const Wrap = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
   color: ${({ theme }) => theme.colors.black};
+  position: fixed;
   display: flex;
   flex-direction: column;
   align-content: space-between;
   border-right: 1px solid ${({ theme }) => theme.colors.gray1};
-  width: 234px;
-  min-height: 100vh;
+  height: 100%;
   font-size: 16px;
   line-height: 24px;
   font-weight: 500;
