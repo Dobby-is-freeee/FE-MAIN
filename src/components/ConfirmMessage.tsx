@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import styled from 'styled-components';
 
 import { Close, Error, Error1 } from '@/assets/images';
@@ -46,24 +46,24 @@ const CloseButton = styled.button`
 interface ConfirmMessageProps extends ConfirmMessageStyleProps {
   children: React.ReactNode | string;
   onClose: () => void;
-  isVisible: boolean;
+  visible: boolean;
 }
 
 export const ConfirmMessage = ({
-  status,
   onClose,
   children,
-  isVisible = false,
+  status = 'error',
+  visible = false,
   width = '100%',
   height = 'auto',
-}: ConfirmMessageProps) => {
+}: Partial<ConfirmMessageProps>) => {
   const handleCloseClick = () => {
-    onClose();
+    onClose?.();
   };
 
   const renderStatusIcon = useMemo(() => (status === 'error' ? <StatusError /> : <StatusSuccess />), [status]);
 
-  if (!isVisible) {
+  if (!visible) {
     return null;
   }
 

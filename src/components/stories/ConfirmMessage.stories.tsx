@@ -10,18 +10,18 @@ type MyArgTypes = Partial<Record<keyof ComponentProps<typeof ConfirmMessage>, Ar
 const argTypes: MyArgTypes = {};
 
 export default {
-  title: 'ChangePlease/ConfirmMessage',
+  title: 'components/ConfirmMessage',
   component: ConfirmMessage,
   argTypes,
 } as ComponentMeta<typeof ConfirmMessage>;
 
 const Template: ComponentStory<typeof ConfirmMessage> = ({ ...props }) => {
-  const [isVisible, handleToggle] = useToggle(true);
+  const [visible, handleToggle] = useToggle(true);
 
   return (
     <>
-      {!isVisible && <LineButton onClick={handleToggle}>message 오픈</LineButton>}
-      <ConfirmMessage {...props} isVisible={isVisible} onClose={handleToggle} />
+      {!visible && <LineButton onClick={handleToggle}>message 오픈</LineButton>}
+      <ConfirmMessage {...props} visible={visible} onClose={handleToggle} />
     </>
   );
 };
@@ -29,14 +29,14 @@ const Template: ComponentStory<typeof ConfirmMessage> = ({ ...props }) => {
 export const Default = Template.bind({});
 Default.args = {
   status: 'error',
-  isVisible: true,
+  visible: true,
   children: '에러입니다.',
 };
 
 export const Success = Template.bind({});
 Success.args = {
   status: 'success',
-  isVisible: true,
+  visible: true,
   children: (
     <>
       메시지 입니다.

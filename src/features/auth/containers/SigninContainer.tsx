@@ -1,11 +1,11 @@
 import { useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { requestSignin } from '@/features/auth/api/members';
 import { Google, LogoSmall } from '@/assets/images';
 import { LineButton, Title } from '@/components';
+import { requestSignin } from '@/features/auth/api/members';
 import SigninForm, { SigninFormProps } from '@/features/auth/components/SigninForm';
-import { useNavigate } from 'react-router-dom';
 
 export const FormField = styled.article`
   background-color: ${({ theme }) => theme.colors.white};
@@ -116,6 +116,7 @@ function SigninContainer(_: SigninContainerProps) {
           Google 계정으로 로그인
         </GoggleButton>
       </FormField>
+
       <SignupText>
         Apro.go가 처음이라면 <SignupButton onClick={handleGoToSignup}>회원가입</SignupButton>
       </SignupText>

@@ -7,7 +7,7 @@ type MyArgTypes = Partial<Record<keyof ComponentProps<typeof InputPassword>, Arg
 const argTypes: MyArgTypes = {};
 
 export default {
-  title: 'ChangePlease/InputPassword',
+  title: 'components/InputPassword',
   component: InputPassword,
   argTypes,
 } as ComponentMeta<typeof InputPassword>;
