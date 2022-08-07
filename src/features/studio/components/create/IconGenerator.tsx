@@ -136,7 +136,7 @@ const ListItem = styled.button<ListItemStyleProps>`
       return;
     }
 
-    const index = selectedIndex + 1;
+    const index: number = selectedIndex + 1;
 
     if (index === 1) {
       return css`
@@ -202,7 +202,10 @@ export const IconGenerator = ({ onGeneratorTypeClick, iconGeneratorType }: IconG
   const [iconIndex, setIconIndex] = useState(0);
   const [colorIndex, setColorIndex] = useState(0);
 
-  const renderIcon = useCallback((index: number) => ICON_SVGS[index](), []);
+  const renderIcon = useCallback((index: number) => {
+    const IconComponent = ICON_SVGS[index];
+    return <IconComponent />;
+  }, []);
   const renderColor = useCallback((index: number) => COLORS[index], []);
 
   const handleSelectOptionCurried = (index: number, type: IconGeneratorType) => () => {
