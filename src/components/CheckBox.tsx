@@ -15,7 +15,6 @@ const CheckInput = styled.input<{ disabled: boolean; small?: boolean }>`
     color: ${({ theme }) => theme.colors.black};
     padding-left: 24px;
     width: 100%;
-    height: ${({ small }) => (small ? '21px' : '26px')};
     line-height: ${({ small }) => (small ? '21px' : '26px')};
     font-size: ${({ small }) => (small ? '14px' : '16px')};
     font-weight: 700;
@@ -24,8 +23,7 @@ const CheckInput = styled.input<{ disabled: boolean; small?: boolean }>`
 
   & + label::before {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    top: ${({ small }) => (small ? '3px' : '6px')};
     left: 0px;
     width: 14px;
     height: 14px;
@@ -46,8 +44,7 @@ const CheckInput = styled.input<{ disabled: boolean; small?: boolean }>`
     text-align: center;
     background-color: ${({ theme }) => theme.colors.secondary};
     color: ${({ theme }) => theme.colors.white};
-    top: 50%;
-    transform: translateY(-50%);
+    top: ${({ small }) => (small ? '3px' : '6px')};
     left: 0px;
     width: 16px;
     height: 16px;

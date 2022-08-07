@@ -1,8 +1,6 @@
 import Calendar from '../images/ic_calendar.svg';
 import Confirm from '../images/ic_confirm.svg';
 import Error1 from '../images/ic_error-1.svg';
-import EyeHidden from '../images/ic_eye_hidden.svg';
-import EyeOpen from '../images/ic_eye_n.svg';
 
 import Mail from '../images/ic_mail.svg';
 import MyProfilePurple from '../images/ic_my_profile_p.svg';
@@ -36,6 +34,8 @@ import { ReactComponent as AddProfile } from '../images/ic_add_profile.svg';
 import { ReactComponent as LinkIcon } from '../images/ic_link.svg';
 import { ReactComponent as Notice } from '../images/ic_notice.svg';
 import { ReactComponent as Google } from '../images/ic_google.svg';
+import { ReactComponent as EyeHidden } from '../images/ic_eye_hidden.svg';
+import { ReactComponent as EyeOpen } from '../images/ic_eye_n.svg';
 
 export {
   AddProfile,

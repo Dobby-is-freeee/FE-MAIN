@@ -5,8 +5,9 @@ import { requestSignin } from '@/features/auth/api/members';
 import { Google, LogoSmall } from '@/assets/images';
 import { LineButton, Title } from '@/components';
 import SigninForm, { SigninFormProps } from '@/features/auth/components/SigninForm';
+import { useNavigate } from 'react-router-dom';
 
-const FormField = styled.article`
+export const FormField = styled.article`
   background-color: ${({ theme }) => theme.colors.white};
   border: 1px solid ${({ theme }) => theme.colors.gray2};
   width: 448px;
@@ -15,13 +16,13 @@ const FormField = styled.article`
   margin-bottom: 20px;
 `;
 
-const Logo = styled(LogoSmall)`
+export const Logo = styled(LogoSmall)`
   text-align: center;
   margin-bottom: 20px;
   width: 100%;
 `;
 
-const TitleWrap = styled(Title)`
+export const TitleWrap = styled(Title)`
   font-family: 'Poppins';
   text-align: center;
   width: 100%;
@@ -29,7 +30,7 @@ const TitleWrap = styled(Title)`
   margin-bottom: 32px;
 `;
 
-const GoggleButton = styled.button`
+export const GoggleButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,7 +45,7 @@ const GoggleButton = styled.button`
   height: 56px;
 `;
 
-const SignupText = styled.div`
+export const SignupText = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -53,17 +54,28 @@ const SignupText = styled.div`
   color: ${({ theme }) => theme.colors.gray3};
 `;
 
-const SignupButton = styled(LineButton)`
+export const SignupButton = styled(LineButton)`
   width: 97px;
 `;
 
-export interface SigninContainerProps {
-  onClickSignup: () => void;
-  onClickGoogleSignin: () => void;
-  onClickFindPassword: () => void;
-}
+export interface SigninContainerProps {}
 
-function SigninContainer({ onClickSignup, onClickGoogleSignin, onClickFindPassword }: SigninContainerProps) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function SigninContainer(_: SigninContainerProps) {
+  const navigate = useNavigate();
+
+  const handleGoToSignup = useCallback(() => {
+    navigate('/auth/signup');
+  }, [navigate]);
+
+  const handleGoToFindPassword = useCallback(() => {
+    navigate('/auth/password');
+  }, [navigate]);
+
+  const handleGoToGoogleSignin = useCallback(() => {
+    alert('구글 로그인 구현 예정..');
+  }, []);
+
   const handleSignin = useCallback<SigninFormProps['onSubmit']>(async ({ email, password }) => {
     try {
       await requestSignin({ email: email, password: password });
@@ -98,14 +110,14 @@ function SigninContainer({ onClickSignup, onClickGoogleSignin, onClickFindPasswo
       <FormField>
         <Logo />
         <TitleWrap level={1}>로그인</TitleWrap>
-        <SigninForm onSubmit={handleSignin} onClick={onClickFindPassword} />
-        <GoggleButton onClick={onClickGoogleSignin}>
+        <SigninForm onSubmit={handleSignin} onClick={handleGoToFindPassword} />
+        <GoggleButton onClick={handleGoToGoogleSignin}>
           <Google />
           Google 계정으로 로그인
         </GoggleButton>
       </FormField>
       <SignupText>
-        Apro.go가 처음이라면 <SignupButton onClick={onClickSignup}>회원가입</SignupButton>
+        Apro.go가 처음이라면 <SignupButton onClick={handleGoToSignup}>회원가입</SignupButton>
       </SignupText>
     </>
   );
