@@ -1,102 +1,96 @@
 import { useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import Button from '@/features/auth/components/Button';
+import { Mail } from '@/assets/images';
+import { SolidButton, Title } from '@/components';
+import { Logo } from './SigninContainer';
 
-const Article = styled.article`
-  width: 30rem;
-  font-size: 1.25rem;
+const Wrap = styled.article`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: ${({ theme }) => theme.colors.white};
+
+  width: 448px;
+  height: 601px;
+  padding: 48px 40px;
+  border: 1px solid ${({ theme }) => theme.colors.gray2};
+  border-radius: 6px;
 `;
 
-const Title = styled.h3`
-  margin-bottom: 4rem;
-  font-weight: bold;
-  font-size: 3rem;
+const TitleStyled = styled(Title)`
+  margin-bottom: 20px;
+`;
+
+const TextWrap = styled.div`
   text-align: center;
+  margin-bottom: 40px;
+  flex: 1;
 `;
 
-const Order = styled.ol`
-  counter-reset: order;
-
-  & > li {
-    position: relative;
-    display: flex;
-    align-items: center;
-    counter-increment: order;
-    margin-bottom: 2rem;
-
-    & span {
-      font-weight: bolder;
-    }
-
-    &:before {
-      position: absolute;
-      left: -55px;
-
-      display: block;
-      line-height: 2.5rem;
-      flex-shrink: 0;
-
-      text-align: center;
-      width: 2.5rem;
-      height: 2.5rem;
-      border-radius: 100%;
-      background: #ff00e5;
-      content: '0' counter(order);
-      color: white;
-    }
-  }
-`;
-
-const InfoWrapper = styled.div`
+const EmailText = styled.p`
   font-weight: bold;
+  font-size: 18px;
+  margin-top: 12px;
+  margin-bottom: 4px;
+`;
 
-  & > span {
-    font-weight: bolder;
-  }
+const EmailSubText = styled.p`
+  line-height: 24px;
+  font-size: 16px;
+  margin-bottom: 12px;
+`;
+
+const EmailExtraText = styled.small`
+  color: ${({ theme }) => theme.colors.gray3};
+  font-size: 14px;
 `;
 
 const ResendWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
+  width: 100%;
 
-  & > button {
-    margin-left: 1.2rem;
-    width: 14rem;
-    height: 3.75rem;
+  p {
+    margin-bottom: 16px;
+    color: ${({ theme }) => theme.colors.gray3};
+    font-size: 16px;
   }
 `;
 
-export interface EmailAuthContainerProps {
-  successAuth: () => void;
-}
+export interface EmailAuthContainerProps {}
 
-function EmailAuthContainer({ successAuth }: EmailAuthContainerProps) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function EmailAuthContainer(_: EmailAuthContainerProps) {
+  const navigate = useNavigate();
+
   const handleClickButton = useCallback(() => {
-    successAuth();
-  }, [successAuth]);
+    navigate('/auth/complete');
+  }, [navigate]);
 
   return (
-    <Article>
-      <Title>이메일 인증</Title>
-      <Order>
-        <li>
-          <InfoWrapper>
-            <span>user123@gmail.com</span>(으)로 인증 메일을 보냈습니다.
-            <br /> 이메일 인증을 마치면 가입이 완료됩니다.
-          </InfoWrapper>
-        </li>
-        <li>인증메일 유효기간: ~ 2022.05.10 15:33</li>
-        <li>
-          <ResendWrapper>
-            이메일을 받지 못하셨나요?
-            <Button status="confirm" onClick={handleClickButton}>
-              이메일 다시 보내기
-            </Button>
-          </ResendWrapper>
-        </li>
-      </Order>
-    </Article>
+    <Wrap>
+      <Logo />
+      <TitleStyled level={1}>이메일 인증</TitleStyled>
+
+      <TextWrap>
+        <Mail />
+        <EmailText>user123@gmail.com</EmailText>
+        <EmailSubText>
+          (으)로 인증 메일을 보냈습니다.
+          <br />
+          <strong>이메일 인증을 마치면</strong> 가입이 완료됩니다.
+        </EmailSubText>
+        <EmailExtraText>인증메일 유효기간: ~ 2022.05.10 15:33</EmailExtraText>
+      </TextWrap>
+
+      <ResendWrapper>
+        <p>이메일을 받지 못하셨나요?</p>
+        <SolidButton onClick={handleClickButton}>이메일 다시 보내기</SolidButton>
+      </ResendWrapper>
+    </Wrap>
   );
 }
 
