@@ -1,18 +1,24 @@
 import { useCallback } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 import { Google } from '@/assets/images';
 import SignupForm from '@/features/auth/components/SignupForm';
 import { FormField, GoggleButton, Logo, SignupButton, SignupText, TitleWrap } from './SigninContainer';
 
-export interface SignupContainerProps {
-  successSignup: () => void;
-  onClickSignin: () => void;
-}
+export interface SignupContainerProps {}
 
-function SignupContainer({ successSignup, onClickSignin }: SignupContainerProps) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function SignupContainer(_: SignupContainerProps) {
+  const navigate = useNavigate();
+
+  const handleGoToSignin = useCallback(() => {
+    navigate('/auth/signin');
+  }, [navigate]);
+
   const handleSubmit = useCallback(() => {
-    successSignup();
-  }, [successSignup]);
+    navigate('/auth/email');
+  }, [navigate]);
 
   return (
     <>
@@ -26,7 +32,7 @@ function SignupContainer({ successSignup, onClickSignin }: SignupContainerProps)
         </GoggleButton>
       </FormField>
       <SignupText>
-        Apro.go가 처음이라면 <SignupButton onClick={onClickSignin}>로그인</SignupButton>
+        이미 가입하셨나요? <SignupButton onClick={handleGoToSignin}>로그인</SignupButton>
       </SignupText>
     </>
   );
