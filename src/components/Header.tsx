@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { SAMPLE_IMAGE } from '@/features/studio/constants';
+import { MyProfilePurple, Notice } from '@/assets/images';
 
 const Wrap = styled.header`
   display: flex;
@@ -28,13 +28,16 @@ const HeaderUserInfo = styled.div`
 `;
 
 const UserProfileImage = styled.span`
-  width: 35px;
-  height: 35px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 
   img {
-    width: 100%;
-    height: 100%;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
+    margin-left: 4px;
+    border: 1px solid ${({ theme }) => theme.colors.gray1};
   }
 `;
 
@@ -44,7 +47,10 @@ export const Header = () => {
       <HeaderText>김프로님의 스튜디오</HeaderText>
       <HeaderUserInfo>
         <UserProfileImage>
-          <img src={SAMPLE_IMAGE} alt="user profile image" />
+          <Notice />
+          {/* TODO: icon-search로 변경 */}
+          <Notice />
+          <img src={MyProfilePurple} alt="user profile image" />
         </UserProfileImage>
       </HeaderUserInfo>
     </Wrap>
