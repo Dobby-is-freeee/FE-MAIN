@@ -30,6 +30,7 @@ function EmailAuthContainer(_: EmailAuthContainerProps) {
   const navigate = useNavigate();
 
   const handleRetryEmailClick = useCallback(() => {
+    // TODO: 이메일 보내는 로직
     navigate('/auth/complete');
   }, [navigate]);
 
