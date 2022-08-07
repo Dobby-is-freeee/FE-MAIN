@@ -2,51 +2,59 @@ import { useCallback } from 'react';
 import styled from 'styled-components';
 
 import { requestSignin } from '@/features/auth/api/members';
-
+import { Google, LogoSmall } from '@/assets/images';
+import { LineButton, Title } from '@/components';
 import SigninForm, { SigninFormProps } from '@/features/auth/components/SigninForm';
-import Button from '@/features/auth/components/Button';
 
-const Article = styled.article`
-  width: 30rem;
+const FormField = styled.article`
+  background-color: ${({ theme }) => theme.colors.white};
+  border: 1px solid ${({ theme }) => theme.colors.gray2};
+  width: 448px;
+  padding: 45px 40px;
+  border-radius: 6px;
+  margin-bottom: 20px;
 `;
 
-const Title = styled.h3`
-  margin-bottom: 4rem;
-  font-weight: bold;
-  font-size: 3rem;
+const Logo = styled(LogoSmall)`
   text-align: center;
+  margin-bottom: 20px;
+  width: 100%;
 `;
 
-const Division = styled.div`
-  position: relative;
+const TitleWrap = styled(Title)`
+  font-family: 'Poppins';
+  text-align: center;
+  width: 100%;
+  line-height: 30px;
+  margin-bottom: 32px;
+`;
+
+const GoggleButton = styled.button`
   display: flex;
-  align-items: center;
   justify-content: center;
-  margin-bottom: 2rem;
-  border-top: 1px solid black;
-
-  &::after {
-    position: absolute;
-    content: '또는';
-    background-color: #f8f8f8;
-    padding: 0 0.875rem;
-    font-size: 1.25rem;
-  }
-`;
-
-const GoggleButton = styled(Button)`
-  margin-bottom: 10rem;
+  align-items: center;
+  border: 1px solid ${({ theme }) => theme.colors.gray2};
+  background-color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.black};
+  gap: 4px;
+  font-weight: 500;
+  font-size: 16px;
+  border-radius: 6px;
+  width: 100%;
+  height: 56px;
 `;
 
 const SignupText = styled.div`
-  text-align: center;
-  font-size: 1.25rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 448px;
+  font-size: 16px;
+  color: ${({ theme }) => theme.colors.gray3};
+`;
 
-  & > span {
-    font-weight: bold;
-    cursor: pointer;
-    margin-left: 0.2rem;
-  }
+const SignupButton = styled(LineButton)`
+  width: 97px;
 `;
 
 export interface SigninContainerProps {
@@ -86,15 +94,20 @@ function SigninContainer({ onClickSignup, onClickGoogleSignin, onClickFindPasswo
   }, []);
 
   return (
-    <Article>
-      <Title>로그인</Title>
-      <SigninForm onSubmit={handleSignin} onClick={onClickFindPassword} />
-      <Division />
-      <GoggleButton onClick={onClickGoogleSignin}>Google 계정으로 로그인</GoggleButton>
+    <>
+      <FormField>
+        <Logo />
+        <TitleWrap level={1}>로그인</TitleWrap>
+        <SigninForm onSubmit={handleSignin} onClick={onClickFindPassword} />
+        <GoggleButton onClick={onClickGoogleSignin}>
+          <Google />
+          Google 계정으로 로그인
+        </GoggleButton>
+      </FormField>
       <SignupText>
-        사이드킥이 처음이라면 <span onClick={onClickSignup}>회원가입</span>
+        Apro.go가 처음이라면 <SignupButton onClick={onClickSignup}>회원가입</SignupButton>
       </SignupText>
-    </Article>
+    </>
   );
 }
 

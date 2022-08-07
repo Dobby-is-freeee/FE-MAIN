@@ -1,10 +1,14 @@
+import { CheckBoxSelected } from '@/assets/images';
 import styled, { css } from 'styled-components';
+
+const Wrap = styled.div`
+  display: flex;
+`;
 
 const CheckInput = styled.input<{ disabled: boolean; small?: boolean }>`
   display: none;
 
   & + label {
-    font-family: 'Pretendard', sans-serif;
     position: relative;
     display: block;
     cursor: pointer;
@@ -50,7 +54,7 @@ const CheckInput = styled.input<{ disabled: boolean; small?: boolean }>`
     line-height: 20px;
     border-radius: 3px;
     /* TODO: 체크박스 아이콘 */
-    content: '\\2713';
+    content: url(${CheckBoxSelected});
   }
 `;
 
@@ -62,9 +66,9 @@ interface CheckBoxProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 export const CheckBox = ({ id, label, small, disabled = false, ...props }: CheckBoxProps) => {
   return (
-    <>
+    <Wrap>
       <CheckInput id={id} type="checkbox" {...props} disabled={disabled} small={small} />
       <label htmlFor={id}>{label}</label>
-    </>
+    </Wrap>
   );
 };

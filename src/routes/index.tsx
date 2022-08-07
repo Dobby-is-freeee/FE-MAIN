@@ -14,7 +14,7 @@ export const AppRoutes = () => {
 
   useEffect(() => {
     // TODO: 임시임
-    dispatch(loginUser());
+    // dispatch(loginUser());
   }, [dispatch]);
 
   const routes = isLogged ? protectedRoutes : publicRoutes;

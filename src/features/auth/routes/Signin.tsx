@@ -6,23 +6,23 @@ import SigninContainer from '@/features/auth/containers/SigninContainer';
 function Signin() {
   const navigate = useNavigate();
 
-  const goToSignup = useCallback(() => {
+  const handleGoToSignup = useCallback(() => {
     navigate('/auth/signup');
   }, [navigate]);
 
-  const goToFindPassword = useCallback(() => {
+  const handleGoToFindPassword = useCallback(() => {
     navigate('/auth/password');
   }, [navigate]);
 
-  const goToGoogleSignin = useCallback(() => {
+  const handleGoToGoogleSignin = useCallback(() => {
     console.log('google');
   }, []);
 
   return (
     <SigninContainer
-      onClickGoogleSignin={goToGoogleSignin}
-      onClickSignup={goToSignup}
-      onClickFindPassword={goToFindPassword}
+      onClickSignup={handleGoToSignup}
+      onClickFindPassword={handleGoToFindPassword}
+      onClickGoogleSignin={handleGoToGoogleSignin}
     />
   );
 }
