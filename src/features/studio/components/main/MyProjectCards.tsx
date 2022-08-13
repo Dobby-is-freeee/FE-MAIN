@@ -7,6 +7,7 @@ import { LineButton } from '@/components/ui';
 import { useToggle } from 'react-use';
 import { ProjectItem, ProjectStatus } from '../../containers/ProjectCardContainer';
 import { ProjectCard } from '../common';
+import { EmptyCard } from '@/components/common/EmptyCard';
 
 const TitleWrap = styled(Title)`
   color: ${({ theme }) => theme.colors.black};
@@ -21,30 +22,6 @@ const ProjectCardWrap = styled.div`
   max-width: 1052px;
   gap: 12px;
 `;
-
-const ProjectCreator = styled.div`
-  background: ${({ theme }) => theme.colors.white};
-  border: 1px solid ${({ theme }) => theme.colors.gray1};
-  flex: 1;
-  height: 252px;
-  border-radius: 6px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const ProjectCreatorInner = styled.div`
-  width: 214px;
-  height: 98px;
-  text-align: center;
-  font-size: 14px;
-  line-height: 22px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
-
-const ProjectCreateButton = styled(LineButton)``;
 
 const ModalContent = styled.div`
   display: flex;
@@ -115,16 +92,13 @@ export const MyProjectCards = ({ myProjects }: MyProjectCardsProps) => {
             createDate={createDate}
           />
         ))}
-        <ProjectCreator>
-          <ProjectCreatorInner>
-            <p>
-              팀원들과 작업공간을
-              <br />
-              개설해보세요!
-            </p>
-            <ProjectCreateButton onClick={handleToggle}>새 프로젝트 만들기</ProjectCreateButton>
-          </ProjectCreatorInner>
-        </ProjectCreator>
+        <EmptyCard onClick={handleToggle} buttonText="새 프로젝트 만들기">
+          <p>
+            팀원들과 작업공간을
+            <br />
+            개설해보세요!
+          </p>
+        </EmptyCard>
       </ProjectCardWrap>
 
       <Modal

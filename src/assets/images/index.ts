@@ -41,6 +41,7 @@ import { ReactComponent as MemberProfile } from '../images/ic_members.svg';
 import { ReactComponent as Cooperation } from '../images/ic_cooperation.svg';
 import { ReactComponent as Search } from '../images/ic_search.svg';
 import { ReactComponent as IconGo } from '../images/ic_go_w.svg';
+import { ReactComponent as Time } from '../images/ic_time.svg';
 
 export {
   AddProfile,
@@ -80,6 +81,7 @@ export {
   SettingBlack,
   SettingPurple,
   LoadMap,
+  Time,
   MemberProfile,
   Cooperation,
   ToolsMask,

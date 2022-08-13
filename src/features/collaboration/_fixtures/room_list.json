@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "category": "정기회의",
+    "tool": "notion",
+    "time": "매주 월요일 09:00PM",
+    "member": "모든 멤버",
+    "description": "매주 프로젝트 방향 논의합니다.\n참여가 어려울 땐 이틀 전 알려주세요."
+  },
+  {
+    "id": 2,
+    "tool": "figma",
+    "category": "와이어프레임",
+    "time": "2022.06.05 10:00PM",
+    "member": "UI/UX",
+    "description": "매주 프로젝트 방향 논의합니다."
+  },
+  {
+    "id": 3,
+    "tool": "zoom",
+    "category": "운영진 정기회의",
+    "time": "매주 월요일 09:00PM",
+    "member": "Poem,횽디니,Andrew ",
+    "description": "매주 프로젝트 방향 논의합니다.\n참여가 어려울 땐 이틀 전 알려주세요."
+  },
+  {
+    "id": 4,
+    "tool": "zoom",
+    "category": "운영진 정기회의",
+    "time": "매주 월요일 09:00PM",
+    "member": "Poem,횽디니,Andrew ",
+    "description": "매주 프로젝트 방향 논의합니다.\n참여가 어려울 땐 이틀 전 알려주세요."
+  }
+]

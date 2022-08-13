@@ -1,25 +1,25 @@
 [
   {
     "id": 1,
-    "image": "https://logos-download.com/wp-content/uploads/2019/06/Notion_App_Logo-672x700.png",
+    "tool": "notion",
     "title": "Notion",
     "sub": "모든 멤버"
   },
   {
     "id": 2,
-    "image": "https://s3-alpha.figma.com/hub/file/1166690750/85f69649-5387-44c2-ba45-81ae13812e36-cover.png",
+    "tool": "figma",
     "title": "Figma",
     "sub": "UI/UX"
   },
   {
     "id": 3,
-    "image": "https://www.freepnglogos.com/uploads/zoom-logo-png/zoom-png-logo-download-transparent-20.png",
+    "tool": "zoom",
     "title": "Zoom",
     "sub": "모든 멤버"
   },
   {
     "id": 4,
-    "image": "https://cdn.icon-icons.com/icons2/2699/PNG/512/slack_tile_logo_icon_168820.png",
+    "tool": "slack",
     "title": "Slack",
     "sub": "모든 멤버"
   }

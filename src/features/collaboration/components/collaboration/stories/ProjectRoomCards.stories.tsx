@@ -3,6 +3,8 @@ import { ComponentProps } from 'react';
 import { ComponentStory, ComponentMeta, ArgTypes } from '@storybook/react';
 import { ProjectRoomCards } from '../ProjectRoomCards';
 
+import ROOM_LIST from '../../../_fixtures/room_list.json';
+
 type MyArgTypes = Partial<Record<keyof ComponentProps<typeof ProjectRoomCards>, ArgTypes[string]>>;
 const argTypes: MyArgTypes = {};
 
@@ -17,4 +19,6 @@ const Template: ComponentStory<typeof ProjectRoomCards> = ({ ...props }) => {
 };
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  projectRoomList: ROOM_LIST,
+};

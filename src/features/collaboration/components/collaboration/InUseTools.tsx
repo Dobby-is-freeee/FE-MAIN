@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { Title } from '@/components';
+import { IMAGE_DIC } from '../../constants';
 
 const Wrap = styled.div`
   display: flex;
@@ -11,7 +12,7 @@ const Wrap = styled.div`
 
 const ToolsCardWrap = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(254px, 1fr));
   gap: 12px;
 `;
 
@@ -25,7 +26,7 @@ const ToolCard = styled.div`
 `;
 
 const ToolImageBlock = styled.div`
-  background-color: ${({ theme }) => theme.colors.gray1};
+  background-color: rgba(228, 226, 226, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -43,6 +44,7 @@ const ToolImageBlock = styled.div`
 
 const ToolInformation = styled.div`
   display: flex;
+  flex: 1;
   flex-direction: column;
 `;
 
@@ -58,7 +60,7 @@ const ToolSubText = styled.div`
 
 interface ToolList {
   id: number;
-  image: string;
+  tool: string;
   title: string;
   sub: string;
 }
@@ -80,7 +82,7 @@ export const InUseTools = ({ toolList }: InUseToolsProps) => {
         {toolList.map((tool) => (
           <ToolCard key={tool.id}>
             <ToolImageBlock>
-              <img src={tool.image} alt="tool logo" />
+              <img src={IMAGE_DIC[tool.tool]} alt="tool logo" />
             </ToolImageBlock>
             <ToolInformation>
               <ToolTitle level={3}>{tool.title}</ToolTitle>
