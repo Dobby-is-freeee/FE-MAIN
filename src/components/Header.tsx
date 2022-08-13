@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 import { MyProfilePurple, Notice } from '@/assets/images';
+import { useDispatch } from '@/stores';
+import { logoutUser } from '@/stores/auth';
 
 const Wrap = styled.header`
   display: flex;
@@ -42,6 +44,12 @@ const UserProfileImage = styled.span`
 `;
 
 export const Header = () => {
+  const dispatch = useDispatch();
+
+  const handleLogoutClick = () => {
+    dispatch(logoutUser());
+  };
+
   return (
     <Wrap>
       <HeaderText>김프로님의 스튜디오</HeaderText>
@@ -50,7 +58,7 @@ export const Header = () => {
           <Notice />
           {/* TODO: icon-search로 변경 */}
           <Notice />
-          <img src={MyProfilePurple} alt="user profile image" />
+          <img src={MyProfilePurple} alt="user profile image" onClick={handleLogoutClick} />
         </UserProfileImage>
       </HeaderUserInfo>
     </Wrap>
