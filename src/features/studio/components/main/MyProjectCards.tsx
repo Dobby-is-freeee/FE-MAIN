@@ -19,7 +19,7 @@ const TitleWrap = styled(Title)`
 const ProjectCardWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
-  max-width: 1052px;
+  max-width: 1152px;
   gap: 12px;
 `;
 
@@ -61,6 +61,12 @@ const ModalButtonWrap = styled.div`
   width: 295px;
 `;
 
+const ProjectEmptyCard = styled.div`
+  min-width: 25%;
+  height: 268px;
+  flex: 1;
+`;
+
 interface MyProjectCardsProps {
   myProjects: ProjectItem[];
 }
@@ -92,13 +98,16 @@ export const MyProjectCards = ({ myProjects }: MyProjectCardsProps) => {
             createDate={createDate}
           />
         ))}
-        <EmptyCard onClick={handleToggle} buttonText="새 프로젝트 만들기">
-          <p>
-            팀원들과 작업공간을
-            <br />
-            개설해보세요!
-          </p>
-        </EmptyCard>
+
+        <ProjectEmptyCard>
+          <EmptyCard onClick={handleToggle} buttonText="새 프로젝트 만들기">
+            <p>
+              팀원들과 작업공간을
+              <br />
+              개설해보세요!
+            </p>
+          </EmptyCard>
+        </ProjectEmptyCard>
       </ProjectCardWrap>
 
       <Modal

@@ -9,7 +9,9 @@ const Wrap = styled.div`
   flex-direction: column;
   border: 1px solid ${({ theme }) => theme.colors.gray1};
   border-radius: 6px;
-  width: 254px;
+  max-width: calc(25% - 12px);
+  min-width: 254px;
+  flex: 1;
   height: 252px;
 `;
 
