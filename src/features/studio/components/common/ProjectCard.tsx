@@ -47,11 +47,13 @@ const ProjectCreateDate = styled.div`
   color: ${({ theme }) => theme.colors.gray3};
 `;
 
-const ProjectButton = styled(LineButton)`
+const ProjectLinkWrap = styled.div`
   margin: 0 auto;
-  margin-bottom: 20px;
   width: 214px;
+  margin-bottom: 20px;
 `;
+
+const ProjectLink = styled(LineButton)``;
 
 const ProjectCardFooter = styled.div`
   display: flex;
@@ -108,7 +110,11 @@ export const ProjectCard = ({ id, createDate, projectName, status, totalMember }
           <ProjectCreateDate>{createDate}</ProjectCreateDate>
         </ProjectInfo>
       </ProjectCardBody>
-      <ProjectButton>바로가기</ProjectButton>
+      <ProjectLinkWrap>
+        <ProjectLink toBe="link" to="/collaboration">
+          바로가기
+        </ProjectLink>
+      </ProjectLinkWrap>
       <ProjectCardFooter>
         <ProjectMember>
           <Member />
