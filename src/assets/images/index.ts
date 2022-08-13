@@ -1,22 +1,12 @@
-import AddProfile from '../images/ic_add_profile.svg';
 import Calendar from '../images/ic_calendar.svg';
-
 import Confirm from '../images/ic_confirm.svg';
 import Error1 from '../images/ic_error-1.svg';
 import EyeHidden from '../images/ic_eye_hidden.svg';
 import EyeOpen from '../images/ic_eye_n.svg';
 import Google from '../images/ic_google.svg';
-import Icon02 from '../images/ic_icon02.svg';
-import Icon03 from '../images/ic_icon03.svg';
-import Icon04 from '../images/ic_icon04.svg';
-import Icon05 from '../images/ic_icon05.svg';
-import Icon06 from '../images/ic_icon06.svg';
-import Icon07 from '../images/ic_icon07.svg';
-import Icon08 from '../images/ic_icon08.svg';
-import Link from '../images/ic_link.svg';
+
 import Mail from '../images/ic_mail.svg';
 import MyProfilePurple from '../images/ic_my_profile_p.svg';
-import Notice from '../images/ic_notice.svg';
 import ProfileDefaultMedium from '../images/ic_profile_default_m.svg';
 import ProfileDefaultSmall from '../images/ic_profile_default_s.svg';
 import ProjectPurple from '../images/ic_project_p.svg';
@@ -31,9 +21,19 @@ import { ReactComponent as SettingPurple } from '../images/ic_setting_p.svg';
 import { ReactComponent as ProjectBlack } from '../images/ic_project_b.svg';
 import { ReactComponent as Close } from '../images/ic_close.svg';
 import { ReactComponent as Icon01 } from '../images/ic_icon01.svg';
+import { ReactComponent as Icon02 } from '../images/ic_icon02.svg';
+import { ReactComponent as Icon03 } from '../images/ic_icon03.svg';
+import { ReactComponent as Icon04 } from '../images/ic_icon04.svg';
+import { ReactComponent as Icon05 } from '../images/ic_icon05.svg';
+import { ReactComponent as Icon06 } from '../images/ic_icon06.svg';
+import { ReactComponent as Icon07 } from '../images/ic_icon07.svg';
+import { ReactComponent as Icon08 } from '../images/ic_icon08.svg';
 import { ReactComponent as LogoLarge } from '../images/logo_l.svg';
 import { ReactComponent as Error } from '../images/ic_error.svg';
 import { ReactComponent as Dropdown } from '../images/ic_dropdown.svg';
+import { ReactComponent as AddProfile } from '../images/ic_add_profile.svg';
+import { ReactComponent as LinkIcon } from '../images/ic_link.svg';
+import { ReactComponent as Notice } from '../images/ic_notice.svg';
 
 export {
   AddProfile,
@@ -54,7 +54,7 @@ export {
   Icon06,
   Icon07,
   Icon08,
-  Link,
+  LinkIcon,
   Mail,
   Member,
   MyProfileBlack,

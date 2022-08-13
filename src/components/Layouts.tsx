@@ -13,6 +13,7 @@ const LayoutMainContentWrap = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  padding-left: 234px;
 `;
 
 const MainContent = styled.section`

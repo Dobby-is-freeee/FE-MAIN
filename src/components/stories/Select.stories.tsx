@@ -21,8 +21,8 @@ const Template: ComponentStory<typeof Select> = ({ ...props }) => {
 };
 
 const OPTIONS = [
-  { label: '설명이 없어도 필요한 기능은 스스로 사용할 수 있어요.', value: 1 },
-  { label: '사용법을 설명해줄 수 있을 정도로 경험이 많아요.', value: 2 },
+  { label: '설명이 없어도 필요한 기능은 스스로 사용할 수 있어요.', value: '1' },
+  { label: '사용법을 설명해줄 수 있을 정도로 경험이 많아요.', value: '2' },
 ];
 
 const MULTI_OPTIONS = [
@@ -51,7 +51,7 @@ Single.args = {
   options: OPTIONS,
   isClearable: true,
   isSearchable: false,
-  value: 1,
+  value: '1',
 };
 
 export const Multi = Template.bind({});

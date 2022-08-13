@@ -16,6 +16,7 @@ export interface TitleProps extends CreateTitleProps {}
 
 const Heading = styled(CreateTitle)<Pick<TitleProps, 'level'>>`
   font-family: 'Pretendard', sans-serif;
+  color: ${({ theme }) => theme.colors.black};
 
   ${({ level }) => {
     if (level === 1) {
@@ -45,7 +46,7 @@ const Heading = styled(CreateTitle)<Pick<TitleProps, 'level'>>`
         font-size: 16px;
       `;
     }
-  }}
+  }};
 `;
 
 export const Title = ({ children, ...props }: TitleProps) => {

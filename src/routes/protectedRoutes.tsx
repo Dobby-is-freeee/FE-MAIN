@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 
 import { Layouts } from '@/components';
 import { StudioRoutes } from '@/features/studio/routes';
@@ -12,6 +12,10 @@ export const protectedRoutes = [
       </Layouts>
     ),
     children: [
+      {
+        path: '/',
+        element: <Navigate to="/studio" />,
+      },
       {
         path: '/studio/*',
         element: <StudioRoutes />,
