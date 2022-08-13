@@ -1,12 +1,9 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 
 import { isEmail } from '@/features/auth/libs/validator';
-
-import useInput from '@/features/auth/hooks/useInput';
 import useBoolean from '@/features/auth/hooks/useBoolean';
-
-import InputWithError from '@/features/auth/components/InputWithError';
+import useInput from '@/features/auth/hooks/useInput';
 import { Input, LineButton, SolidButton } from '@/components';
 import { CheckBox } from '@/components/CheckBox';
 

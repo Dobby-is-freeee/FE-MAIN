@@ -1,11 +1,13 @@
 import { useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { requestSignin } from '@/features/auth/api/members';
 import { Google, LogoSmall } from '@/assets/images';
 import { LineButton, Title } from '@/components';
+import { requestSignin } from '@/features/auth/api/members';
 import SigninForm, { SigninFormProps } from '@/features/auth/components/SigninForm';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from '@/stores';
+import { loginUser } from '@/stores/auth';
 
 export const FormField = styled.article`
   background-color: ${({ theme }) => theme.colors.white};
@@ -63,6 +65,7 @@ export interface SigninContainerProps {}
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function SigninContainer(_: SigninContainerProps) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleGoToSignup = useCallback(() => {
     navigate('/auth/signup');
@@ -73,8 +76,11 @@ function SigninContainer(_: SigninContainerProps) {
   }, [navigate]);
 
   const handleGoToGoogleSignin = useCallback(() => {
-    alert('구글 로그인 구현 예정..');
-  }, []);
+    // TODO: 임시 로그인 -- API 완료 후 제거 예정
+    dispatch(loginUser());
+    navigate('/studio');
+    console.log('구글 로그인 구현 예정.');
+  }, [dispatch, navigate]);
 
   const handleSignin = useCallback<SigninFormProps['onSubmit']>(async ({ email, password }) => {
     try {
@@ -116,6 +122,7 @@ function SigninContainer(_: SigninContainerProps) {
           Google 계정으로 로그인
         </GoggleButton>
       </FormField>
+
       <SignupText>
         Apro.go가 처음이라면 <SignupButton onClick={handleGoToSignup}>회원가입</SignupButton>
       </SignupText>

@@ -12,3 +12,4 @@ export * from './DatePicker';
 export * from './Select';
 export * from './LineButton';
 export * from './SolidButton';
+export * from './ConfirmMessage';

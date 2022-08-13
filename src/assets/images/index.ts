@@ -1,8 +1,5 @@
 import Calendar from '../images/ic_calendar.svg';
-import Confirm from '../images/ic_confirm.svg';
-import Error1 from '../images/ic_error-1.svg';
 
-import Mail from '../images/ic_mail.svg';
 import MyProfilePurple from '../images/ic_my_profile_p.svg';
 import ProfileDefaultMedium from '../images/ic_profile_default_m.svg';
 import ProfileDefaultSmall from '../images/ic_profile_default_s.svg';
@@ -36,12 +33,14 @@ import { ReactComponent as Notice } from '../images/ic_notice.svg';
 import { ReactComponent as Google } from '../images/ic_google.svg';
 import { ReactComponent as EyeHidden } from '../images/ic_eye_hidden.svg';
 import { ReactComponent as EyeOpen } from '../images/ic_eye_n.svg';
+import { ReactComponent as Mail } from '../images/ic_mail.svg';
+import { ReactComponent as MailConfirm } from '../images/ic_confirm.svg';
+import { ReactComponent as Error1 } from '../images/ic_error-1.svg';
 
 export {
   AddProfile,
   Calendar,
   Close,
-  Confirm,
   CheckBoxSelected,
   Dropdown,
   Error1,
@@ -59,6 +58,7 @@ export {
   Icon08,
   LinkIcon,
   Mail,
+  MailConfirm,
   Member,
   MyProfileBlack,
   MyProfilePurple,
