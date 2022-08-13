@@ -15,13 +15,13 @@ const CreateTitle = ({ level = 1, children, ...props }: CreateTitleProps) => {
 export interface TitleProps extends CreateTitleProps {}
 
 const Heading = styled(CreateTitle)<Pick<TitleProps, 'level'>>`
-  font-family: 'Pretendard', sans-serif;
   color: ${({ theme }) => theme.colors.black};
 
   ${({ level }) => {
     if (level === 1) {
       return css`
         font-size: 30px;
+        line-height: 38px;
         font-weight: bold;
       `;
     }
@@ -30,6 +30,7 @@ const Heading = styled(CreateTitle)<Pick<TitleProps, 'level'>>`
       return css`
         font-weight: 500;
         font-size: 24px;
+        line-height: 32px;
       `;
     }
 
@@ -37,6 +38,7 @@ const Heading = styled(CreateTitle)<Pick<TitleProps, 'level'>>`
       return css`
         font-weight: 700;
         font-size: 18px;
+        line-height: 26px;
       `;
     }
 
@@ -44,6 +46,7 @@ const Heading = styled(CreateTitle)<Pick<TitleProps, 'level'>>`
       return css`
         font-weight: 500;
         font-size: 16px;
+        line-height: 24px;
       `;
     }
   }};

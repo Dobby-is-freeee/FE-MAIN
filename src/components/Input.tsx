@@ -30,7 +30,7 @@ const InputBox = styled.input`
   }
 `;
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 // TODO: 에러메세지 적용 with react-hook-form - cskim
 export const Input = ({ type = 'text', autoComplete = 'off', spellCheck = false, ...rest }: InputProps) => {

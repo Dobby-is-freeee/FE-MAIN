@@ -21,7 +21,6 @@ function getColor(kind: ButtonKindType): ButtonColorsByKind {
 }
 
 const Button = styled.button<ButtonStyleProps>`
-  font-family: 'Pretendard', 'SUIT', sans-serif;
   background-color: ${({ theme, kind }) => theme.colors[getColor(kind).bg]};
   color: ${({ theme, kind }) => theme.colors[getColor(kind).color]};
   outline: none;

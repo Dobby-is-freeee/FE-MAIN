@@ -1,15 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
-const Logo = styled.div`
-  position: absolute;
-  top: 5rem;
-  left: 5rem;
-  padding: 2.5rem;
-  border: 1px solid black;
-  border-radius: 1rem;
-`;
-
 const Section = styled.section`
   display: flex;
   flex-direction: column;
@@ -20,7 +11,7 @@ const Section = styled.section`
   height: 100%;
   min-width: 100vw;
   min-height: 100vh;
-  background-color: #f8f8f8;
+  background-color: ${({ theme }) => theme.colors.white};
 
   * {
     box-sizing: border-box;
@@ -30,7 +21,6 @@ const Section = styled.section`
 function BaseLayout() {
   return (
     <Section>
-      <Logo>logo</Logo>
       <Outlet />
     </Section>
   );

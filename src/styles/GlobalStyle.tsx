@@ -18,6 +18,10 @@ export const GlobalStyle = createGlobalStyle`
 		font-size: 12px;
 	}
 
+	strong {
+		font-weight: bold;
+	}
+
 	button {
 		cursor: pointer;
 		outline: none;
