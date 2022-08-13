@@ -5,6 +5,8 @@ import 'react-tabs/style/react-tabs.css';
 
 import { PageContainer } from '@/components';
 import { CollaborationMainContainers } from '../containers/CollaborationMainContainers';
+import { CollaborationCreatorContainer } from '../containers/CollaborationCreatorContainer';
+import { useToggle } from 'react-use';
 
 interface CustomTabStyleProps {
   selected: boolean;
@@ -28,6 +30,7 @@ const CustomTab = styled(Tab)<CustomTabStyleProps>`
 
 export const CollaborationMain = () => {
   const [tabIndex, setTabIndex] = useState(0);
+  const [isCreatorVisible, handleCreatorVisibleToggle] = useToggle(false);
 
   return (
     <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
@@ -38,7 +41,14 @@ export const CollaborationMain = () => {
 
       <TabPanel>
         <PageContainer>
-          <CollaborationMainContainers />
+          <CollaborationMainContainers
+            isCreatorVisible={isCreatorVisible}
+            onCreatorVisibleToggle={handleCreatorVisibleToggle}
+          />
+          <CollaborationCreatorContainer
+            isCreatorVisible={isCreatorVisible}
+            onCreatorVisibleToggle={handleCreatorVisibleToggle}
+          />
         </PageContainer>
       </TabPanel>
       <TabPanel>

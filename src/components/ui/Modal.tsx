@@ -96,6 +96,7 @@ const CloseButton = styled.button`
 `;
 
 const ModalContent = styled.div`
+  overflow: auto;
   flex: 1;
   padding: 28px;
 `;

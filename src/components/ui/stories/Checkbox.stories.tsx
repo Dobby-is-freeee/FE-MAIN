@@ -19,7 +19,6 @@ const Template: ComponentStory<typeof CheckBox> = ({ ...props }) => {
 export const Default = Template.bind({});
 Default.args = {
   id: '1',
-  label: '체크박스',
 };
 
 export const Checked = Template.bind({});

@@ -103,9 +103,10 @@ interface ProjectRoomList {
 
 interface ProjectRoomCardsProps {
   projectRoomList: ProjectRoomList[];
+  onCreatorToggle: () => void;
 }
 
-export const ProjectRoomCards = ({ projectRoomList }: ProjectRoomCardsProps) => {
+export const ProjectRoomCards = ({ projectRoomList, onCreatorToggle }: ProjectRoomCardsProps) => {
   return (
     <>
       <RoomCardTitle level={2}>프로젝트 룸</RoomCardTitle>
@@ -141,7 +142,7 @@ export const ProjectRoomCards = ({ projectRoomList }: ProjectRoomCardsProps) => 
         ))}
 
         <RoomCreateCard>
-          <EmptyCard onClick={() => ({})} buttonText="프로젝트 룸 만들기">
+          <EmptyCard onClick={onCreatorToggle} buttonText="프로젝트 룸 만들기">
             멤버들과의 작업 공간을
             <br />
             개설해 보세요!

@@ -50,21 +50,20 @@ const CheckInput = styled.input<{ disabled: boolean; small?: boolean }>`
     height: 16px;
     line-height: 20px;
     border-radius: 3px;
-    /* TODO: 체크박스 아이콘 */
     content: url(${CheckBoxSelected});
   }
 `;
 
 interface CheckBoxProps extends React.InputHTMLAttributes<HTMLInputElement> {
   id: string;
-  label: string;
+  label?: string;
   small?: boolean;
 }
 
 export const CheckBox = ({ id, label, small, disabled = false, ...props }: CheckBoxProps) => {
   return (
     <Wrap>
-      <CheckInput id={id} type="checkbox" {...props} disabled={disabled} small={small} />
+      <CheckInput {...props} id={id} type="checkbox" disabled={disabled} small={small} />
       <label htmlFor={id}>{label}</label>
     </Wrap>
   );
