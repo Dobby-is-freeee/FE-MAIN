@@ -1,11 +1,13 @@
-import styled from 'styled-components';
+import type { DayValue } from '@hassanmojab/react-modern-calendar-datepicker';
 import React from 'react';
-import type { Day, DayValue } from '@hassanmojab/react-modern-calendar-datepicker';
+import styled from 'styled-components';
 
 import { Star } from '@/assets/images';
-import { DatePicker, Input, Title } from '@/components';
-import { LineButton } from '@/components/LineButton';
-import { PickerChangeHandlerArgs, PickerType } from '../../containers/StudioCreateFormContainer';
+import { Title } from '@/components';
+import { IconGeneratorType, PickerChangeHandlerArgs } from '../../containers/StudioCreateFormContainer';
+import { IconGenerator } from './IconGenerator';
+import { ProjectInformation } from './ProjectInformation';
+import { ProjectMemberSetting } from './ProjectMemberSetting';
 
 const CreateFormWrap = styled.form``;
 
@@ -15,7 +17,7 @@ const FieldGroup = styled.div`
   border-radius: 5px;
 `;
 
-const Field = styled.div`
+export const Field = styled.div`
   display: flex;
   align-items: center;
   border-bottom: 1.5px solid #e3e3e3;
@@ -26,7 +28,7 @@ const Field = styled.div`
   }
 `;
 
-const Label = styled.label`
+export const Label = styled.label`
   display: flex;
   white-space: nowrap;
   max-width: 110px;
@@ -37,7 +39,7 @@ const Label = styled.label`
   margin-right: 68px;
 `;
 
-const RequiredIcon = styled.span`
+export const RequiredIcon = styled.span`
   content: url(${Star});
   width: 12px;
   height: 12px;
@@ -45,31 +47,25 @@ const RequiredIcon = styled.span`
   margin-top: 3px;
 `;
 
-const ProjectRangePickerWrap = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const PickerDivided = styled.span`
-  width: 16px;
-  height: 2px;
-  margin: 0 8px;
-  background-color: ${({ theme }) => theme.colors.gray2};
-`;
-
 interface CreateFormProps {
   startDate: DayValue;
   endDate: DayValue;
   onPickerChange: (args: PickerChangeHandlerArgs) => void;
+
+  iconGeneratorType: IconGeneratorType | null;
+  onGeneratorTypeClick: (type: IconGeneratorType | null) => void;
 }
 
-export const CreateForm = ({ endDate, startDate, onPickerChange }: CreateFormProps) => {
+export const CreateForm = ({
+  endDate,
+  startDate,
+  onPickerChange,
+
+  iconGeneratorType,
+  onGeneratorTypeClick,
+}: CreateFormProps) => {
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-  };
-
-  const handlePickerChangeCurried = (type: PickerType) => (dayValue: DayValue) => {
-    onPickerChange({ type, dayValue });
   };
 
   return (
@@ -78,53 +74,9 @@ export const CreateForm = ({ endDate, startDate, onPickerChange }: CreateFormPro
 
       <CreateFormWrap onSubmit={handleSubmit}>
         <FieldGroup>
-          <Field>
-            <Label htmlFor="name">
-              프로젝트명
-              <RequiredIcon>*</RequiredIcon>
-            </Label>
-            <Input name="name" placeholder="한글/영어 16자 이내" />
-          </Field>
-
-          <Field>
-            <Label htmlFor="range">
-              프로젝트 기간
-              <RequiredIcon>*</RequiredIcon>
-            </Label>
-            <ProjectRangePickerWrap>
-              <DatePicker
-                maximumDate={endDate as Day}
-                inputPlaceholder="시작일"
-                value={startDate}
-                onChange={handlePickerChangeCurried('start')}
-              />
-              <PickerDivided></PickerDivided>
-              <DatePicker
-                minimumDate={startDate as Day}
-                inputPlaceholder="종료일"
-                value={endDate}
-                onChange={handlePickerChangeCurried('end')}
-              />
-            </ProjectRangePickerWrap>
-          </Field>
-
-          <Field>
-            <Label htmlFor="icon">
-              아이콘
-              <RequiredIcon>*</RequiredIcon>
-            </Label>
-            <Input />
-          </Field>
-
-          <Field>
-            <Label htmlFor="name">팀구성</Label>
-            <Input type="date" />
-          </Field>
-
-          <Field>
-            <Label htmlFor="name">멤버</Label>
-            <LineButton type="submit">이메일로 초대</LineButton>
-          </Field>
+          <ProjectInformation startDate={startDate} endDate={endDate} onPickerChange={onPickerChange} />
+          <IconGenerator onGeneratorTypeClick={onGeneratorTypeClick} iconGeneratorType={iconGeneratorType} />
+          <ProjectMemberSetting />
         </FieldGroup>
       </CreateFormWrap>
     </>

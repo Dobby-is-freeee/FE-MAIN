@@ -1,9 +1,11 @@
-import { generateDayValue } from '@/components';
 import { DayValue } from '@hassanmojab/react-modern-calendar-datepicker';
 import { useState } from 'react';
+
+import { generateDayValue } from '@/components';
 import { CreateForm } from '../components/create/CreateForm';
 
 export type PickerType = 'start' | 'end';
+export type IconGeneratorType = 'icon' | 'color';
 
 export interface PickerChangeHandlerArgs {
   type: PickerType;
@@ -14,6 +16,8 @@ export const StudioCreateFormContainer = () => {
   const [startDate, setStartDate] = useState<DayValue>(generateDayValue(new Date()));
   const [endDate, setEndDate] = useState<DayValue>(null);
 
+  const [iconGeneratorType, setIconGeneratorType] = useState<IconGeneratorType | null>(null);
+
   const handlePickerChange = ({ type, dayValue }: PickerChangeHandlerArgs) => {
     if (type === 'start') {
       return setStartDate(dayValue);
@@ -22,5 +26,17 @@ export const StudioCreateFormContainer = () => {
     return setEndDate(dayValue);
   };
 
-  return <CreateForm startDate={startDate} endDate={endDate} onPickerChange={handlePickerChange} />;
+  const handleGeneratorTypeClick = (type: IconGeneratorType | null) => {
+    setIconGeneratorType(type);
+  };
+
+  return (
+    <CreateForm
+      startDate={startDate}
+      endDate={endDate}
+      onPickerChange={handlePickerChange}
+      iconGeneratorType={iconGeneratorType}
+      onGeneratorTypeClick={handleGeneratorTypeClick}
+    />
+  );
 };
