@@ -1,5 +1,5 @@
 // TODO: 상태에 따라 컴포넌트 의존 낮추기 ex) single, multi, inputMode - chkim
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   default as ReactSelect,
   DropdownIndicatorProps,
@@ -45,10 +45,11 @@ const SelectDropDown = styled.div<SelectDropDownStyleProps>`
 // Select 관련 Type
 interface SelectOption {
   label: string | React.ReactNode;
-  value: string | number;
+  value: string;
 }
-type OptionType = MultiValue<SelectOption> | SingleValue<SelectOption>;
-type ValueType = string | number | Array<number | string>;
+export type OptionType = MultiValue<SelectOption> | SingleValue<SelectOption>;
+type ValueType = string | Array<string>;
+export type SelectChangeOptionType<T = any> = T extends Array<string> ? T : string;
 
 interface SelectProps extends Omit<Props<SelectOption>, 'value' | 'onInputChange' | 'onChange'> {
   /**
@@ -62,7 +63,7 @@ interface SelectProps extends Omit<Props<SelectOption>, 'value' | 'onInputChange
   /**
    * select change 옵션을 받는다.
    */
-  onChange?: (option: OptionType) => void;
+  onChange?: (value: SelectChangeOptionType, option?: OptionType) => void;
   /**
    * Select의 값을 설정한다. options의 value 값을 넣어야 한다.
    */
@@ -83,14 +84,19 @@ export const Select = ({
   isClearable = false,
   showDropDownIcon = true,
   noOptionsMessage = () => '옵션이 없습니다.',
-  onChange,
+  onChange: onChangeExternal,
   ...props
 }: SelectProps) => {
   const [selectValue, setSelectValue] = useState<OptionType>(() => getSelectValue(value, options as SelectOption[]));
 
+  const onChange = useRef(onChangeExternal);
+
   const handleOptionChange = (option: OptionType) => {
     setSelectValue(option);
-    onChange?.(option);
+
+    const value = (option as SelectOption).value || (option as SelectOption[]).map((optionItem) => optionItem.value);
+
+    onChange.current?.(value, option);
   };
 
   const [inputValue, setInputValue] = useState<string>('');
@@ -121,12 +127,11 @@ export const Select = ({
         if (e.nativeEvent.isComposing === false) {
           setInputValues((prev) => {
             if (prev.find((option) => option.value === inputValue)) {
-              onChange?.(prev);
               return prev;
             }
 
             const newInputValues = [...prev, { value: inputValue, label: inputValue }];
-            onChange?.(newInputValues);
+
             return newInputValues;
           });
 
@@ -134,8 +139,12 @@ export const Select = ({
         }
       }
     },
-    [inputMode, inputValue, onChange],
+    [inputMode, inputValue],
   );
+
+  useEffect(() => {
+    onChange.current?.(inputValues.map((option) => option.value));
+  }, [inputValues]);
 
   const styles: StylesConfig<SelectOption> = useMemo(
     () => ({
@@ -168,7 +177,7 @@ export const Select = ({
         gap: '8px',
         flexWrap: state.isMulti ? 'wrap' : 'nowrap',
         minHeight: '54px',
-        padding: '9px 24px',
+        padding: '9px 20px',
       }),
       singleValue: (provided) => ({
         ...provided,
@@ -220,6 +229,7 @@ export const Select = ({
         position: 'absolute',
         margin: 0,
         padding: 0,
+        color: theme.colors.gray2,
       }),
       option: (provided, state) => ({
         ...provided,
@@ -255,7 +265,10 @@ export const Select = ({
         return setInputValues((prev) => {
           const newInputValues = prev.filter((option) => option.value !== data.value);
 
-          onChange?.(newInputValues);
+          onChange.current?.(
+            newInputValues.map((option) => option.value),
+            newInputValues,
+          );
           return newInputValues;
         });
       }

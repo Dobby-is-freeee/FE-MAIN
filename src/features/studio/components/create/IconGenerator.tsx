@@ -1,8 +1,8 @@
-import { Dropdown } from '@/assets/images';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { useClickAway } from 'react-use';
 import styled, { css } from 'styled-components';
 
+import { Dropdown } from '@/assets/images';
 import { COLORS, ICON_INDEX, ICON_SVGS } from '../../constants';
 import { IconGeneratorType } from '../../containers/StudioCreateFormContainer';
 import { Field, Label, RequiredIcon } from './CreateForm';

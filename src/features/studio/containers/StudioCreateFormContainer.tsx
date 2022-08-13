@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import { generateDayValue } from '@/components';
 import { CreateForm } from '../components/create/CreateForm';
+import { useToggle } from 'react-use';
 
 export type PickerType = 'start' | 'end';
 export type IconGeneratorType = 'icon' | 'color';
@@ -17,6 +18,8 @@ export const StudioCreateFormContainer = () => {
   const [endDate, setEndDate] = useState<DayValue>(null);
 
   const [iconGeneratorType, setIconGeneratorType] = useState<IconGeneratorType | null>(null);
+
+  const [isInviteModalVisible, handleInviteModalVisibleToggle] = useToggle(false);
 
   const handlePickerChange = ({ type, dayValue }: PickerChangeHandlerArgs) => {
     if (type === 'start') {
@@ -37,6 +40,8 @@ export const StudioCreateFormContainer = () => {
       onPickerChange={handlePickerChange}
       iconGeneratorType={iconGeneratorType}
       onGeneratorTypeClick={handleGeneratorTypeClick}
+      isInviteModalVisible={isInviteModalVisible}
+      onInviteModalVisibleToggle={handleInviteModalVisibleToggle}
     />
   );
 };

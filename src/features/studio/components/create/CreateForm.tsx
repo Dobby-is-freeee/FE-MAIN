@@ -7,7 +7,7 @@ import { Title } from '@/components';
 import { IconGeneratorType, PickerChangeHandlerArgs } from '../../containers/StudioCreateFormContainer';
 import { IconGenerator } from './IconGenerator';
 import { ProjectInformation } from './ProjectInformation';
-import { ProjectMemberSetting } from './ProjectMemberSetting';
+import { ProjectInviteModal } from './ProjectInviteModal';
 
 const CreateFormWrap = styled.form``;
 
@@ -54,6 +54,9 @@ interface CreateFormProps {
 
   iconGeneratorType: IconGeneratorType | null;
   onGeneratorTypeClick: (type: IconGeneratorType | null) => void;
+
+  isInviteModalVisible: boolean;
+  onInviteModalVisibleToggle: (value?: boolean) => void;
 }
 
 export const CreateForm = ({
@@ -63,6 +66,9 @@ export const CreateForm = ({
 
   iconGeneratorType,
   onGeneratorTypeClick,
+
+  isInviteModalVisible,
+  onInviteModalVisibleToggle,
 }: CreateFormProps) => {
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
@@ -76,7 +82,7 @@ export const CreateForm = ({
         <FieldGroup>
           <ProjectInformation startDate={startDate} endDate={endDate} onPickerChange={onPickerChange} />
           <IconGenerator onGeneratorTypeClick={onGeneratorTypeClick} iconGeneratorType={iconGeneratorType} />
-          <ProjectMemberSetting />
+          <ProjectInviteModal isVisible={isInviteModalVisible} onToggle={onInviteModalVisibleToggle} />
         </FieldGroup>
       </CreateFormWrap>
     </>
