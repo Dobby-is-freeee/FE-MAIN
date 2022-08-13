@@ -6,7 +6,7 @@ import { ToolsRecommend } from '../components/collaboration/ToolsRecommend';
 export const CollaborationMainContainers = () => {
   return (
     <>
-      <ToolsRecommend />
+      <ToolsRecommend isFinished={false} />
       <InUseTools />
       <ProjectRoomCards />
       <ProjectRoomCreator />

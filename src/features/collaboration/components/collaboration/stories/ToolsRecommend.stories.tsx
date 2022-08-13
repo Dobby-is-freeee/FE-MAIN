@@ -18,3 +18,8 @@ const Template: ComponentStory<typeof ToolsRecommend> = ({ ...props }) => {
 
 export const Default = Template.bind({});
 Default.args = {};
+
+export const IsFinished = Template.bind({});
+IsFinished.args = {
+  isFinished: true,
+};

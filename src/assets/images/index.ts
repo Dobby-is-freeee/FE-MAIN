@@ -1,5 +1,5 @@
 import Calendar from '../images/ic_calendar.svg';
-
+import ToolsMask from '../images/tools_mask.svg';
 import MyProfilePurple from '../images/ic_my_profile_p.svg';
 import ProfileDefaultMedium from '../images/ic_profile_default_m.svg';
 import ProfileDefaultSmall from '../images/ic_profile_default_s.svg';
@@ -40,6 +40,7 @@ import { ReactComponent as LoadMap } from '../images/ic_loadmap_b.svg';
 import { ReactComponent as MemberProfile } from '../images/ic_members.svg';
 import { ReactComponent as Cooperation } from '../images/ic_cooperation.svg';
 import { ReactComponent as Search } from '../images/ic_search.svg';
+import { ReactComponent as IconGo } from '../images/ic_go_w.svg';
 
 export {
   AddProfile,
@@ -60,6 +61,7 @@ export {
   Icon06,
   Icon07,
   Icon08,
+  IconGo,
   LinkIcon,
   Mail,
   MailConfirm,
@@ -80,4 +82,5 @@ export {
   LoadMap,
   MemberProfile,
   Cooperation,
+  ToolsMask,
 };
