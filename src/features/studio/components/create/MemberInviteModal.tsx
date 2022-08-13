@@ -30,14 +30,14 @@ const MemberList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin-top: 33px;
+  margin-bottom: 8px;
 `;
 
 const MemberListItem = styled.li`
   display: flex;
   align-items: center;
   font-size: 14px;
-  margin-top: 33px;
-  margin-bottom: 8px;
 
   svg {
     color: ${({ theme }) => theme.colors.gray2};
@@ -135,7 +135,7 @@ export const MemberInviteModal = ({ invitedMember, isVisible, onClose }: MemberI
             <SelectButton>초대하기</SelectButton>
           </SelectWrap>
 
-          {invitedMember.length ? (
+          {invitedMember?.length ? (
             <MemberWrap>
               <MemberList>
                 {invitedMember.map((email) => (

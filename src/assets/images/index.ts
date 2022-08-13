@@ -7,7 +7,6 @@ import Google from '../images/ic_google.svg';
 
 import Mail from '../images/ic_mail.svg';
 import MyProfilePurple from '../images/ic_my_profile_p.svg';
-import Notice from '../images/ic_notice.svg';
 import ProfileDefaultMedium from '../images/ic_profile_default_m.svg';
 import ProfileDefaultSmall from '../images/ic_profile_default_s.svg';
 import ProjectPurple from '../images/ic_project_p.svg';
@@ -34,6 +33,7 @@ import { ReactComponent as Error } from '../images/ic_error.svg';
 import { ReactComponent as Dropdown } from '../images/ic_dropdown.svg';
 import { ReactComponent as AddProfile } from '../images/ic_add_profile.svg';
 import { ReactComponent as LinkIcon } from '../images/ic_link.svg';
+import { ReactComponent as Notice } from '../images/ic_notice.svg';
 
 export {
   AddProfile,
