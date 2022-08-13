@@ -4,7 +4,6 @@ import { LineButton } from '../ui';
 const ProjectCreator = styled.div`
   background: ${({ theme }) => theme.colors.white};
   border: 1px solid ${({ theme }) => theme.colors.gray1};
-  flex: 1;
   height: 100%;
   border-radius: 6px;
   display: flex;

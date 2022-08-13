@@ -15,10 +15,34 @@ export default {
 } as ComponentMeta<typeof ProjectRoomCards>;
 
 const Template: ComponentStory<typeof ProjectRoomCards> = ({ ...props }) => {
-  return <ProjectRoomCards {...props}></ProjectRoomCards>;
+  return (
+    <div style={{ maxWidth: '1152px' }}>
+      <ProjectRoomCards {...props}></ProjectRoomCards>
+    </div>
+  );
 };
 
 export const Default = Template.bind({});
 Default.args = {
+  projectRoomList: [],
+};
+
+export const OneRoomList = Template.bind({});
+OneRoomList.args = {
+  projectRoomList: [ROOM_LIST[0]],
+};
+
+export const TwoRoomList = Template.bind({});
+TwoRoomList.args = {
+  projectRoomList: [ROOM_LIST[0], ROOM_LIST[1]],
+};
+
+export const ThreeRoomList = Template.bind({});
+ThreeRoomList.args = {
+  projectRoomList: [ROOM_LIST[0], ROOM_LIST[1], ROOM_LIST[2]],
+};
+
+export const FourRoomList = Template.bind({});
+FourRoomList.args = {
   projectRoomList: ROOM_LIST,
 };

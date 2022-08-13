@@ -20,7 +20,7 @@ const RoomCardWrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  max-width: calc(25% - 12px);
+  max-width: calc(25% - 8px);
   width: 254px;
   flex: 1;
   padding: 20px;
