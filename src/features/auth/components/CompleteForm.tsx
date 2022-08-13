@@ -1,6 +1,5 @@
 import { MailConfirm } from '@/assets/images';
 import { ConfirmMessage, SolidButton, Title } from '@/components';
-import React from 'react';
 import styled from 'styled-components';
 
 const SuccessWrap = styled.div`

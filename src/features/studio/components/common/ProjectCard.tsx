@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { Icon01, Member } from '@/assets/images';
 import { ProjectItem, ProjectStatus } from '../../containers/ProjectCardContainer';
-import { LineButton } from '@/components/LineButton';
+import { LineButton } from '@/components/ui';
 
 const Wrap = styled.div`
   display: flex;

@@ -1,3 +1,5 @@
+import { PageContainer } from '@/components';
+
 export const CollaborationMain = () => {
-  return <div>CollaborationMain</div>;
+  return <PageContainer>CollaborationMain</PageContainer>;
 };

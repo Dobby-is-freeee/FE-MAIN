@@ -5,7 +5,7 @@ import { CollaborationMain } from './CollaborationMain';
 export const CollaborationRoutes = () => {
   return (
     <Routes>
-      <Route path="/collaboration" element={<CollaborationMain />} />
+      <Route path="/" element={<CollaborationMain />} />
     </Routes>
   );
 };

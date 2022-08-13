@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { Error } from '@/assets/images';
 import { Modal, Title } from '@/components';
-import { LineButton } from '@/components/LineButton';
+import { LineButton } from '@/components/ui';
 import { useToggle } from 'react-use';
 import { ProjectItem, ProjectStatus } from '../../containers/ProjectCardContainer';
 import { ProjectCard } from '../common';
