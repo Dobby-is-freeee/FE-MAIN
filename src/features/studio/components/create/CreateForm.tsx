@@ -3,16 +3,16 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Star } from '@/assets/images';
-import { Title } from '@/components';
 import { IconGeneratorType, PickerChangeHandlerArgs } from '../../containers/StudioCreateFormContainer';
 import { IconGenerator } from './IconGenerator';
 import { ProjectInformation } from './ProjectInformation';
 import { ProjectInviteModal } from './ProjectInviteModal';
+import { LineButton } from '@/components';
 
 const CreateFormWrap = styled.form``;
 
 const FieldGroup = styled.div`
-  padding: 1.5rem;
+  padding: 6px 0;
   border: 1.5px solid ${({ theme }) => theme.colors.gray1};
   border-radius: 5px;
 `;
@@ -21,7 +21,7 @@ export const Field = styled.div`
   display: flex;
   align-items: center;
   border-bottom: 1.5px solid #e3e3e3;
-  padding: 1rem 0;
+  padding: 22px 28px;
 
   &:last-child {
     border-bottom: none;
@@ -37,6 +37,23 @@ export const Label = styled.label`
   font-size: 18px;
   line-height: 26px;
   margin-right: 68px;
+`;
+
+const FormFooter = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+`;
+
+const FooterExtraText = styled.small`
+  color: #666666;
+`;
+
+const FooterButtons = styled.span`
+  display: flex;
+  gap: 8px;
+  width: 241px;
 `;
 
 export const RequiredIcon = styled.span`
@@ -76,8 +93,6 @@ export const CreateForm = ({
 
   return (
     <>
-      <Title level={3}>새 프로젝트</Title>
-
       <CreateFormWrap onSubmit={handleSubmit}>
         <FieldGroup>
           <ProjectInformation startDate={startDate} endDate={endDate} onPickerChange={onPickerChange} />
@@ -85,6 +100,15 @@ export const CreateForm = ({
           <ProjectInviteModal isVisible={isInviteModalVisible} onToggle={onInviteModalVisibleToggle} />
         </FieldGroup>
       </CreateFormWrap>
+
+      <FormFooter>
+        <FooterExtraText>*프로젝트 정보는 프로젝트를 만든 후에도 수정할 수 있어요.</FooterExtraText>
+
+        <FooterButtons>
+          <LineButton>취소</LineButton>
+          <LineButton kind="primary">프로젝트 만들기</LineButton>
+        </FooterButtons>
+      </FormFooter>
     </>
   );
 };
