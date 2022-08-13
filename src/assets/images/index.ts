@@ -36,6 +36,10 @@ import { ReactComponent as EyeOpen } from '../images/ic_eye_n.svg';
 import { ReactComponent as Mail } from '../images/ic_mail.svg';
 import { ReactComponent as MailConfirm } from '../images/ic_confirm.svg';
 import { ReactComponent as Error1 } from '../images/ic_error-1.svg';
+import { ReactComponent as LoadMap } from '../images/ic_loadmap_b.svg';
+import { ReactComponent as MemberProfile } from '../images/ic_members.svg';
+import { ReactComponent as Cooperation } from '../images/ic_cooperation.svg';
+import { ReactComponent as Search } from '../images/ic_search.svg';
 
 export {
   AddProfile,
@@ -68,8 +72,12 @@ export {
   ProjectBlack,
   ProjectPurple,
   Star,
+  Search,
   LogoLarge,
   LogoSmall,
   SettingBlack,
   SettingPurple,
+  LoadMap,
+  MemberProfile,
+  Cooperation,
 };
