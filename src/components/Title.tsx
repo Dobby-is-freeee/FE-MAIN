@@ -15,7 +15,6 @@ const CreateTitle = ({ level = 1, children, ...props }: CreateTitleProps) => {
 export interface TitleProps extends CreateTitleProps {}
 
 const Heading = styled(CreateTitle)<Pick<TitleProps, 'level'>>`
-  font-family: 'Pretendard', sans-serif;
   color: ${({ theme }) => theme.colors.black};
 
   ${({ level }) => {

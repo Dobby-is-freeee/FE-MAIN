@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const Button = styled.button`
-  font-family: 'Pretendard', sans-serif;
   background-color: ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.white};
   outline: none;

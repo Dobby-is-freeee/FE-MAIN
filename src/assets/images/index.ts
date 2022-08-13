@@ -1,9 +1,6 @@
 import Calendar from '../images/ic_calendar.svg';
 import Confirm from '../images/ic_confirm.svg';
 import Error1 from '../images/ic_error-1.svg';
-import EyeHidden from '../images/ic_eye_hidden.svg';
-import EyeOpen from '../images/ic_eye_n.svg';
-import Google from '../images/ic_google.svg';
 
 import Mail from '../images/ic_mail.svg';
 import MyProfilePurple from '../images/ic_my_profile_p.svg';
@@ -11,7 +8,8 @@ import ProfileDefaultMedium from '../images/ic_profile_default_m.svg';
 import ProfileDefaultSmall from '../images/ic_profile_default_s.svg';
 import ProjectPurple from '../images/ic_project_p.svg';
 import Star from '../images/ic_star.svg';
-import LogoSmall from '../images/logo_s.svg';
+
+import CheckBoxSelected from '../images/ic_checkbox_selected.svg';
 
 // react component로 사용하기 위해 뺐습니다.
 import { ReactComponent as Member } from '../images/ic_member.svg';
@@ -29,17 +27,22 @@ import { ReactComponent as Icon06 } from '../images/ic_icon06.svg';
 import { ReactComponent as Icon07 } from '../images/ic_icon07.svg';
 import { ReactComponent as Icon08 } from '../images/ic_icon08.svg';
 import { ReactComponent as LogoLarge } from '../images/logo_l.svg';
+import { ReactComponent as LogoSmall } from '../images/logo_s.svg';
 import { ReactComponent as Error } from '../images/ic_error.svg';
 import { ReactComponent as Dropdown } from '../images/ic_dropdown.svg';
 import { ReactComponent as AddProfile } from '../images/ic_add_profile.svg';
 import { ReactComponent as LinkIcon } from '../images/ic_link.svg';
 import { ReactComponent as Notice } from '../images/ic_notice.svg';
+import { ReactComponent as Google } from '../images/ic_google.svg';
+import { ReactComponent as EyeHidden } from '../images/ic_eye_hidden.svg';
+import { ReactComponent as EyeOpen } from '../images/ic_eye_n.svg';
 
 export {
   AddProfile,
   Calendar,
   Close,
   Confirm,
+  CheckBoxSelected,
   Dropdown,
   Error1,
   Error,

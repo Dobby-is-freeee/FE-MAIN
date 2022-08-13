@@ -7,35 +7,34 @@ import useInput from '@/features/auth/hooks/useInput';
 import useBoolean from '@/features/auth/hooks/useBoolean';
 
 import InputWithError from '@/features/auth/components/InputWithError';
-import Button from '@/features/auth/components/Button';
-import AutoSigninCheck from '@/features/auth/components/AutoSigninCheck';
-
-const StyledInputWithError = styled(InputWithError)<{ errorMessage: string | undefined }>`
-  display: block;
-
-  &:nth-of-type(1) {
-    margin-bottom: ${({ errorMessage }) => (errorMessage ? '1rem' : '2rem')};
-  }
-
-  &:nth-of-type(2) {
-    margin-bottom: ${({ errorMessage }) => (errorMessage ? '1rem' : '1.5rem')};
-  }
-`;
+import { Input, LineButton, SolidButton } from '@/components';
+import { CheckBox } from '@/components/CheckBox';
 
 const StyledForm = styled.form`
-  margin-bottom: 3rem;
+  margin-bottom: 12px;
   width: 100%;
+`;
+
+const InputWrap = styled.div`
+  margin-bottom: 16px;
+
+  input + input {
+    margin-top: 12px;
+  }
 `;
 
 const OptionsWrapper = styled.div`
   display: flex;
+  align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 2.75rem;
+  margin-bottom: 20px;
 
-  & > div {
-    cursor: pointer;
-    font-size: 1.25rem;
+  & > button {
+    font-size: 16px;
+    letter-spacing: -0.03em;
+    width: 100px;
+    border: none;
   }
 `;
 
@@ -87,26 +86,19 @@ function SigninForm(props: SigninFormProps) {
 
   return (
     <StyledForm onSubmit={handleSubmit}>
-      <StyledInputWithError
-        value={email}
-        onChange={setEmail}
-        placeholder="이메일"
-        errorMessage={error?.type === 'email' ? error.message : undefined}
-      />
-      <StyledInputWithError
-        value={password}
-        onChange={setPassword}
-        type="password"
-        placeholder="비밀번호"
-        errorMessage={error?.type === 'password' ? error?.message : undefined}
-      />
+      {/* TODO: validation 체크 */}
+      <InputWrap>
+        <Input value={email} onChange={setEmail} placeholder="이메일" />
+        <Input value={password} onChange={setPassword} type="password" />
+      </InputWrap>
+
       <OptionsWrapper>
-        <AutoSigninCheck checked={autoSignin} onChange={toggleAutoSignin} />
-        <div onClick={onClick}>{`비밀번호 찾기 ->`}</div>
+        <CheckBox label="자동로그인" id="login" onChange={toggleAutoSignin} checked={autoSignin} />
+        <LineButton onClick={onClick}>비밀번호 찾기</LineButton>
       </OptionsWrapper>
-      <Button type="submit" disabled={error !== undefined} status="confirm">
+      <SolidButton type="submit" disabled={error !== undefined}>
         로그인
-      </Button>
+      </SolidButton>
     </StyledForm>
   );
 }

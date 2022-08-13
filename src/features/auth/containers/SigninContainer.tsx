@@ -2,60 +2,80 @@ import { useCallback } from 'react';
 import styled from 'styled-components';
 
 import { requestSignin } from '@/features/auth/api/members';
-
+import { Google, LogoSmall } from '@/assets/images';
+import { LineButton, Title } from '@/components';
 import SigninForm, { SigninFormProps } from '@/features/auth/components/SigninForm';
-import Button from '@/features/auth/components/Button';
+import { useNavigate } from 'react-router-dom';
 
-const Article = styled.article`
-  width: 30rem;
+export const FormField = styled.article`
+  background-color: ${({ theme }) => theme.colors.white};
+  border: 1px solid ${({ theme }) => theme.colors.gray2};
+  width: 448px;
+  padding: 45px 40px;
+  border-radius: 6px;
+  margin-bottom: 20px;
 `;
 
-const Title = styled.h3`
-  margin-bottom: 4rem;
-  font-weight: bold;
-  font-size: 3rem;
+export const Logo = styled(LogoSmall)`
   text-align: center;
+  margin-bottom: 20px;
+  width: 100%;
 `;
 
-const Division = styled.div`
-  position: relative;
+export const TitleWrap = styled(Title)`
+  font-family: 'Poppins';
+  text-align: center;
+  width: 100%;
+  line-height: 30px;
+  margin-bottom: 32px;
+`;
+
+export const GoggleButton = styled.button`
   display: flex;
-  align-items: center;
   justify-content: center;
-  margin-bottom: 2rem;
-  border-top: 1px solid black;
-
-  &::after {
-    position: absolute;
-    content: '또는';
-    background-color: #f8f8f8;
-    padding: 0 0.875rem;
-    font-size: 1.25rem;
-  }
+  align-items: center;
+  border: 1px solid ${({ theme }) => theme.colors.gray2};
+  background-color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.black};
+  gap: 4px;
+  font-weight: 500;
+  font-size: 16px;
+  border-radius: 6px;
+  width: 100%;
+  height: 56px;
 `;
 
-const GoggleButton = styled(Button)`
-  margin-bottom: 10rem;
+export const SignupText = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 448px;
+  font-size: 16px;
+  color: ${({ theme }) => theme.colors.gray3};
 `;
 
-const SignupText = styled.div`
-  text-align: center;
-  font-size: 1.25rem;
-
-  & > span {
-    font-weight: bold;
-    cursor: pointer;
-    margin-left: 0.2rem;
-  }
+export const SignupButton = styled(LineButton)`
+  width: 97px;
 `;
 
-export interface SigninContainerProps {
-  onClickSignup: () => void;
-  onClickGoogleSignin: () => void;
-  onClickFindPassword: () => void;
-}
+export interface SigninContainerProps {}
 
-function SigninContainer({ onClickSignup, onClickGoogleSignin, onClickFindPassword }: SigninContainerProps) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function SigninContainer(_: SigninContainerProps) {
+  const navigate = useNavigate();
+
+  const handleGoToSignup = useCallback(() => {
+    navigate('/auth/signup');
+  }, [navigate]);
+
+  const handleGoToFindPassword = useCallback(() => {
+    navigate('/auth/password');
+  }, [navigate]);
+
+  const handleGoToGoogleSignin = useCallback(() => {
+    alert('구글 로그인 구현 예정..');
+  }, []);
+
   const handleSignin = useCallback<SigninFormProps['onSubmit']>(async ({ email, password }) => {
     try {
       await requestSignin({ email: email, password: password });
@@ -86,15 +106,20 @@ function SigninContainer({ onClickSignup, onClickGoogleSignin, onClickFindPasswo
   }, []);
 
   return (
-    <Article>
-      <Title>로그인</Title>
-      <SigninForm onSubmit={handleSignin} onClick={onClickFindPassword} />
-      <Division />
-      <GoggleButton onClick={onClickGoogleSignin}>Google 계정으로 로그인</GoggleButton>
+    <>
+      <FormField>
+        <Logo />
+        <TitleWrap level={1}>로그인</TitleWrap>
+        <SigninForm onSubmit={handleSignin} onClick={handleGoToFindPassword} />
+        <GoggleButton onClick={handleGoToGoogleSignin}>
+          <Google />
+          Google 계정으로 로그인
+        </GoggleButton>
+      </FormField>
       <SignupText>
-        사이드킥이 처음이라면 <span onClick={onClickSignup}>회원가입</span>
+        Apro.go가 처음이라면 <SignupButton onClick={handleGoToSignup}>회원가입</SignupButton>
       </SignupText>
-    </Article>
+    </>
   );
 }
 
