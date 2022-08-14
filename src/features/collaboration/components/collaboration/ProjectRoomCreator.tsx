@@ -109,9 +109,8 @@ export const ProjectRoomCreator = ({ isCreatorVisible, onCreatorVisibleToggle }:
           </FormField>
 
           <FormField>
-            {/* TODO: count */}
-            <Title level={4}>프로젝트 룸 이름</Title>
-            <Input />
+            <FormFieldTitle level={4}>프로젝트 룸 이름</FormFieldTitle>
+            <Input maxLength={20} placeholder="예) 정기 미팅, 같이 작업해요" />
           </FormField>
 
           <FormField>
