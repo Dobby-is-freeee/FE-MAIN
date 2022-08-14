@@ -84,10 +84,12 @@ export const Input = ({
         spellCheck={spellCheck}
         {...rest}
       />
-      <Suffix>
-        {count}
-        <span>/{maxLength}</span>
-      </Suffix>
+      {maxLength ? (
+        <Suffix>
+          {count}
+          <span>/{maxLength}</span>
+        </Suffix>
+      ) : null}
     </Wrap>
   );
 };

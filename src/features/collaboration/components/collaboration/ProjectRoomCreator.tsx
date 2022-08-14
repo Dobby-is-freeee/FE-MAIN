@@ -4,11 +4,13 @@ import styled from 'styled-components';
 import { AddProfileSvg } from '@/assets/images';
 import { CheckBox, DatePicker, Input, LineButton, Modal, Title } from '@/components';
 import { TimePicker } from '@/components/ui/TimePicker';
-import { useState } from 'react';
+import { ChangeEventHandler, useState } from 'react';
 import { IMAGE_DIC, MEMBER_LIST } from '../../constants';
 import { RoomDateModel } from '../../containers/CollaborationCreatorContainer';
 
-const Wrap = styled.div``;
+const Wrap = styled.div`
+  color: ${({ theme }) => theme.colors.black};
+`;
 
 const FormField = styled.div`
   margin-bottom: 28px;
@@ -100,9 +102,39 @@ const MemberCheckBoxWrap = styled.div`
   }
 `;
 
-const TextArea = styled.textarea``;
+const TextAreaWrap = styled.div`
+  position: relative;
+`;
+
+const Suffix = styled.span`
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+
+  span {
+    color: ${({ theme }) => theme.colors.gray3};
+  }
+`;
+
+const TextArea = styled.textarea`
+  overflow: auto;
+  resize: none;
+  outline: none;
+  border: 1px solid ${({ theme }) => theme.colors.gray2};
+  width: 100%;
+  height: 102px;
+  padding: 15px 20px;
+  font-size: 16px;
+
+  &::placeholder {
+    font-size: 16px;
+    color: ${({ theme }) => theme.colors.gray2};
+  }
+`;
 
 const ModalFooter = styled.div``;
+
 const TOOLS_DIC = ['notion', 'figma', 'slack', 'zoom', 'xd', 'sketch', 'discord'];
 
 const DATE_CHECKBOX_LIST = ['always', 'everyday', 'weekly', 'biweekly', 'month'] as const;
@@ -135,6 +167,7 @@ export const ProjectRoomCreator = ({
   isCreatorVisible,
   onCreatorVisibleToggle,
 }: ProjectRoomCreatorProps) => {
+  const [textAreaCount, setTextAreaCount] = useState(0);
   const [checkedDate, setCheckedDate] = useState<DateCheckBoxType>('always');
   const [checkedMember, setCheckedMember] = useState<MemberCheckBoxType>('all');
 
@@ -142,6 +175,10 @@ export const ProjectRoomCreator = ({
     year: roomDate.year,
     month: roomDate.month,
     day: roomDate.day,
+  };
+
+  const handleTextAreaChange: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
+    setTextAreaCount(e.target.value.length);
   };
 
   const handleMemberChangeCurried = (value: MemberCheckBoxType) => () => {
@@ -258,15 +295,22 @@ export const ProjectRoomCreator = ({
           </FormField>
 
           <FormField>
-            {/* TODO: suffix - https:// */}
             <Title level={4}>링크</Title>
-            <Input />
+            <Input placeholder="https://" />
           </FormField>
 
           <FormField>
-            {/* TODO: count */}
-            <Title level={4}>설명</Title>
-            <TextArea placeholder="간단하게 룸 규칙이나 접속 정보 등을 기재해 주세요."></TextArea>
+            <FormFieldTitle level={4}>설명</FormFieldTitle>
+            <TextAreaWrap>
+              <TextArea
+                onChange={handleTextAreaChange}
+                placeholder="간단하게 룸 규칙이나 접속 정보 등을 기재해 주세요."
+              />
+              <Suffix>
+                {textAreaCount}
+                <span>/40</span>
+              </Suffix>
+            </TextAreaWrap>
           </FormField>
         </Wrap>
       }
