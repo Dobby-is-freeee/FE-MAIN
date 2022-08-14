@@ -1,11 +1,12 @@
 import { DayValue } from '@hassanmojab/react-modern-calendar-datepicker';
 import styled from 'styled-components';
 
+import { AddProfileSvg } from '@/assets/images';
 import { CheckBox, DatePicker, Input, LineButton, Modal, Title } from '@/components';
 import { TimePicker } from '@/components/ui/TimePicker';
-import { IMAGE_DIC } from '../../constants';
-import { RoomDateModel } from '../../containers/CollaborationCreatorContainer';
 import { useState } from 'react';
+import { IMAGE_DIC, MEMBER_LIST } from '../../constants';
+import { RoomDateModel } from '../../containers/CollaborationCreatorContainer';
 
 const Wrap = styled.div``;
 
@@ -88,18 +89,23 @@ const DateTimePickerWrap = styled.div`
   gap: 12px;
 `;
 
+const MemberCheckBoxWrap = styled.div`
+  display: flex;
+  gap: 20px;
+  font-weight: 400;
+  margin-bottom: 12px;
+
+  & label {
+    font-weight: 400;
+  }
+`;
+
 const TextArea = styled.textarea``;
 
 const ModalFooter = styled.div``;
-interface ProjectRoomCreatorProps {
-  roomDate: RoomDateModel;
-  isCreatorVisible: boolean;
-  onCreatorVisibleToggle: () => void;
-  onDateChange: (state: Partial<RoomDateModel>) => void;
-}
-
 const TOOLS_DIC = ['notion', 'figma', 'slack', 'zoom', 'xd', 'sketch', 'discord'];
-const CHECKBOX_LIST = ['always', 'everyday', 'weekly', 'biweekly', 'month'] as const;
+
+const DATE_CHECKBOX_LIST = ['always', 'everyday', 'weekly', 'biweekly', 'month'] as const;
 const DATE_CHECKBOX_DIC = {
   always: '상시',
   everyday: '매일',
@@ -107,8 +113,21 @@ const DATE_CHECKBOX_DIC = {
   biweekly: '격주',
   month: '매월',
 };
+type DateCheckBoxType = typeof DATE_CHECKBOX_LIST[number];
 
-type CheckBoxValueType = typeof CHECKBOX_LIST[number];
+const MEMBER_CHECKBOX_LIST = ['all', 'custom'] as const;
+const MEMBER_CHECKOUT_DIC = {
+  all: '모든 멤버',
+  custom: '직접 선택',
+};
+type MemberCheckBoxType = typeof MEMBER_CHECKBOX_LIST[number];
+
+interface ProjectRoomCreatorProps {
+  roomDate: RoomDateModel;
+  isCreatorVisible: boolean;
+  onCreatorVisibleToggle: () => void;
+  onDateChange: (state: Partial<RoomDateModel>) => void;
+}
 
 export const ProjectRoomCreator = ({
   roomDate,
@@ -116,7 +135,8 @@ export const ProjectRoomCreator = ({
   isCreatorVisible,
   onCreatorVisibleToggle,
 }: ProjectRoomCreatorProps) => {
-  const [checkedValue, setCheckedValue] = useState<CheckBoxValueType>('always');
+  const [checkedDate, setCheckedDate] = useState<DateCheckBoxType>('always');
+  const [checkedMember, setCheckedMember] = useState<MemberCheckBoxType>('all');
 
   const currentDatePickerValue: DayValue = {
     year: roomDate.year,
@@ -124,8 +144,12 @@ export const ProjectRoomCreator = ({
     day: roomDate.day,
   };
 
-  const handleDateTimeChangeCurried = (value: CheckBoxValueType) => () => {
-    setCheckedValue(value);
+  const handleMemberChangeCurried = (value: MemberCheckBoxType) => () => {
+    setCheckedMember(value);
+  };
+
+  const handleDateTimeChangeCurried = (value: DateCheckBoxType) => () => {
+    setCheckedDate(value);
   };
 
   const handleDatePickerChange = (state: DayValue) => {
@@ -151,7 +175,7 @@ export const ProjectRoomCreator = ({
         <Wrap>
           <FormField>
             <FormFieldTitle level={4}>협업툴</FormFieldTitle>
-            {/* TODO: 이미지가 활용된 체크박스 컴포넌트?화 */}
+
             <CheckBoxWithLogo>
               {TOOLS_DIC.map((value) => (
                 <CheckBoxBlock key={value}>
@@ -178,12 +202,12 @@ export const ProjectRoomCreator = ({
             <FormFieldTitle level={4}>일정</FormFieldTitle>
 
             <CalenderCheckBoxs>
-              {CHECKBOX_LIST.map((value) => (
+              {DATE_CHECKBOX_LIST.map((value) => (
                 <CheckBox
                   key={value}
                   id={value}
                   small
-                  checked={value === checkedValue}
+                  checked={value === checkedDate}
                   label={DATE_CHECKBOX_DIC[value]}
                   onChange={handleDateTimeChangeCurried(value)}
                 />
@@ -191,24 +215,46 @@ export const ProjectRoomCreator = ({
             </CalenderCheckBoxs>
             <DateTimePickerWrap>
               <DatePicker
-                disabled={checkedValue === 'always'}
+                disabled={checkedDate === 'always'}
                 onChange={handleDatePickerChange}
                 inputPlaceholder="시작일"
                 value={currentDatePickerValue}
               />
-              <TimePicker disabled={checkedValue === 'always'} onChange={handleTimePickerChange} />
+              <TimePicker disabled={checkedDate === 'always'} onChange={handleTimePickerChange} />
             </DateTimePickerWrap>
           </FormField>
 
           <FormField>
-            <Title level={4}>참여 멤버</Title>
-            <div>
-              <CheckBox small label="모든 멤버" id="all" />
-              <CheckBox small label="직접 선택" id="custom" />
-            </div>
+            <FormFieldTitle level={4}>참여 멤버</FormFieldTitle>
+            <MemberCheckBoxWrap>
+              {MEMBER_CHECKBOX_LIST.map((member) => (
+                <CheckBox
+                  small
+                  key={member}
+                  checked={member === checkedMember}
+                  label={MEMBER_CHECKOUT_DIC[member]}
+                  id={member}
+                  onChange={handleMemberChangeCurried(member)}
+                />
+              ))}
+            </MemberCheckBoxWrap>
 
-            {/* 직접 선택 시, 유저 보이기 */}
-            <div></div>
+            <CheckBoxWithLogo>
+              {checkedMember === 'custom' &&
+                MEMBER_LIST.map((value) => (
+                  <CheckBoxBlock key={value}>
+                    <CheckBoxStyled
+                      id={value}
+                      label={
+                        <LogoBox>
+                          <img src={AddProfileSvg} alt="user profile image" />
+                        </LogoBox>
+                      }
+                    />
+                    <Title level={4}>{value}</Title>
+                  </CheckBoxBlock>
+                ))}
+            </CheckBoxWithLogo>
           </FormField>
 
           <FormField>

@@ -5,6 +5,7 @@ import ProfileDefaultMedium from '../images/ic_profile_default_m.svg';
 import ProfileDefaultSmall from '../images/ic_profile_default_s.svg';
 import ProjectPurple from '../images/ic_project_p.svg';
 import Star from '../images/ic_star.svg';
+import AddProfileSvg from '../images/ic_add_profile.svg';
 
 import CheckBoxSelected from '../images/ic_checkbox_selected.svg';
 
@@ -85,4 +86,5 @@ export {
   MemberProfile,
   Cooperation,
   ToolsMask,
+  AddProfileSvg,
 };
