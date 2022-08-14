@@ -28,7 +28,7 @@ const Template: ComponentStory<typeof ProjectRoomCreator> = ({ ...props }) => {
 
   return (
     <>
-      <LineButton onClick={handleToggle} kind="primary" style={{ width: '150px' }}>
+      <LineButton onClick={handleToggle} variant="primary" style={{ width: '150px' }}>
         오픈 하기
       </LineButton>
       <ProjectRoomCreator

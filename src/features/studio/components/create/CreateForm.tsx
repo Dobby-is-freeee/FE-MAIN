@@ -106,7 +106,7 @@ export const CreateForm = ({
 
         <FooterButtons>
           <LineButton>취소</LineButton>
-          <LineButton kind="primary">프로젝트 만들기</LineButton>
+          <LineButton variant="primary">프로젝트 만들기</LineButton>
         </FooterButtons>
       </FormFooter>
     </>

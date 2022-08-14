@@ -2,30 +2,32 @@ import styled from 'styled-components';
 import { theme } from '@/styles';
 import { Link } from 'react-router-dom';
 
-type ButtonKindType = 'primary' | 'default';
+// type ButtonKindType = 'primary' | 'default';
+type ButtonVariantType = 'primary' | 'link' | 'default';
 type ButtonColorType = 'bg' | 'color' | 'border';
-type ButtonColorByKind = keyof typeof theme.colors;
+type ButtonColorByVariant = keyof typeof theme.colors;
 
-interface ButtonColorsByKind extends Record<ButtonColorType, ButtonColorByKind> {}
+interface ButtonColorsByVariant extends Record<ButtonColorType, ButtonColorByVariant> {}
 
-const BUTTON_COLORS_BY_KIND_DIC: Record<ButtonKindType, ButtonColorsByKind> = {
+const BUTTON_COLORS_BY_VARIANT_DIC: Record<ButtonVariantType, ButtonColorsByVariant> = {
   default: { bg: 'white', color: 'black', border: 'gray2' },
+  link: { bg: 'white', color: 'black', border: 'gray2' },
   primary: { bg: 'primary', color: 'white', border: 'primary' },
 };
 
 interface ButtonStyleProps {
-  kind: ButtonKindType;
+  variant: ButtonVariantType;
 }
 
-function getColor(kind: ButtonKindType): ButtonColorsByKind {
-  return BUTTON_COLORS_BY_KIND_DIC[kind];
+function getColor(variant: ButtonVariantType): ButtonColorsByVariant {
+  return BUTTON_COLORS_BY_VARIANT_DIC[variant];
 }
 
 const Button = styled.button<ButtonStyleProps>`
-  background-color: ${({ theme, kind }) => theme.colors[getColor(kind).bg]};
-  color: ${({ theme, kind }) => theme.colors[getColor(kind).color]};
+  background-color: ${({ theme, variant }) => theme.colors[getColor(variant).bg]};
+  color: ${({ theme, variant }) => theme.colors[getColor(variant).color]};
   outline: none;
-  border: 1px solid ${({ theme, kind }) => theme.colors[getColor(kind).border]};
+  border: 1px solid ${({ theme, variant }) => theme.colors[getColor(variant).border]};
   cursor: pointer;
   text-decoration: none;
   display: flex;
@@ -56,33 +58,25 @@ const Button = styled.button<ButtonStyleProps>`
   }
 `;
 
-type ButtonAsType = 'link' | 'button';
-
 const LinkButton = Button.withComponent(Link);
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, ButtonStyleProps {
   children?: React.ReactNode;
-  toBe: ButtonAsType;
+  variant: ButtonVariantType;
   to?: string;
 }
 
-export const LineButton = ({
-  children,
-  kind = 'default',
-  toBe = 'button',
-  to = '#',
-  ...props
-}: Partial<ButtonProps>) => {
-  if (toBe === 'link') {
+export const LineButton = ({ children, variant = 'default', to = '#', ...props }: Partial<ButtonProps>) => {
+  if (variant === 'link') {
     return (
-      <LinkButton to={to} kind={kind}>
+      <LinkButton to={to} variant={variant}>
         {children}
       </LinkButton>
     );
   }
 
   return (
-    <Button {...props} kind={kind}>
+    <Button {...props} variant={variant}>
       {children}
     </Button>
   );
