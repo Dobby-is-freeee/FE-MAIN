@@ -56,7 +56,7 @@ const CheckInput = styled.input<{ disabled: boolean; small?: boolean }>`
 
 interface CheckBoxProps extends React.InputHTMLAttributes<HTMLInputElement> {
   id: string;
-  label?: string;
+  label?: string | React.ReactNode;
   small?: boolean;
 }
 

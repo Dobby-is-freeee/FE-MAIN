@@ -100,6 +100,7 @@ const ModalContent = styled.div`
   flex: 1;
   padding: 28px;
 `;
+
 const ModalFooter = styled.div`
   border-top: 1px solid ${({ theme }) => theme.colors.gray2};
   padding: 8px 9px 8px 28px;
