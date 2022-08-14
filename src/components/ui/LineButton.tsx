@@ -57,6 +57,9 @@ const Button = styled.button<ButtonStyleProps>`
 `;
 
 type ButtonAsType = 'link' | 'button';
+
+const LinkButton = Button.withComponent(Link);
+
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, ButtonStyleProps {
   children?: React.ReactNode;
   toBe: ButtonAsType;
@@ -71,7 +74,6 @@ export const LineButton = ({
   ...props
 }: Partial<ButtonProps>) => {
   if (toBe === 'link') {
-    const LinkButton = Button.withComponent(Link);
     return (
       <LinkButton to={to} kind={kind}>
         {children}

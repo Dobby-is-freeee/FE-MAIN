@@ -1,10 +1,10 @@
 import { DayValue } from '@hassanmojab/react-modern-calendar-datepicker';
+import { ChangeEventHandler, useState } from 'react';
 import styled from 'styled-components';
 
 import { AddProfileSvg } from '@/assets/images';
 import { CheckBox, DatePicker, Input, LineButton, Modal, Title } from '@/components';
 import { TimePicker } from '@/components/ui/TimePicker';
-import { ChangeEventHandler, useState } from 'react';
 import { IMAGE_DIC, MEMBER_LIST } from '../../constants';
 import { RoomDateModel } from '../../containers/CollaborationCreatorContainer';
 
@@ -133,7 +133,24 @@ const TextArea = styled.textarea`
   }
 `;
 
-const ModalFooter = styled.div``;
+const ModalFooter = styled.div`
+  display: flex;
+  width: 200px;
+  margin-left: auto;
+`;
+
+const ModalFooterButton = styled(LineButton)`
+  border: none;
+
+  &:nth-of-type(1) {
+    width: 73px;
+  }
+
+  &:nth-of-type(2) {
+    flex: 1;
+    color: ${({ theme }) => theme.colors.primary};
+  }
+`;
 
 const TOOLS_DIC = ['notion', 'figma', 'slack', 'zoom', 'xd', 'sketch', 'discord'];
 
@@ -303,6 +320,7 @@ export const ProjectRoomCreator = ({
             <FormFieldTitle level={4}>설명</FormFieldTitle>
             <TextAreaWrap>
               <TextArea
+                maxLength={40}
                 onChange={handleTextAreaChange}
                 placeholder="간단하게 룸 규칙이나 접속 정보 등을 기재해 주세요."
               />
@@ -316,8 +334,8 @@ export const ProjectRoomCreator = ({
       }
       footer={
         <ModalFooter>
-          <LineButton onClick={onCreatorVisibleToggle}>취소</LineButton>
-          <LineButton>프로젝트 생성</LineButton>
+          <ModalFooterButton onClick={onCreatorVisibleToggle}>취소</ModalFooterButton>
+          <ModalFooterButton>프로젝트 생성</ModalFooterButton>
         </ModalFooter>
       }
     />
