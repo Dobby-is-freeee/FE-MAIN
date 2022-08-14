@@ -18,3 +18,8 @@ const Template: ComponentStory<typeof TimePicker> = ({ ...props }) => {
 
 export const Default = Template.bind({});
 Default.args = {};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  disabled: true,
+};
