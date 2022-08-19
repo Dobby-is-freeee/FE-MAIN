@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { theme } from '@/styles';
+import { Link } from 'react-router-dom';
 
 type ButtonKindType = 'primary' | 'default';
 type ButtonColorType = 'bg' | 'color' | 'border';
@@ -25,8 +26,12 @@ const Button = styled.button<ButtonStyleProps>`
   color: ${({ theme, kind }) => theme.colors[getColor(kind).color]};
   outline: none;
   border: 1px solid ${({ theme, kind }) => theme.colors[getColor(kind).border]};
-  border-radius: 6px;
   cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
   font-weight: 500;
   width: 100%;
   height: 38px;
@@ -51,13 +56,31 @@ const Button = styled.button<ButtonStyleProps>`
   }
 `;
 
+type ButtonAsType = 'link' | 'button';
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, ButtonStyleProps {
   children?: React.ReactNode;
+  toBe: ButtonAsType;
+  to?: string;
 }
 
-export const LineButton = ({ children, kind = 'default', ...props }: Partial<ButtonProps>) => {
+export const LineButton = ({
+  children,
+  kind = 'default',
+  toBe = 'button',
+  to = '#',
+  ...props
+}: Partial<ButtonProps>) => {
+  if (toBe === 'link') {
+    const LinkButton = Button.withComponent(Link);
+    return (
+      <LinkButton to={to} kind={kind}>
+        {children}
+      </LinkButton>
+    );
+  }
+
   return (
-    <Button kind={kind} {...props}>
+    <Button {...props} kind={kind}>
       {children}
     </Button>
   );

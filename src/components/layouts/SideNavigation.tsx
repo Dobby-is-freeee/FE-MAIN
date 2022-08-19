@@ -1,8 +1,16 @@
-import { Fragment, ReactNode, useState } from 'react';
+import { Fragment, ReactNode, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
-import { LogoLarge, MyProfileBlack, ProjectBlack, SettingBlack } from '@/assets/images';
+import {
+  Cooperation,
+  LoadMap,
+  LogoLarge,
+  MemberProfile,
+  MyProfileBlack,
+  ProjectBlack,
+  SettingBlack,
+} from '@/assets/images';
 import { Link } from 'react-router-dom';
 
 const Wrap = styled.div`
@@ -93,7 +101,7 @@ interface MenuItem {
   children?: MenuItem[];
 }
 
-const menuItems: MenuItem[] = [
+const StudioMenuItems: MenuItem[] = [
   {
     value: (
       <>
@@ -114,11 +122,49 @@ const menuItems: MenuItem[] = [
   },
 ];
 
+const ProjectMenuItems: MenuItem[] = [
+  {
+    path: '/roadmap',
+    value: (
+      <>
+        <LoadMap />
+        <MenuItemText>로드맵</MenuItemText>
+      </>
+    ),
+  },
+  {
+    path: '/collaboration',
+    value: (
+      <>
+        <Cooperation />
+        <MenuItemText>협업</MenuItemText>
+      </>
+    ),
+  },
+  {
+    path: '/member',
+    value: (
+      <>
+        <MemberProfile />
+        <MenuItemText>멤버</MenuItemText>
+      </>
+    ),
+  },
+];
+
 const hasSubMenu = (subMenu?: MenuItem[]) => Boolean(subMenu?.length);
 
 export const SideNavigation = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+
+  const menuItems = useMemo(() => {
+    if (pathname.includes('studio')) {
+      return StudioMenuItems;
+    }
+
+    return ProjectMenuItems;
+  }, [pathname]);
 
   const [menuPaths, setMenuPaths] = useState<string[]>([pathname]);
 

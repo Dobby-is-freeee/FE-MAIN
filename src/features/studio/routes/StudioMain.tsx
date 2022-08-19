@@ -1,4 +1,4 @@
-import { PageContainer } from '../components/common';
+import { PageContainer } from '@/components';
 import { ProjectCardContainer } from '../containers/ProjectCardContainer';
 
 export const StudioMain = () => {

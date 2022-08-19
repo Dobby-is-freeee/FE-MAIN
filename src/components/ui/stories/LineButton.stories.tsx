@@ -26,3 +26,11 @@ Disabled.args = {
   disabled: true,
   children: '바로가기',
 };
+
+export const Link = Template.bind({});
+Link.args = {
+  disabled: true,
+  toBe: 'link',
+  to: '#',
+  children: '바로가기',
+};
