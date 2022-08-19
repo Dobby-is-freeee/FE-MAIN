@@ -5,6 +5,7 @@ import { MyProjectCards } from '../components/main/MyProjectCards';
 import { InviteProjectCards } from '../components/main/InviteProjectCards';
 
 const Wrap = styled.div`
+  min-width: 1152px;
   width: 100%;
 `;
 

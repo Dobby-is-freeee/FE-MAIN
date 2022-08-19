@@ -5,7 +5,7 @@ import { isEmail } from '@/features/auth/libs/validator';
 import useBoolean from '@/features/auth/hooks/useBoolean';
 import useInput from '@/features/auth/hooks/useInput';
 import { Input, LineButton, SolidButton } from '@/components';
-import { CheckBox } from '@/components/CheckBox';
+import { CheckBox } from '@/components/ui';
 
 const StyledForm = styled.form`
   margin-bottom: 12px;

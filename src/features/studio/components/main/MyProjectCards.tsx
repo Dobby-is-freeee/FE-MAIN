@@ -3,10 +3,11 @@ import styled from 'styled-components';
 
 import { Error } from '@/assets/images';
 import { Modal, Title } from '@/components';
-import { LineButton } from '@/components/LineButton';
+import { LineButton } from '@/components/ui';
 import { useToggle } from 'react-use';
 import { ProjectItem, ProjectStatus } from '../../containers/ProjectCardContainer';
 import { ProjectCard } from '../common';
+import { EmptyCard } from '@/components/common/EmptyCard';
 
 const TitleWrap = styled(Title)`
   color: ${({ theme }) => theme.colors.black};
@@ -18,33 +19,9 @@ const TitleWrap = styled(Title)`
 const ProjectCardWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
-  max-width: 1052px;
+  max-width: 1152px;
   gap: 12px;
 `;
-
-const ProjectCreator = styled.div`
-  background: ${({ theme }) => theme.colors.white};
-  border: 1px solid ${({ theme }) => theme.colors.gray1};
-  flex: 1;
-  height: 252px;
-  border-radius: 6px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const ProjectCreatorInner = styled.div`
-  width: 214px;
-  height: 98px;
-  text-align: center;
-  font-size: 14px;
-  line-height: 22px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
-
-const ProjectCreateButton = styled(LineButton)``;
 
 const ModalContent = styled.div`
   display: flex;
@@ -84,6 +61,12 @@ const ModalButtonWrap = styled.div`
   width: 295px;
 `;
 
+const ProjectEmptyCard = styled.div`
+  min-width: 25%;
+  height: 268px;
+  flex: 1;
+`;
+
 interface MyProjectCardsProps {
   myProjects: ProjectItem[];
 }
@@ -115,16 +98,16 @@ export const MyProjectCards = ({ myProjects }: MyProjectCardsProps) => {
             createDate={createDate}
           />
         ))}
-        <ProjectCreator>
-          <ProjectCreatorInner>
+
+        <ProjectEmptyCard>
+          <EmptyCard onClick={handleToggle} buttonText="새 프로젝트 만들기">
             <p>
               팀원들과 작업공간을
               <br />
               개설해보세요!
             </p>
-            <ProjectCreateButton onClick={handleToggle}>새 프로젝트 만들기</ProjectCreateButton>
-          </ProjectCreatorInner>
-        </ProjectCreator>
+          </EmptyCard>
+        </ProjectEmptyCard>
       </ProjectCardWrap>
 
       <Modal
@@ -139,7 +122,7 @@ export const MyProjectCards = ({ myProjects }: MyProjectCardsProps) => {
 
             <ModalButtonWrap>
               <LineButton onClick={handleModalCancel}>다음에 할래요.</LineButton>
-              <LineButton kind="primary" onClick={handleModalConfirm}>
+              <LineButton variant="primary" onClick={handleModalConfirm}>
                 네, 지금 작성할게요.
               </LineButton>
             </ModalButtonWrap>

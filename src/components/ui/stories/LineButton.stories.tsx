@@ -18,11 +18,24 @@ const Template: ComponentStory<typeof LineButton> = ({ ...props }) => {
 
 export const Default = Template.bind({});
 Default.args = {
-  children: '바로가기',
+  children: '버튼',
+};
+
+export const Primary = Template.bind({});
+Primary.args = {
+  variant: 'primary',
+  children: '버튼2',
+};
+
+export const Link = Template.bind({});
+Link.args = {
+  variant: 'link',
+  to: '#',
+  children: '링크버튼',
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true,
-  children: '바로가기',
+  children: '버튼',
 };

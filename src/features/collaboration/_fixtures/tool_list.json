@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "tool": "notion",
+    "title": "Notion",
+    "sub": "모든 멤버"
+  },
+  {
+    "id": 2,
+    "tool": "figma",
+    "title": "Figma",
+    "sub": "UI/UX"
+  },
+  {
+    "id": 3,
+    "tool": "zoom",
+    "title": "Zoom",
+    "sub": "모든 멤버"
+  },
+  {
+    "id": 4,
+    "tool": "slack",
+    "title": "Slack",
+    "sub": "모든 멤버"
+  }
+]

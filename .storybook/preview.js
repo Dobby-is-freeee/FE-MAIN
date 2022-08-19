@@ -1,4 +1,5 @@
 import { ThemeProvider } from 'styled-components';
+import { MemoryRouter } from 'react-router-dom';
 
 import { theme, GlobalStyle } from '../src/styles';
 
@@ -16,7 +17,9 @@ export const decorators = [
   (Story) => (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Story />
+      <MemoryRouter>
+        <Story />
+      </MemoryRouter>
     </ThemeProvider>
   ),
 ];

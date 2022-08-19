@@ -2,14 +2,16 @@ import styled from 'styled-components';
 
 import { Icon01, Member } from '@/assets/images';
 import { ProjectItem, ProjectStatus } from '../../containers/ProjectCardContainer';
-import { LineButton } from '@/components/LineButton';
+import { LineButton } from '@/components/ui';
 
 const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   border: 1px solid ${({ theme }) => theme.colors.gray1};
   border-radius: 6px;
-  width: 254px;
+  max-width: calc(25% - 12px);
+  min-width: 254px;
+  flex: 1;
   height: 252px;
 `;
 
@@ -47,11 +49,13 @@ const ProjectCreateDate = styled.div`
   color: ${({ theme }) => theme.colors.gray3};
 `;
 
-const ProjectButton = styled(LineButton)`
+const ProjectLinkWrap = styled.div`
   margin: 0 auto;
-  margin-bottom: 20px;
   width: 214px;
+  margin-bottom: 20px;
 `;
+
+const ProjectLink = styled(LineButton)``;
 
 const ProjectCardFooter = styled.div`
   display: flex;
@@ -108,7 +112,11 @@ export const ProjectCard = ({ id, createDate, projectName, status, totalMember }
           <ProjectCreateDate>{createDate}</ProjectCreateDate>
         </ProjectInfo>
       </ProjectCardBody>
-      <ProjectButton>바로가기</ProjectButton>
+      <ProjectLinkWrap>
+        <ProjectLink variant="link" to="/collaboration">
+          바로가기
+        </ProjectLink>
+      </ProjectLinkWrap>
       <ProjectCardFooter>
         <ProjectMember>
           <Member />

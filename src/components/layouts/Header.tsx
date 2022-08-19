@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { MyProfilePurple, Notice } from '@/assets/images';
+import { MyProfilePurple, Notice, Search } from '@/assets/images';
 import { useDispatch } from '@/stores';
 import { logoutUser } from '@/stores/auth';
 
@@ -56,8 +56,7 @@ export const Header = () => {
       <HeaderUserInfo>
         <UserProfileImage>
           <Notice />
-          {/* TODO: icon-search로 변경 */}
-          <Notice />
+          <Search />
           <img src={MyProfilePurple} alt="user profile image" onClick={handleLogoutClick} />
         </UserProfileImage>
       </HeaderUserInfo>
