@@ -1,7 +1,11 @@
+import { DayValue } from '@hassanmojab/react-modern-calendar-datepicker';
 import styled from 'styled-components';
 
 import { CheckBox, DatePicker, Input, LineButton, Modal, Title } from '@/components';
+import { TimePicker } from '@/components/ui/TimePicker';
 import { IMAGE_DIC } from '../../constants';
+import { RoomDateModel } from '../../containers/CollaborationCreatorContainer';
+import { useState } from 'react';
 
 const Wrap = styled.div``;
 
@@ -43,7 +47,7 @@ const CheckBoxStyled = styled(CheckBox)`
   }
 
   &:checked + label::after {
-    z-index: 10;
+    z-index: 15;
     top: 4px;
     left: 4px;
   }
@@ -68,17 +72,74 @@ const LogoBox = styled.div`
   }
 `;
 
+const CalenderCheckBoxs = styled.div`
+  display: flex;
+  gap: 20px;
+  margin-bottom: 12px;
+
+  & label {
+    font-weight: 400;
+  }
+`;
+
+const DateTimePickerWrap = styled.div`
+  display: flex;
+  width: 100%;
+  gap: 12px;
+`;
+
 const TextArea = styled.textarea``;
 
 const ModalFooter = styled.div``;
 interface ProjectRoomCreatorProps {
+  roomDate: RoomDateModel;
   isCreatorVisible: boolean;
   onCreatorVisibleToggle: () => void;
+  onDateChange: (state: Partial<RoomDateModel>) => void;
 }
 
 const TOOLS_DIC = ['notion', 'figma', 'slack', 'zoom', 'xd', 'sketch', 'discord'];
+const CHECKBOX_LIST = ['always', 'everyday', 'weekly', 'biweekly', 'month'] as const;
+const DATE_CHECKBOX_DIC = {
+  always: '상시',
+  everyday: '매일',
+  weekly: '매주',
+  biweekly: '격주',
+  month: '매월',
+};
 
-export const ProjectRoomCreator = ({ isCreatorVisible, onCreatorVisibleToggle }: ProjectRoomCreatorProps) => {
+type CheckBoxValueType = typeof CHECKBOX_LIST[number];
+
+export const ProjectRoomCreator = ({
+  roomDate,
+  onDateChange,
+  isCreatorVisible,
+  onCreatorVisibleToggle,
+}: ProjectRoomCreatorProps) => {
+  const [checkedValue, setCheckedValue] = useState<CheckBoxValueType>('always');
+
+  const currentDatePickerValue: DayValue = {
+    year: roomDate.year,
+    month: roomDate.month,
+    day: roomDate.day,
+  };
+
+  const handleDateTimeChangeCurried = (value: CheckBoxValueType) => () => {
+    setCheckedValue(value);
+  };
+
+  const handleDatePickerChange = (state: DayValue) => {
+    onDateChange({
+      year: state?.year,
+      month: state?.month,
+      day: state?.day,
+    });
+  };
+
+  const handleTimePickerChange = (state: Partial<RoomDateModel>) => {
+    onDateChange(state);
+  };
+
   return (
     <Modal
       width={600}
@@ -114,17 +175,29 @@ export const ProjectRoomCreator = ({ isCreatorVisible, onCreatorVisibleToggle }:
           </FormField>
 
           <FormField>
-            <Title level={4}>일정</Title>
+            <FormFieldTitle level={4}>일정</FormFieldTitle>
 
-            <div>
-              <CheckBox small label="상시" id="always" />
-              <CheckBox small label="매일" id="everyday" />
-              <CheckBox small label="매주" id="weekly" />
-              <CheckBox small label="격주" id="biweekly" />
-              <CheckBox small label="매월" id="month" />
-            </div>
-            {/* TODO: hh:mm */}
-            <DatePicker value={null} />
+            <CalenderCheckBoxs>
+              {CHECKBOX_LIST.map((value) => (
+                <CheckBox
+                  key={value}
+                  id={value}
+                  small
+                  checked={value === checkedValue}
+                  label={DATE_CHECKBOX_DIC[value]}
+                  onChange={handleDateTimeChangeCurried(value)}
+                />
+              ))}
+            </CalenderCheckBoxs>
+            <DateTimePickerWrap>
+              <DatePicker
+                disabled={checkedValue === 'always'}
+                onChange={handleDatePickerChange}
+                inputPlaceholder="시작일"
+                value={currentDatePickerValue}
+              />
+              <TimePicker disabled={checkedValue === 'always'} onChange={handleTimePickerChange} />
+            </DateTimePickerWrap>
           </FormField>
 
           <FormField>

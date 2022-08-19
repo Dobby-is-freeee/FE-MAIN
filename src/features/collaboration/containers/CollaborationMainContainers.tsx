@@ -1,6 +1,5 @@
 import { InUseTools } from '../components/collaboration/InUseTools';
 import { ProjectRoomCards } from '../components/collaboration/ProjectRoomCards';
-import { ProjectRoomCreator } from '../components/collaboration/ProjectRoomCreator';
 import { ToolsRecommend } from '../components/collaboration/ToolsRecommend';
 
 import TOOL_LIST from '../_fixtures/tool_list.json';
@@ -11,16 +10,12 @@ interface CollaborationMainContainersProps {
   onCreatorVisibleToggle: () => void;
 }
 
-export const CollaborationMainContainers = ({
-  isCreatorVisible,
-  onCreatorVisibleToggle,
-}: CollaborationMainContainersProps) => {
+export const CollaborationMainContainers = ({ onCreatorVisibleToggle }: CollaborationMainContainersProps) => {
   return (
     <>
       <ToolsRecommend isFinished={false} />
       <InUseTools toolList={TOOL_LIST} />
       <ProjectRoomCards projectRoomList={ROOM_LIST} onCreatorToggle={onCreatorVisibleToggle} />
-      <ProjectRoomCreator onCreatorVisibleToggle={onCreatorVisibleToggle} isCreatorVisible={isCreatorVisible} />
     </>
   );
 };

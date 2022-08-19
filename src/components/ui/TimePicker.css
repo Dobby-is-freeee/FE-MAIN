@@ -1,0 +1,111 @@
+/* styled component로 커스텀하기가 어려워 직접 css를 조작합니다. */
+/* 조작하기 어려운 이유는, timePicker를 누르면 나오는 select 엘리먼트가 rootElement가 아닌 다른 element에 속해 있기 떄문입니다. */
+.rc-time-picker-panel {
+  z-index: 10;
+  width: 250px;
+  font-size: 16px;
+  position: absolute;
+  box-sizing: border-box;
+}
+.rc-time-picker-panel * {
+  box-sizing: border-box;
+}
+.rc-time-picker-panel-inner {
+  width: 100%;
+  display: inline-block;
+  position: relative;
+  outline: none;
+  list-style: none;
+  font-size: 16px;
+  text-align: left;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 5px #ccc;
+  background-clip: padding-box;
+  border: 1px solid #ccc;
+  line-height: 1.5;
+}
+.rc-time-picker-panel-narrow {
+  max-width: 113px;
+}
+.rc-time-picker-panel-input-wrap {
+  box-sizing: border-box;
+  position: relative;
+  padding: 0;
+  border-bottom: 1px solid #e9e9e9;
+}
+.rc-time-picker-panel-input {
+  margin: 0;
+  height: 54px;
+  border-radius: 4px;
+  padding: 16px 15px;
+  font-size: 16px;
+  width: 100%;
+  cursor: auto;
+  line-height: 1.5;
+  outline: 0;
+  border: 1px solid transparent;
+}
+.rc-time-picker-panel-input-invalid {
+  border-color: red;
+}
+.rc-time-picker-panel-combobox {
+  display: flex;
+}
+.rc-time-picker-panel-select {
+  flex: 1;
+  font-size: 16px;
+  border: 1px solid #e9e9e9;
+  border-width: 0 1px;
+  margin-left: -1px;
+  box-sizing: border-box;
+  width: 56px;
+  max-height: 144px;
+  overflow-y: auto;
+  position: relative;
+}
+.rc-time-picker-panel-select-active {
+  overflow-y: auto;
+}
+.rc-time-picker-panel-select:first-child {
+  border-left: 0;
+  margin-left: 0;
+}
+.rc-time-picker-panel-select:last-child {
+  border-right: 0;
+}
+.rc-time-picker-panel-select ul {
+  list-style: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+.rc-time-picker-panel-select li {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 16px;
+  width: 100%;
+  height: 24px;
+  line-height: 24px;
+  text-align: left;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.rc-time-picker-panel-select li:hover {
+  background: #edfaff;
+}
+li.rc-time-picker-panel-select-option-selected {
+  background: #f7f7f7;
+  font-weight: bold;
+}
+li.rc-time-picker-panel-select-option-disabled {
+  color: #ccc;
+}
+li.rc-time-picker-panel-select-option-disabled:hover {
+  background: transparent;
+  cursor: not-allowed;
+}
