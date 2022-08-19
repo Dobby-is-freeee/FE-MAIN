@@ -122,7 +122,7 @@ export const MyProjectCards = ({ myProjects }: MyProjectCardsProps) => {
 
             <ModalButtonWrap>
               <LineButton onClick={handleModalCancel}>다음에 할래요.</LineButton>
-              <LineButton kind="primary" onClick={handleModalConfirm}>
+              <LineButton variant="primary" onClick={handleModalConfirm}>
                 네, 지금 작성할게요.
               </LineButton>
             </ModalButtonWrap>

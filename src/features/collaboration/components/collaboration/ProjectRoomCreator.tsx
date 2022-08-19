@@ -1,13 +1,16 @@
 import { DayValue } from '@hassanmojab/react-modern-calendar-datepicker';
+import { ChangeEventHandler, useState } from 'react';
 import styled from 'styled-components';
 
+import { AddProfileSvg } from '@/assets/images';
 import { CheckBox, DatePicker, Input, LineButton, Modal, Title } from '@/components';
 import { TimePicker } from '@/components/ui/TimePicker';
-import { IMAGE_DIC } from '../../constants';
+import { IMAGE_DIC, MEMBER_LIST } from '../../constants';
 import { RoomDateModel } from '../../containers/CollaborationCreatorContainer';
-import { useState } from 'react';
 
-const Wrap = styled.div``;
+const Wrap = styled.div`
+  color: ${({ theme }) => theme.colors.black};
+`;
 
 const FormField = styled.div`
   margin-bottom: 28px;
@@ -88,18 +91,70 @@ const DateTimePickerWrap = styled.div`
   gap: 12px;
 `;
 
-const TextArea = styled.textarea``;
+const MemberCheckBoxWrap = styled.div`
+  display: flex;
+  gap: 20px;
+  font-weight: 400;
+  margin-bottom: 12px;
 
-const ModalFooter = styled.div``;
-interface ProjectRoomCreatorProps {
-  roomDate: RoomDateModel;
-  isCreatorVisible: boolean;
-  onCreatorVisibleToggle: () => void;
-  onDateChange: (state: Partial<RoomDateModel>) => void;
-}
+  & label {
+    font-weight: 400;
+  }
+`;
+
+const TextAreaWrap = styled.div`
+  position: relative;
+`;
+
+const Suffix = styled.span`
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+
+  span {
+    color: ${({ theme }) => theme.colors.gray3};
+  }
+`;
+
+const TextArea = styled.textarea`
+  overflow: auto;
+  resize: none;
+  outline: none;
+  border: 1px solid ${({ theme }) => theme.colors.gray2};
+  width: 100%;
+  height: 102px;
+  padding: 15px 20px;
+  font-size: 16px;
+
+  &::placeholder {
+    font-size: 16px;
+    color: ${({ theme }) => theme.colors.gray2};
+  }
+`;
+
+const ModalFooter = styled.div`
+  display: flex;
+  width: 200px;
+  margin-left: auto;
+`;
+
+const ModalFooterButton = styled(LineButton)`
+  border: none;
+
+  &:nth-of-type(1) {
+    width: 73px;
+  }
+
+  &:nth-of-type(2) {
+    flex: 1;
+    color: ${({ theme }) => theme.colors.primary};
+  }
+`;
 
 const TOOLS_DIC = ['notion', 'figma', 'slack', 'zoom', 'xd', 'sketch', 'discord'];
-const CHECKBOX_LIST = ['always', 'everyday', 'weekly', 'biweekly', 'month'] as const;
+
+const DATE_CHECKBOX_LIST = ['always', 'everyday', 'weekly', 'biweekly', 'month'] as const;
 const DATE_CHECKBOX_DIC = {
   always: '상시',
   everyday: '매일',
@@ -107,8 +162,21 @@ const DATE_CHECKBOX_DIC = {
   biweekly: '격주',
   month: '매월',
 };
+type DateCheckBoxType = typeof DATE_CHECKBOX_LIST[number];
 
-type CheckBoxValueType = typeof CHECKBOX_LIST[number];
+const MEMBER_CHECKBOX_LIST = ['all', 'custom'] as const;
+const MEMBER_CHECKOUT_DIC = {
+  all: '모든 멤버',
+  custom: '직접 선택',
+};
+type MemberCheckBoxType = typeof MEMBER_CHECKBOX_LIST[number];
+
+interface ProjectRoomCreatorProps {
+  roomDate: RoomDateModel;
+  isCreatorVisible: boolean;
+  onCreatorVisibleToggle: () => void;
+  onDateChange: (state: Partial<RoomDateModel>) => void;
+}
 
 export const ProjectRoomCreator = ({
   roomDate,
@@ -116,7 +184,9 @@ export const ProjectRoomCreator = ({
   isCreatorVisible,
   onCreatorVisibleToggle,
 }: ProjectRoomCreatorProps) => {
-  const [checkedValue, setCheckedValue] = useState<CheckBoxValueType>('always');
+  const [textAreaCount, setTextAreaCount] = useState(0);
+  const [checkedDate, setCheckedDate] = useState<DateCheckBoxType>('always');
+  const [checkedMember, setCheckedMember] = useState<MemberCheckBoxType>('all');
 
   const currentDatePickerValue: DayValue = {
     year: roomDate.year,
@@ -124,8 +194,16 @@ export const ProjectRoomCreator = ({
     day: roomDate.day,
   };
 
-  const handleDateTimeChangeCurried = (value: CheckBoxValueType) => () => {
-    setCheckedValue(value);
+  const handleTextAreaChange: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
+    setTextAreaCount(e.target.value.length);
+  };
+
+  const handleMemberChangeCurried = (value: MemberCheckBoxType) => () => {
+    setCheckedMember(value);
+  };
+
+  const handleDateTimeChangeCurried = (value: DateCheckBoxType) => () => {
+    setCheckedDate(value);
   };
 
   const handleDatePickerChange = (state: DayValue) => {
@@ -151,7 +229,7 @@ export const ProjectRoomCreator = ({
         <Wrap>
           <FormField>
             <FormFieldTitle level={4}>협업툴</FormFieldTitle>
-            {/* TODO: 이미지가 활용된 체크박스 컴포넌트?화 */}
+
             <CheckBoxWithLogo>
               {TOOLS_DIC.map((value) => (
                 <CheckBoxBlock key={value}>
@@ -178,12 +256,12 @@ export const ProjectRoomCreator = ({
             <FormFieldTitle level={4}>일정</FormFieldTitle>
 
             <CalenderCheckBoxs>
-              {CHECKBOX_LIST.map((value) => (
+              {DATE_CHECKBOX_LIST.map((value) => (
                 <CheckBox
                   key={value}
                   id={value}
                   small
-                  checked={value === checkedValue}
+                  checked={value === checkedDate}
                   label={DATE_CHECKBOX_DIC[value]}
                   onChange={handleDateTimeChangeCurried(value)}
                 />
@@ -191,43 +269,73 @@ export const ProjectRoomCreator = ({
             </CalenderCheckBoxs>
             <DateTimePickerWrap>
               <DatePicker
-                disabled={checkedValue === 'always'}
+                disabled={checkedDate === 'always'}
                 onChange={handleDatePickerChange}
                 inputPlaceholder="시작일"
                 value={currentDatePickerValue}
               />
-              <TimePicker disabled={checkedValue === 'always'} onChange={handleTimePickerChange} />
+              <TimePicker disabled={checkedDate === 'always'} onChange={handleTimePickerChange} />
             </DateTimePickerWrap>
           </FormField>
 
           <FormField>
-            <Title level={4}>참여 멤버</Title>
-            <div>
-              <CheckBox small label="모든 멤버" id="all" />
-              <CheckBox small label="직접 선택" id="custom" />
-            </div>
+            <FormFieldTitle level={4}>참여 멤버</FormFieldTitle>
+            <MemberCheckBoxWrap>
+              {MEMBER_CHECKBOX_LIST.map((member) => (
+                <CheckBox
+                  small
+                  key={member}
+                  checked={member === checkedMember}
+                  label={MEMBER_CHECKOUT_DIC[member]}
+                  id={member}
+                  onChange={handleMemberChangeCurried(member)}
+                />
+              ))}
+            </MemberCheckBoxWrap>
 
-            {/* 직접 선택 시, 유저 보이기 */}
-            <div></div>
+            <CheckBoxWithLogo>
+              {checkedMember === 'custom' &&
+                MEMBER_LIST.map((value) => (
+                  <CheckBoxBlock key={value}>
+                    <CheckBoxStyled
+                      id={value}
+                      label={
+                        <LogoBox>
+                          <img src={AddProfileSvg} alt="user profile image" />
+                        </LogoBox>
+                      }
+                    />
+                    <Title level={4}>{value}</Title>
+                  </CheckBoxBlock>
+                ))}
+            </CheckBoxWithLogo>
           </FormField>
 
           <FormField>
-            {/* TODO: suffix - https:// */}
             <Title level={4}>링크</Title>
-            <Input />
+            <Input placeholder="https://" />
           </FormField>
 
           <FormField>
-            {/* TODO: count */}
-            <Title level={4}>설명</Title>
-            <TextArea placeholder="간단하게 룸 규칙이나 접속 정보 등을 기재해 주세요."></TextArea>
+            <FormFieldTitle level={4}>설명</FormFieldTitle>
+            <TextAreaWrap>
+              <TextArea
+                maxLength={40}
+                onChange={handleTextAreaChange}
+                placeholder="간단하게 룸 규칙이나 접속 정보 등을 기재해 주세요."
+              />
+              <Suffix>
+                {textAreaCount}
+                <span>/40</span>
+              </Suffix>
+            </TextAreaWrap>
           </FormField>
         </Wrap>
       }
       footer={
         <ModalFooter>
-          <LineButton onClick={onCreatorVisibleToggle}>취소</LineButton>
-          <LineButton>프로젝트 생성</LineButton>
+          <ModalFooterButton onClick={onCreatorVisibleToggle}>취소</ModalFooterButton>
+          <ModalFooterButton>프로젝트 생성</ModalFooterButton>
         </ModalFooter>
       }
     />

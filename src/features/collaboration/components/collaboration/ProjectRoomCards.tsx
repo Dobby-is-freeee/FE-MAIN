@@ -135,7 +135,7 @@ export const ProjectRoomCards = ({ projectRoomList, onCreatorToggle }: ProjectRo
               <RoomDescription>{room.description}</RoomDescription>
             </RoomInformationWrap>
 
-            <LineButton toBe="link" to="#">
+            <LineButton variant="link" to="#">
               바로가기
             </LineButton>
           </RoomCardWrap>

@@ -113,7 +113,7 @@ export const ProjectCard = ({ id, createDate, projectName, status, totalMember }
         </ProjectInfo>
       </ProjectCardBody>
       <ProjectLinkWrap>
-        <ProjectLink toBe="link" to="/collaboration">
+        <ProjectLink variant="link" to="/collaboration">
           바로가기
         </ProjectLink>
       </ProjectLinkWrap>
