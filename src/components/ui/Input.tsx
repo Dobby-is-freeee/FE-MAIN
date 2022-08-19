@@ -1,6 +1,15 @@
+import { ChangeEventHandler, useState } from 'react';
 import styled from 'styled-components';
 
-const InputBox = styled.input`
+interface WrapStyleProps {
+  maxLength?: number;
+}
+
+const Wrap = styled.div`
+  position: relative;
+`;
+
+const InputStyled = styled.input<WrapStyleProps>`
   border: 1px solid ${({ theme }) => theme.colors.gray2};
   background-color: ${({ theme }) => theme.colors.white};
   color: ${({ theme }) => theme.colors.black};
@@ -14,6 +23,7 @@ const InputBox = styled.input`
   letter-spacing: 0.03em;
   transition: border-color 300ms linear;
   outline: none;
+  padding-right: ${({ maxLength }) => maxLength && '80px'};
 
   &::placeholder {
     color: ${({ theme }) => theme.colors.gray2};
@@ -30,9 +40,54 @@ const InputBox = styled.input`
   }
 `;
 
+const Suffix = styled.span`
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  letter-spacing: -0.0025em;
+  color: ${({ theme }) => theme.colors.black};
+
+  span {
+    color: ${({ theme }) => theme.colors.gray3};
+  }
+`;
+
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 // TODO: 에러메세지 적용 with react-hook-form - cskim
-export const Input = ({ type = 'text', autoComplete = 'off', spellCheck = false, ...rest }: InputProps) => {
-  return <InputBox type={type} autoComplete={autoComplete} spellCheck={spellCheck} {...rest}></InputBox>;
+export const Input = ({
+  onChange,
+  maxLength = 0,
+  type = 'text',
+  autoComplete = 'off',
+  spellCheck = false,
+  ...rest
+}: InputProps) => {
+  const [count, setCount] = useState(0);
+
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    if (maxLength) {
+      setCount(e.target.value.length);
+    }
+
+    onChange?.(e);
+  };
+
+  return (
+    <Wrap>
+      <InputStyled
+        type={type}
+        onChange={handleChange}
+        maxLength={maxLength || undefined}
+        autoComplete={autoComplete}
+        spellCheck={spellCheck}
+        {...rest}
+      />
+      <Suffix>
+        {count}
+        <span>/{maxLength}</span>
+      </Suffix>
+    </Wrap>
+  );
 };

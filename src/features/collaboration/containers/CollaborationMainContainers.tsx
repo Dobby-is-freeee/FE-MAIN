@@ -6,13 +6,21 @@ import { ToolsRecommend } from '../components/collaboration/ToolsRecommend';
 import TOOL_LIST from '../_fixtures/tool_list.json';
 import ROOM_LIST from '../_fixtures/room_list.json';
 
-export const CollaborationMainContainers = () => {
+interface CollaborationMainContainersProps {
+  isCreatorVisible: boolean;
+  onCreatorVisibleToggle: () => void;
+}
+
+export const CollaborationMainContainers = ({
+  isCreatorVisible,
+  onCreatorVisibleToggle,
+}: CollaborationMainContainersProps) => {
   return (
     <>
       <ToolsRecommend isFinished={false} />
       <InUseTools toolList={TOOL_LIST} />
-      <ProjectRoomCards projectRoomList={ROOM_LIST} />
-      <ProjectRoomCreator />
+      <ProjectRoomCards projectRoomList={ROOM_LIST} onCreatorToggle={onCreatorVisibleToggle} />
+      <ProjectRoomCreator onCreatorVisibleToggle={onCreatorVisibleToggle} isCreatorVisible={isCreatorVisible} />
     </>
   );
 };

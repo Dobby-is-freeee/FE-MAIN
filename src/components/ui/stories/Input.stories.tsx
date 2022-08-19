@@ -21,6 +21,12 @@ Default.args = {
   placeholder: '입력',
 };
 
+export const Count = Template.bind({});
+Count.args = {
+  maxLength: 10,
+  placeholder: '입력',
+};
+
 export const Disabled = Template.bind({});
 Disabled.args = {
   placeholder: '입력',
