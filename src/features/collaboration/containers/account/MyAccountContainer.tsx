@@ -4,33 +4,11 @@ import { useEffect, useMemo, useState } from 'react';
 import { AccountTableModel } from '../../models/account.models';
 import { useMyAccountTableColumns } from '../../hooks/useMyAccountTableCoumns';
 import { MyAccountTable } from '../../components/account/MyAccountTable';
+import { EditableTableHeader } from '../../components/account/EditableTableHeader';
 import TABLE_DATA from '../../_fixtures/account_list.json';
-
-import { LineButton, Title } from '@/components';
 
 const Wrap = styled.div`
   padding-bottom: 60px;
-`;
-
-const TableOutTitleWrap = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 30px;
-`;
-
-const TableOutButtonWrap = styled.div`
-  display: flex;
-  gap: 8px;
-  font-size: 14px;
-
-  button {
-    &:nth-last-of-type(1) {
-      width: 100px;
-    }
-    width: fit-content;
-    padding: 9px 16px;
-  }
 `;
 
 export const MyAccountContainer = () => {
@@ -138,23 +116,15 @@ export const MyAccountContainer = () => {
 
   return (
     <Wrap>
-      <TableOutTitleWrap>
-        <Title level={2}>내 계정</Title>
-        <TableOutButtonWrap>
-          {isSelectedTable ? (
-            <>
-              <LineButton onClick={handleDeleteClick}>삭제하기</LineButton>
-              <LineButton onClick={handleEditableClick}>수정하기</LineButton>
-            </>
-          ) : null}
-          {isEditableTable.length ? (
-            <LineButton onClick={handleConfirmClick}>완료</LineButton>
-          ) : null}
-          <LineButton variant="primary" onClick={handleAddClick}>
-            계정 추가 +
-          </LineButton>
-        </TableOutButtonWrap>
-      </TableOutTitleWrap>
+      <EditableTableHeader
+        title="내 계정"
+        isEditableTable={!!isEditableTable.length}
+        isSelectedTable={isSelectedTable}
+        onAddClick={handleAddClick}
+        onConfirmClick={handleConfirmClick}
+        onDeleteClick={handleDeleteClick}
+        onEditableClick={handleEditableClick}
+      />
 
       <MyAccountTable columns={columns} tableData={tableData} />
     </Wrap>
