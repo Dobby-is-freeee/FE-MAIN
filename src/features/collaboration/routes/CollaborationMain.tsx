@@ -1,12 +1,18 @@
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import styled from 'styled-components';
-import { useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import { useToggle } from 'react-use';
+import styled from 'styled-components';
 
 import { PageContainer } from '@/components';
-import { CollaborationMainContainers } from '../containers/CollaborationMainContainers';
+import { useQueryNavigate } from '@/hooks/useQueryNavigate';
+import { useQueryParams } from '@/hooks/useQueryParams';
+import { AccountByMemberContainer } from '../containers/account/AccountByMemberContainer';
+import { MyAccountContainer } from '../containers/account/MyAccountContainer';
+import { PublicAccountContainer } from '../containers/account/PublicAccountContainer';
 import { CollaborationCreatorContainer } from '../containers/CollaborationCreatorContainer';
-import { useToggle } from 'react-use';
+import { CollaborationMainContainers } from '../containers/CollaborationMainContainers';
+import { CollaborationTabModel } from '../models/collaboration.model';
 
 interface CustomTabStyleProps {
   selected: boolean;
@@ -28,12 +34,31 @@ const CustomTab = styled(Tab)<CustomTabStyleProps>`
   transition: color 0.3s ease;
 `;
 
+function refineCollaborationQuery(queries: Record<string, string>): CollaborationTabModel {
+  const { tab } = queries;
+  return {
+    tab: Number(tab || 0),
+  };
+}
+
 export const CollaborationMain = () => {
   const [tabIndex, setTabIndex] = useState(0);
   const [isCreatorVisible, handleCreatorVisibleToggle] = useToggle(false);
 
+  const queries = useQueryParams(refineCollaborationQuery);
+  const navigate = useQueryNavigate();
+
+  const handleSelectTab = (index: number) => {
+    setTabIndex(index);
+    navigate({ tab: index });
+  };
+
+  useLayoutEffect(() => {
+    setTabIndex(queries.tab);
+  }, [queries]);
+
   return (
-    <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
+    <Tabs selectedIndex={tabIndex} onSelect={handleSelectTab}>
       <CustomTabList>
         <CustomTab selected={tabIndex === 0}>협업툴</CustomTab>
         <CustomTab selected={tabIndex === 1}>계정</CustomTab>
@@ -52,7 +77,11 @@ export const CollaborationMain = () => {
         </PageContainer>
       </TabPanel>
       <TabPanel>
-        <PageContainer>계정</PageContainer>;
+        <PageContainer>
+          <MyAccountContainer />
+          <PublicAccountContainer />
+          <AccountByMemberContainer />
+        </PageContainer>
       </TabPanel>
     </Tabs>
   );
