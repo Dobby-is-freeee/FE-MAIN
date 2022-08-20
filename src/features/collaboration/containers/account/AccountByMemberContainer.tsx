@@ -3,7 +3,7 @@ import { AccountByMemberTable } from '../../components/account/AccountByMemberTa
 export const AccountByMemberContainer = () => {
   return (
     <>
-      <AccountByMemberTable tableData={[]} onPageChange={() => ({})} />;
+      <AccountByMemberTable tableData={[]} onPageChange={() => ({})} />
     </>
   );
 };

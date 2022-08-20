@@ -1,6 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
-import 'rc-table/assets/index.css';
 
 export const GlobalStyle = createGlobalStyle`
 	${reset}
