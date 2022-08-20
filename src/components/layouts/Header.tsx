@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import { MyProfilePurple, Notice, Search } from '@/assets/images';
-import { useDispatch } from '@/stores';
 import { logoutUser } from '@/stores/auth';
+import { useDispatch } from '@/stores';
+import { MyProfilePurple, Notice, Search } from '@/assets/images';
 
 const Wrap = styled.header`
   display: flex;
@@ -57,7 +57,11 @@ export const Header = () => {
         <UserProfileImage>
           <Notice />
           <Search />
-          <img src={MyProfilePurple} alt="user profile image" onClick={handleLogoutClick} />
+          <img
+            src={MyProfilePurple}
+            alt="user profile image"
+            onClick={handleLogoutClick}
+          />
         </UserProfileImage>
       </HeaderUserInfo>
     </Wrap>

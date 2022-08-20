@@ -1,11 +1,5 @@
 // TODO: 상태에 따라 컴포넌트 의존 낮추기 ex) single, multi, inputMode - chkim
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import styled from 'styled-components';
 import {
   default as ReactSelect,
   DropdownIndicatorProps,
@@ -15,10 +9,16 @@ import {
   MultiValue,
   SingleValue,
 } from 'react-select';
-import styled from 'styled-components';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
-import { Close, Dropdown } from '@/assets/images';
 import { theme } from '@/styles';
+import { Close, Dropdown } from '@/assets/images';
 
 function getSelectValue(
   value?: ValueType,

@@ -1,9 +1,10 @@
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
-import { useDispatch } from '@/stores';
-import { loginUser } from '@/stores/auth';
 import { CompleteForm } from '../components/CompleteForm';
+
+import { loginUser } from '@/stores/auth';
+import { useDispatch } from '@/stores';
 
 const Wrap = styled.article``;
 

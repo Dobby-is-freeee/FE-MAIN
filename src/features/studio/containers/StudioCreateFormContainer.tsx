@@ -1,10 +1,11 @@
-import { DayValue } from '@hassanmojab/react-modern-calendar-datepicker';
-import { useState } from 'react';
-import { useToggle } from 'react-use';
 import styled from 'styled-components';
+import { useToggle } from 'react-use';
+import { useState } from 'react';
+import { DayValue } from '@hassanmojab/react-modern-calendar-datepicker';
+
+import { CreateForm, RequiredIcon } from '../components/create/CreateForm';
 
 import { generateDayValue, Title } from '@/components';
-import { CreateForm, RequiredIcon } from '../components/create/CreateForm';
 
 const TitleWrap = styled.span`
   display: flex;
@@ -26,12 +27,16 @@ export interface PickerChangeHandlerArgs {
 }
 
 export const StudioCreateFormContainer = () => {
-  const [startDate, setStartDate] = useState<DayValue>(generateDayValue(new Date()));
+  const [startDate, setStartDate] = useState<DayValue>(
+    generateDayValue(new Date()),
+  );
   const [endDate, setEndDate] = useState<DayValue>(null);
 
-  const [iconGeneratorType, setIconGeneratorType] = useState<IconGeneratorType | null>(null);
+  const [iconGeneratorType, setIconGeneratorType] =
+    useState<IconGeneratorType | null>(null);
 
-  const [isInviteModalVisible, handleInviteModalVisibleToggle] = useToggle(false);
+  const [isInviteModalVisible, handleInviteModalVisibleToggle] =
+    useToggle(false);
 
   const handlePickerChange = ({ type, dayValue }: PickerChangeHandlerArgs) => {
     if (type === 'start') {

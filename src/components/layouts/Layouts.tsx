@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { Header } from './Header';
 import { SideNavigation } from './SideNavigation';
+import { Header } from './Header';
 
 const Wrap = styled.div`
   display: flex;

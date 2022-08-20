@@ -1,7 +1,8 @@
 import { useState, useEffect, useMemo } from 'react';
 
-import { Title, LineButton } from '@/components';
 import { PublicAccountTable } from '../../components/account/PublicAccountTable';
+
+import { Title, LineButton } from '@/components';
 
 export const PublicAccountContainer = () => {
   const [tableData, setTableData] = useState<any[]>([]);
@@ -35,7 +36,9 @@ export const PublicAccountContainer = () => {
     <>
       <div>
         <Title level={2}>공용 계정</Title>
-        {isEditableTable.length && <LineButton onClick={handleConfirmClick}>완료</LineButton>}
+        {isEditableTable.length && (
+          <LineButton onClick={handleConfirmClick}>완료</LineButton>
+        )}
         <LineButton variant="primary" onClick={handleAddClick}>
           계정 추가 +
         </LineButton>

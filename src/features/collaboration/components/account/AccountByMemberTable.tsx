@@ -1,6 +1,6 @@
+import type { ColumnType } from 'rc-table/lib/interface';
 import Table from 'rc-table';
 
-import type { ColumnType } from 'rc-table/lib/interface';
 import type { AccountByMemberTableModel } from '../../models/account.models';
 
 const columns: ColumnType<AccountByMemberTableModel>[] = [
@@ -34,6 +34,9 @@ interface AccountByMemberTableProps {
   onPageChange: () => void;
 }
 
-export const AccountByMemberTable = ({ tableData = [], onPageChange }: AccountByMemberTableProps) => {
+export const AccountByMemberTable = ({
+  tableData = [],
+  onPageChange,
+}: AccountByMemberTableProps) => {
   return <Table columns={columns} data={tableData} />;
 };

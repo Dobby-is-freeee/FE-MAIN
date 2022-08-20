@@ -1,11 +1,12 @@
-import { useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
+import { useEffect, useMemo, useState } from 'react';
+
+import { AccountTableModel } from '../../models/account.models';
+import { useMyAccountTableColumns } from '../../hooks/useMyAccountTableCoumns';
+import { MyAccountTable } from '../../components/account/MyAccountTable';
+import TABLE_DATA from '../../_fixtures/account_list.json';
 
 import { LineButton, Title } from '@/components';
-import { MyAccountTable } from '../../components/account/MyAccountTable';
-import { useMyAccountTableColumns } from '../../hooks/useMyAccountTableCoumns';
-import { AccountTableModel } from '../../models/account.models';
-import TABLE_DATA from '../../_fixtures/account_list.json';
 
 const Wrap = styled.div`
   padding-bottom: 60px;

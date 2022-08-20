@@ -1,12 +1,21 @@
-import { DayValue } from '@hassanmojab/react-modern-calendar-datepicker';
-import { ChangeEventHandler, useState } from 'react';
 import styled from 'styled-components';
+import { ChangeEventHandler, useState } from 'react';
+import { DayValue } from '@hassanmojab/react-modern-calendar-datepicker';
 
-import { AddProfileSvg } from '@/assets/images';
-import { CheckBox, DatePicker, Input, LineButton, Modal, Title } from '@/components';
-import { TimePicker } from '@/components/ui/TimePicker';
-import { IMAGE_DIC, MEMBER_LIST } from '../../constants';
 import { RoomDateModel } from '../../containers/CollaborationCreatorContainer';
+import { IMAGE_DIC, MEMBER_LIST } from '../../constants';
+
+import { TimePicker } from '@/components/ui/TimePicker';
+import {
+  CheckBox,
+  DatePicker,
+  Input,
+  LineButton,
+  Modal,
+  Title,
+} from '@/components';
+import { AddProfileSvg } from '@/assets/images';
+
 
 const Wrap = styled.div`
   color: ${({ theme }) => theme.colors.black};
@@ -152,9 +161,23 @@ const ModalFooterButton = styled(LineButton)`
   }
 `;
 
-const TOOLS_DIC = ['notion', 'figma', 'slack', 'zoom', 'xd', 'sketch', 'discord'];
+const TOOLS_DIC = [
+  'notion',
+  'figma',
+  'slack',
+  'zoom',
+  'xd',
+  'sketch',
+  'discord',
+];
 
-const DATE_CHECKBOX_LIST = ['always', 'everyday', 'weekly', 'biweekly', 'month'] as const;
+const DATE_CHECKBOX_LIST = [
+  'always',
+  'everyday',
+  'weekly',
+  'biweekly',
+  'month',
+] as const;
 const DATE_CHECKBOX_DIC = {
   always: '상시',
   everyday: '매일',
@@ -241,7 +264,10 @@ export const ProjectRoomCreator = ({
                       </LogoBox>
                     }
                   />
-                  <Title level={4}>{value.slice(0, 1).toUpperCase() + value.slice(1, value.length)}</Title>
+                  <Title level={4}>
+                    {value.slice(0, 1).toUpperCase() +
+                      value.slice(1, value.length)}
+                  </Title>
                 </CheckBoxBlock>
               ))}
             </CheckBoxWithLogo>
@@ -274,7 +300,10 @@ export const ProjectRoomCreator = ({
                 inputPlaceholder="시작일"
                 value={currentDatePickerValue}
               />
-              <TimePicker disabled={checkedDate === 'always'} onChange={handleTimePickerChange} />
+              <TimePicker
+                disabled={checkedDate === 'always'}
+                onChange={handleTimePickerChange}
+              />
             </DateTimePickerWrap>
           </FormField>
 
@@ -334,7 +363,9 @@ export const ProjectRoomCreator = ({
       }
       footer={
         <ModalFooter>
-          <ModalFooterButton onClick={onCreatorVisibleToggle}>취소</ModalFooterButton>
+          <ModalFooterButton onClick={onCreatorVisibleToggle}>
+            취소
+          </ModalFooterButton>
           <ModalFooterButton>프로젝트 생성</ModalFooterButton>
         </ModalFooter>
       }

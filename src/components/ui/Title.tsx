@@ -1,5 +1,5 @@
-import { createElement } from 'react';
 import styled, { css } from 'styled-components';
+import { createElement } from 'react';
 
 type TitleLevel = 1 | 2 | 3 | 4;
 

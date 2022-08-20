@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
+import { IMAGE_DIC } from '../../constants';
+
+import { EmptyCard } from '@/components/common/EmptyCard';
 import { LineButton, Title } from '@/components';
 import { Member, Time } from '@/assets/images';
-import { IMAGE_DIC } from '../../constants';
-import { EmptyCard } from '@/components/common/EmptyCard';
 
 const RoomCardTitle = styled(Title)`
   margin-bottom: 20px;
@@ -106,7 +107,10 @@ interface ProjectRoomCardsProps {
   onCreatorToggle: () => void;
 }
 
-export const ProjectRoomCards = ({ projectRoomList, onCreatorToggle }: ProjectRoomCardsProps) => {
+export const ProjectRoomCards = ({
+  projectRoomList,
+  onCreatorToggle,
+}: ProjectRoomCardsProps) => {
   return (
     <>
       <RoomCardTitle level={2}>프로젝트 룸</RoomCardTitle>

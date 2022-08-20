@@ -1,9 +1,12 @@
 /* eslint-disable no-alert */
-import { ArgTypes, ComponentMeta, ComponentStory } from '@storybook/react';
 import { ComponentProps } from 'react';
+import { ArgTypes, ComponentMeta, ComponentStory } from '@storybook/react';
+
 import { MemberInviteModal } from '../MemberInviteModal';
 
-type MyArgTypes = Partial<Record<keyof ComponentProps<typeof MemberInviteModal>, ArgTypes[string]>>;
+type MyArgTypes = Partial<
+  Record<keyof ComponentProps<typeof MemberInviteModal>, ArgTypes[string]>
+>;
 const argTypes: MyArgTypes = {};
 
 export default {
@@ -24,5 +27,9 @@ Default.args = {
 export const InvitedMember = Template.bind({});
 InvitedMember.args = {
   isVisible: true,
-  invitedMember: ['example1@gmail.com', 'example2@gmail.com', 'example3@gmail.com'],
+  invitedMember: [
+    'example1@gmail.com',
+    'example2@gmail.com',
+    'example3@gmail.com',
+  ],
 };

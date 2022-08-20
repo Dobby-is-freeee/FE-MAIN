@@ -1,18 +1,20 @@
-import { useLayoutEffect, useState } from 'react';
-import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
-import { useToggle } from 'react-use';
 import styled from 'styled-components';
+import { useToggle } from 'react-use';
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+import { useLayoutEffect, useState } from 'react';
 
-import { PageContainer } from '@/components';
-import { useQueryNavigate } from '@/hooks/useQueryNavigate';
-import { useQueryParams } from '@/hooks/useQueryParams';
-import { AccountByMemberContainer } from '../containers/account/AccountByMemberContainer';
-import { MyAccountContainer } from '../containers/account/MyAccountContainer';
-import { PublicAccountContainer } from '../containers/account/PublicAccountContainer';
-import { CollaborationCreatorContainer } from '../containers/CollaborationCreatorContainer';
-import { CollaborationMainContainers } from '../containers/CollaborationMainContainers';
+import 'react-tabs/style/react-tabs.css';
+
 import { CollaborationTabModel } from '../models/collaboration.model';
+import { CollaborationMainContainers } from '../containers/CollaborationMainContainers';
+import { CollaborationCreatorContainer } from '../containers/CollaborationCreatorContainer';
+import { PublicAccountContainer } from '../containers/account/PublicAccountContainer';
+import { MyAccountContainer } from '../containers/account/MyAccountContainer';
+import { AccountByMemberContainer } from '../containers/account/AccountByMemberContainer';
+
+import { useQueryParams } from '@/hooks/useQueryParams';
+import { useQueryNavigate } from '@/hooks/useQueryNavigate';
+import { PageContainer } from '@/components';
 
 interface CustomTabStyleProps {
   selected: boolean;
@@ -28,13 +30,16 @@ const CustomTab = styled(Tab)<CustomTabStyleProps>`
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
-  color: ${({ selected, theme }) => (selected ? theme.colors.primary : theme.colors.gray3)};
+  color: ${({ selected, theme }) =>
+    selected ? theme.colors.primary : theme.colors.gray3};
   cursor: pointer;
   outline: none;
   transition: color 0.3s ease;
 `;
 
-function refineCollaborationQuery(queries: Record<string, string>): CollaborationTabModel {
+function refineCollaborationQuery(
+  queries: Record<string, string>,
+): CollaborationTabModel {
   const { tab } = queries;
   return {
     tab: Number(tab || 0),

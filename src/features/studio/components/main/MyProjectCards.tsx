@@ -1,13 +1,17 @@
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-
-import { Error } from '@/assets/images';
-import { Modal, Title } from '@/components';
-import { LineButton } from '@/components/ui';
 import { useToggle } from 'react-use';
-import { ProjectItem, ProjectStatus } from '../../containers/ProjectCardContainer';
+import { useNavigate } from 'react-router-dom';
+
 import { ProjectCard } from '../common';
+import {
+  ProjectItem,
+  ProjectStatus,
+} from '../../containers/ProjectCardContainer';
+
+import { LineButton } from '@/components/ui';
 import { EmptyCard } from '@/components/common/EmptyCard';
+import { Modal, Title } from '@/components';
+import { Error } from '@/assets/images';
 
 const TitleWrap = styled(Title)`
   color: ${({ theme }) => theme.colors.black};
@@ -88,16 +92,18 @@ export const MyProjectCards = ({ myProjects }: MyProjectCardsProps) => {
     <>
       <TitleWrap level={2}>김프로님의 프로젝트</TitleWrap>
       <ProjectCardWrap>
-        {myProjects.map(({ id, createDate, projectName, status, totalMember }) => (
-          <ProjectCard
-            key={id}
-            id={id}
-            projectName={projectName}
-            status={status as ProjectStatus}
-            totalMember={totalMember}
-            createDate={createDate}
-          />
-        ))}
+        {myProjects.map(
+          ({ id, createDate, projectName, status, totalMember }) => (
+            <ProjectCard
+              key={id}
+              id={id}
+              projectName={projectName}
+              status={status as ProjectStatus}
+              totalMember={totalMember}
+              createDate={createDate}
+            />
+          ),
+        )}
 
         <ProjectEmptyCard>
           <EmptyCard onClick={handleToggle} buttonText="새 프로젝트 만들기">
@@ -116,12 +122,16 @@ export const MyProjectCards = ({ myProjects }: MyProjectCardsProps) => {
           <ModalContent>
             <ErrorIcon />
             <ErrorTitle level={3}>프로필 미작성</ErrorTitle>
-            <ErrorDescription>내 프로필을 작성해야 프로젝트 참여가 가능합니다.</ErrorDescription>
+            <ErrorDescription>
+              내 프로필을 작성해야 프로젝트 참여가 가능합니다.
+            </ErrorDescription>
 
             <ErrorExtra>초대받은 프로젝트: 없음</ErrorExtra>
 
             <ModalButtonWrap>
-              <LineButton onClick={handleModalCancel}>다음에 할래요.</LineButton>
+              <LineButton onClick={handleModalCancel}>
+                다음에 할래요.
+              </LineButton>
               <LineButton variant="primary" onClick={handleModalConfirm}>
                 네, 지금 작성할게요.
               </LineButton>

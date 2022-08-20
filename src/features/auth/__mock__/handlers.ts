@@ -1,7 +1,10 @@
 import { ResponseComposition, rest, RestContext, RestRequest } from 'msw';
 
 export function handlers() {
-  return [rest.post('/mock/members/login', requestSignin), rest.post('/mock/members', requestSignup)];
+  return [
+    rest.post('/mock/members/login', requestSignin),
+    rest.post('/mock/members', requestSignup),
+  ];
 }
 
 const requestSignin = (
@@ -26,5 +29,8 @@ const requestSignin = (
 };
 
 const requestSignup: Parameters<typeof rest.post>[1] = (req, res, ctx) => {
-  return res(ctx.status(200), ctx.json({ code: 200, success: true, message: 'message' }));
+  return res(
+    ctx.status(200),
+    ctx.json({ code: 200, success: true, message: 'message' }),
+  );
 };

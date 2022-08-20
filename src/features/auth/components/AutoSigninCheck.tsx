@@ -1,5 +1,5 @@
-import { InputHTMLAttributes } from 'react';
 import styled from 'styled-components';
+import { InputHTMLAttributes } from 'react';
 
 const StyledLabel = styled.label<{ checked: boolean }>`
   display: inline-block;
@@ -30,7 +30,8 @@ const HiddenCheck = styled.input.attrs<{ type: string }>({
   display: none;
 `;
 
-export interface AutoSigninCheckProps extends InputHTMLAttributes<HTMLInputElement> {}
+export interface AutoSigninCheckProps
+  extends InputHTMLAttributes<HTMLInputElement> {}
 
 function AutoSigninCheck(props: AutoSigninCheckProps) {
   const { checked = false, className, ...rest } = props;

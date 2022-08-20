@@ -1,11 +1,12 @@
-import { useCallback, useMemo, useRef, useState } from 'react';
-import { useClickAway } from 'react-use';
 import styled, { css } from 'styled-components';
+import { useClickAway } from 'react-use';
+import { useCallback, useMemo, useRef, useState } from 'react';
+
+import { Field, Label, RequiredIcon } from './CreateForm';
+import { IconGeneratorType } from '../../containers/StudioCreateFormContainer';
+import { COLORS, ICON_INDEX, ICON_SVGS } from '../../constants';
 
 import { Dropdown } from '@/assets/images';
-import { COLORS, ICON_INDEX, ICON_SVGS } from '../../constants';
-import { IconGeneratorType } from '../../containers/StudioCreateFormContainer';
-import { Field, Label, RequiredIcon } from './CreateForm';
 
 interface OpenButtonStyleProps {
   isOpen: boolean;
@@ -192,7 +193,10 @@ interface IconGeneratorProps {
   iconGeneratorType: IconGeneratorType | null;
 }
 
-export const IconGenerator = ({ onGeneratorTypeClick, iconGeneratorType }: IconGeneratorProps) => {
+export const IconGenerator = ({
+  onGeneratorTypeClick,
+  iconGeneratorType,
+}: IconGeneratorProps) => {
   const isIcon = iconGeneratorType === 'icon';
   const isColor = iconGeneratorType === 'color';
 
@@ -208,27 +212,29 @@ export const IconGenerator = ({ onGeneratorTypeClick, iconGeneratorType }: IconG
   }, []);
   const renderColor = useCallback((index: number) => COLORS[index], []);
 
-  const handleSelectOptionCurried = (index: number, type: IconGeneratorType) => () => {
-    if (type === 'icon') {
-      return setIconIndex(index);
-    }
+  const handleSelectOptionCurried =
+    (index: number, type: IconGeneratorType) => () => {
+      if (type === 'icon') {
+        return setIconIndex(index);
+      }
 
-    if (type === 'color') {
-      return setColorIndex(index);
-    }
-  };
+      if (type === 'color') {
+        return setColorIndex(index);
+      }
+    };
 
-  const handleGeneratorTypeClickCurried = (type: IconGeneratorType | null) => () => {
-    if (type === 'icon' && isIcon) {
-      return onGeneratorTypeClick(null);
-    }
+  const handleGeneratorTypeClickCurried =
+    (type: IconGeneratorType | null) => () => {
+      if (type === 'icon' && isIcon) {
+        return onGeneratorTypeClick(null);
+      }
 
-    if (type === 'color' && isColor) {
-      return onGeneratorTypeClick(null);
-    }
+      if (type === 'color' && isColor) {
+        return onGeneratorTypeClick(null);
+      }
 
-    onGeneratorTypeClick(type);
-  };
+      onGeneratorTypeClick(type);
+    };
 
   const handleColorAway = () => {
     if (!isColor) {
@@ -246,7 +252,11 @@ export const IconGenerator = ({ onGeneratorTypeClick, iconGeneratorType }: IconG
 
   const renderIconItems = useMemo(() => {
     return Array.from({ length: ICON_INDEX }).map((_, index) => (
-      <ListItem key={index} selectedIndex={iconIndex} onClick={handleSelectOptionCurried(index, 'icon')}>
+      <ListItem
+        key={index}
+        selectedIndex={iconIndex}
+        onClick={handleSelectOptionCurried(index, 'icon')}
+      >
         {renderIcon(index)}
       </ListItem>
     ));
@@ -258,7 +268,8 @@ export const IconGenerator = ({ onGeneratorTypeClick, iconGeneratorType }: IconG
         bgColor={color}
         key={color}
         onClick={handleSelectOptionCurried(index, 'color')}
-        selectedIndex={colorIndex}>
+        selectedIndex={colorIndex}
+      >
         <div />
       </ColorItem>
     ));
@@ -278,7 +289,11 @@ export const IconGenerator = ({ onGeneratorTypeClick, iconGeneratorType }: IconG
           <FieldName>Icon</FieldName>
           <IconBlockWrap ref={refIconGenerator}>
             {renderIcon(iconIndex)}
-            <OpenButton type="button" onClick={handleGeneratorTypeClickCurried('icon')} isOpen={isIcon}>
+            <OpenButton
+              type="button"
+              onClick={handleGeneratorTypeClickCurried('icon')}
+              isOpen={isIcon}
+            >
               <Dropdown />
             </OpenButton>
             {isIcon && (
@@ -295,7 +310,11 @@ export const IconGenerator = ({ onGeneratorTypeClick, iconGeneratorType }: IconG
           <ColorBlockWrap ref={refColorGenerator}>
             <ColorBlock bgColor={renderColor(colorIndex)} />
 
-            <OpenButton type="button" onClick={handleGeneratorTypeClickCurried('color')} isOpen={isColor}>
+            <OpenButton
+              type="button"
+              onClick={handleGeneratorTypeClickCurried('color')}
+              isOpen={isColor}
+            >
               <Dropdown />
             </OpenButton>
             {isColor && (
@@ -310,7 +329,9 @@ export const IconGenerator = ({ onGeneratorTypeClick, iconGeneratorType }: IconG
 
         <PreviewField>
           <FieldName>Preview</FieldName>
-          <PreviewIcon bgColor={renderColor(colorIndex)}>{renderIcon(iconIndex)}</PreviewIcon>
+          <PreviewIcon bgColor={renderColor(colorIndex)}>
+            {renderIcon(iconIndex)}
+          </PreviewIcon>
         </PreviewField>
       </Wrap>
     </Field>

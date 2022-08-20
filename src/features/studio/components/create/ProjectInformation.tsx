@@ -1,9 +1,13 @@
-import { DayValue, Day } from '@hassanmojab/react-modern-calendar-datepicker';
 import styled from 'styled-components';
+import { DayValue, Day } from '@hassanmojab/react-modern-calendar-datepicker';
+
+import { Field, Label, RequiredIcon } from './CreateForm';
+import {
+  PickerChangeHandlerArgs,
+  PickerType,
+} from '../../containers/StudioCreateFormContainer';
 
 import { DatePicker, Input } from '@/components';
-import { PickerChangeHandlerArgs, PickerType } from '../../containers/StudioCreateFormContainer';
-import { Field, Label, RequiredIcon } from './CreateForm';
 
 const ProjectRangePickerWrap = styled.div`
   display: flex;
@@ -23,10 +27,15 @@ interface ProjectInformationProps {
   onPickerChange: (args: PickerChangeHandlerArgs) => void;
 }
 
-export const ProjectInformation = ({ endDate, startDate, onPickerChange }: ProjectInformationProps) => {
-  const handlePickerChangeCurried = (type: PickerType) => (dayValue: DayValue) => {
-    onPickerChange({ type, dayValue });
-  };
+export const ProjectInformation = ({
+  endDate,
+  startDate,
+  onPickerChange,
+}: ProjectInformationProps) => {
+  const handlePickerChangeCurried =
+    (type: PickerType) => (dayValue: DayValue) => {
+      onPickerChange({ type, dayValue });
+    };
   return (
     <>
       <Field>

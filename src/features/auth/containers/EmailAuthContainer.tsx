@@ -1,10 +1,11 @@
-import { useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import { useCallback } from 'react';
+
+import { Logo } from './SigninContainer';
+import { EmailAuthForm } from '../components/EmailAuthForm';
 
 import { Title } from '@/components';
-import { EmailAuthForm } from '../components/EmailAuthForm';
-import { Logo } from './SigninContainer';
 
 const Wrap = styled.article`
   display: flex;

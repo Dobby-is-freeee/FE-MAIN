@@ -1,7 +1,10 @@
-import moment from 'moment';
-import { useState } from 'react';
 import styled from 'styled-components';
-import { default as ReactTimePicker, TimePickerProps as ReactTimePickerProps } from 'rc-time-picker';
+import { useState } from 'react';
+import {
+  default as ReactTimePicker,
+  TimePickerProps as ReactTimePickerProps,
+} from 'rc-time-picker';
+import moment from 'moment';
 import 'rc-time-picker/assets/index.css';
 import './TimePicker.css';
 

@@ -1,5 +1,6 @@
-import { ColumnsType } from 'rc-table/lib/interface';
 import styled from 'styled-components';
+import { ColumnsType } from 'rc-table/lib/interface';
+
 import type { AccountTableModel } from '../../models/account.models';
 
 import { Table } from '@/components';

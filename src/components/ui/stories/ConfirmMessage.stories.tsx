@@ -1,12 +1,14 @@
 /* eslint-disable no-alert */
-import { ArgTypes, ComponentMeta, ComponentStory } from '@storybook/react';
-import { ComponentProps } from 'react';
 import { useToggle } from 'react-use';
+import { ComponentProps } from 'react';
+import { ArgTypes, ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { ConfirmMessage } from '../ConfirmMessage';
 import { LineButton } from '../LineButton';
+import { ConfirmMessage } from '../ConfirmMessage';
 
-type MyArgTypes = Partial<Record<keyof ComponentProps<typeof ConfirmMessage>, ArgTypes[string]>>;
+type MyArgTypes = Partial<
+  Record<keyof ComponentProps<typeof ConfirmMessage>, ArgTypes[string]>
+>;
 const argTypes: MyArgTypes = {};
 
 export default {

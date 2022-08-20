@@ -1,9 +1,11 @@
-import { ArgTypes, ComponentMeta, ComponentStory } from '@storybook/react';
 import { ComponentProps } from 'react';
+import { ArgTypes, ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { Title } from '../Title';
 
-type MyArgTypes = Partial<Record<keyof ComponentProps<typeof Title>, ArgTypes[string]>>;
+type MyArgTypes = Partial<
+  Record<keyof ComponentProps<typeof Title>, ArgTypes[string]>
+>;
 
 const argTypes: MyArgTypes = {};
 

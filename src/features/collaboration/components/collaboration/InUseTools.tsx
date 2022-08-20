@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
-import { Title } from '@/components';
 import { IMAGE_DIC } from '../../constants';
+
+import { Title } from '@/components';
 
 const Wrap = styled.div`
   display: flex;
