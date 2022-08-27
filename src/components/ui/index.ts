@@ -10,3 +10,4 @@ export * from './SolidButton';
 export * from './Title';
 export * from './Table';
 export * from './Tag';
+export * from './TablePagination';
