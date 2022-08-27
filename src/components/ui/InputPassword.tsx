@@ -10,6 +10,10 @@ const Wrap = styled.div`
   display: flex;
   align-items: center;
 
+  input {
+    padding-right: 48px;
+  }
+
   button {
     background-color: transparent;
     position: absolute;

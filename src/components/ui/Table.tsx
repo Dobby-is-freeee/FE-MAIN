@@ -56,10 +56,17 @@ const TableStyled = styled(RcTable)<any>`
       td {
         text-align: center;
         vertical-align: middle;
-        border: none;
         font-size: 14px;
         line-height: 22px;
         height: 180px;
+        border: none;
+
+        * {
+          border: none;
+          &::after {
+            border: none;
+          }
+        }
       }
     }
   }
