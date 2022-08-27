@@ -1,5 +1,5 @@
-import { useMemo } from 'react';
 import styled from 'styled-components';
+import { useMemo } from 'react';
 
 import { Close, Error, Error1 } from '@/assets/images';
 
@@ -12,16 +12,19 @@ interface ConfirmMessageStyleProps {
 const Wrap = styled.div<ConfirmMessageStyleProps>`
   display: flex;
   align-items: center;
-  background-color: ${({ status }) => (status === 'error' ? 'rgba(235, 86, 86, 0.1)' : 'rgba(78, 53, 231, 0.1)')};
+  background-color: ${({ status }) =>
+    status === 'error' ? 'rgba(235, 86, 86, 0.1)' : 'rgba(78, 53, 231, 0.1)'};
   padding: 16px;
   width: ${({ width }) => (typeof width === 'number' ? `${width}px` : width)};
-  height: ${({ height }) => (typeof height === 'number' ? `${height}px` : height)};
+  height: ${({ height }) =>
+    typeof height === 'number' ? `${height}px` : height};
 `;
 
 const ContentWrap = styled.div<Pick<ConfirmMessageStyleProps, 'status'>>`
   display: flex;
   align-items: center;
-  color: ${({ status, theme }) => (status === 'error' ? theme.colors.error : theme.colors.primary)};
+  color: ${({ status, theme }) =>
+    status === 'error' ? theme.colors.error : theme.colors.primary};
   flex: 1;
   font-size: 14px;
   font-weight: 700;
@@ -61,7 +64,10 @@ export const ConfirmMessage = ({
     onClose?.();
   };
 
-  const renderStatusIcon = useMemo(() => (status === 'error' ? <StatusError /> : <StatusSuccess />), [status]);
+  const renderStatusIcon = useMemo(
+    () => (status === 'error' ? <StatusError /> : <StatusSuccess />),
+    [status],
+  );
 
   if (!visible) {
     return null;

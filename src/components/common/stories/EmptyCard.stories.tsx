@@ -1,9 +1,12 @@
 /* eslint-disable no-alert */
 import { ComponentProps } from 'react';
 import { ComponentStory, ComponentMeta, ArgTypes } from '@storybook/react';
+
 import { EmptyCard } from '../EmptyCard';
 
-type MyArgTypes = Partial<Record<keyof ComponentProps<typeof EmptyCard>, ArgTypes[string]>>;
+type MyArgTypes = Partial<
+  Record<keyof ComponentProps<typeof EmptyCard>, ArgTypes[string]>
+>;
 const argTypes: MyArgTypes = {};
 
 export default {

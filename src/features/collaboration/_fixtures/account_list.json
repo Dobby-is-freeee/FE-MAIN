@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "tools": "notion",
+    "account": "cskim132@gmail.com"
+  },
+  {
+    "id": 2,
+    "tools": "slack",
+    "account": "cskim132@gmail.com"
+  },
+  {
+    "id": 3,
+    "tools": "zoom",
+    "account": "cskim132@gmail.com"
+  },
+  {
+    "id": 4,
+    "tools": "figma",
+    "account": "cskim132@gmail.com"
+  }
+]

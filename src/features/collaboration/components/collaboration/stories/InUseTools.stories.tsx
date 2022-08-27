@@ -5,7 +5,9 @@ import { ComponentStory, ComponentMeta, ArgTypes } from '@storybook/react';
 import { InUseTools } from '../InUseTools';
 import TOOL_LIST from '../../../_fixtures/tool_list.json';
 
-type MyArgTypes = Partial<Record<keyof ComponentProps<typeof InUseTools>, ArgTypes[string]>>;
+type MyArgTypes = Partial<
+  Record<keyof ComponentProps<typeof InUseTools>, ArgTypes[string]>
+>;
 const argTypes: MyArgTypes = {};
 
 export default {

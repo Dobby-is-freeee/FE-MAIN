@@ -1,13 +1,18 @@
-import { useToggle } from 'react-use';
 import styled from 'styled-components';
+import { useToggle } from 'react-use';
+
+import { Input, InputProps } from './Input';
 
 import { EyeHidden, EyeOpen } from '@/assets/images';
-import { Input, InputProps } from './Input';
 
 const Wrap = styled.div`
   position: relative;
   display: flex;
   align-items: center;
+
+  input {
+    padding-right: 48px;
+  }
 
   button {
     background-color: transparent;
@@ -22,7 +27,9 @@ export const InputPassword = (props: InputProps) => {
   return (
     <Wrap>
       <Input type={toggle ? 'text' : 'password'} {...props} />
-      <button onClick={handleToggle}>{toggle ? <EyeHidden /> : <EyeOpen />}</button>
+      <button onClick={handleToggle}>
+        {toggle ? <EyeHidden /> : <EyeOpen />}
+      </button>
     </Wrap>
   );
 };

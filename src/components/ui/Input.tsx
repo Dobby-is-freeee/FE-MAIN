@@ -1,5 +1,5 @@
-import { ChangeEventHandler, useState } from 'react';
 import styled from 'styled-components';
+import { ChangeEventHandler, useState } from 'react';
 
 interface WrapStyleProps {
   maxLength?: number;
@@ -53,7 +53,8 @@ const Suffix = styled.span`
   }
 `;
 
-export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 // TODO: 에러메세지 적용 with react-hook-form - cskim
 export const Input = ({

@@ -1,7 +1,25 @@
-import { Icon01, Icon02, Icon03, Icon04, Icon05, Icon06, Icon07, Icon08 } from '@/assets/images';
+import {
+  Icon01,
+  Icon02,
+  Icon03,
+  Icon04,
+  Icon05,
+  Icon06,
+  Icon07,
+  Icon08,
+} from '@/assets/images';
 
 export const ICON_INDEX = 8;
-export const ICON_SVGS = [Icon01, Icon02, Icon03, Icon04, Icon05, Icon06, Icon07, Icon08];
+export const ICON_SVGS = [
+  Icon01,
+  Icon02,
+  Icon03,
+  Icon04,
+  Icon05,
+  Icon06,
+  Icon07,
+  Icon08,
+];
 
 export const COLORS = [
   '#677BF9',

@@ -7,8 +7,8 @@ import {
 } from '@hassanmojab/react-modern-calendar-datepicker';
 import '@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css';
 
-import { Calendar } from '@/assets/images';
 import { theme } from '@/styles';
+import { Calendar } from '@/assets/images';
 
 const DatePickerStyle = styled.div<{ disabled?: boolean }>`
   * {
@@ -188,14 +188,33 @@ export function makeTensDigit(digit: number) {
   return digit > 9 ? digit : `0${digit}`;
 }
 
-export interface CustomPickerProps extends Omit<DatePickerProps<DayValue>, 'maximumDate'> {
+export interface CustomPickerProps
+  extends Omit<DatePickerProps<DayValue>, 'maximumDate'> {
   disabled?: boolean;
   maximumDate?: Day | null;
 }
 
-export const DatePicker = ({ disabled, maximumDate, value, ...props }: CustomPickerProps) => {
+export const DatePicker = ({
+  disabled,
+  maximumDate,
+  value,
+  ...props
+}: CustomPickerProps) => {
   const locale = {
-    months: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+    months: [
+      '1월',
+      '2월',
+      '3월',
+      '4월',
+      '5월',
+      '6월',
+      '7월',
+      '8월',
+      '9월',
+      '10월',
+      '11월',
+      '12월',
+    ],
 
     weekDays: [
       {

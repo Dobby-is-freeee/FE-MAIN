@@ -14,7 +14,9 @@ function useInput({ initialValue, validator, preProcessor }: useInputProps) {
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       if (validator) isValid.current = validator(e.target.value);
-      preProcessor ? setValue(preProcessor(e.target.value)) : setValue(e.target.value);
+      preProcessor
+        ? setValue(preProcessor(e.target.value))
+        : setValue(e.target.value);
     },
     [setValue, preProcessor, validator],
   );

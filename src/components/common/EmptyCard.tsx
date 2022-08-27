@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { LineButton } from '../ui';
 
 const ProjectCreator = styled.div`
@@ -34,7 +35,11 @@ interface EmptyCardProps {
   children: string | React.ReactNode;
 }
 
-export const EmptyCard = ({ onClick, buttonText, children }: EmptyCardProps) => (
+export const EmptyCard = ({
+  onClick,
+  buttonText,
+  children,
+}: EmptyCardProps) => (
   <ProjectCreator>
     <ProjectCreatorInner>
       {children}

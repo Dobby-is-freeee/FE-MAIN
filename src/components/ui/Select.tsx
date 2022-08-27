@@ -1,5 +1,5 @@
 // TODO: 상태에 따라 컴포넌트 의존 낮추기 ex) single, multi, inputMode - chkim
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import styled from 'styled-components';
 import {
   default as ReactSelect,
   DropdownIndicatorProps,
@@ -9,18 +9,29 @@ import {
   MultiValue,
   SingleValue,
 } from 'react-select';
-import styled from 'styled-components';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
-import { Close, Dropdown } from '@/assets/images';
 import { theme } from '@/styles';
+import { Close, Dropdown } from '@/assets/images';
 
-function getSelectValue(value?: ValueType, options?: SelectOption[]): OptionType {
+function getSelectValue(
+  value?: ValueType,
+  options?: SelectOption[],
+): OptionType {
   if (!value) {
     return [];
   }
 
   if (Array.isArray(value)) {
-    return options?.filter((option) => value.includes(option.value)) as OptionType;
+    return options?.filter((option) =>
+      value.includes(option.value),
+    ) as OptionType;
   }
 
   return options?.find((option) => option.value === value) as OptionType;
@@ -49,9 +60,12 @@ interface SelectOption {
 }
 export type OptionType = MultiValue<SelectOption> | SingleValue<SelectOption>;
 type ValueType = string | Array<string>;
-export type SelectChangeOptionType<T = any> = T extends Array<string> ? T : string;
+export type SelectChangeOptionType<T = any> = T extends Array<string>
+  ? T
+  : string;
 
-interface SelectProps extends Omit<Props<SelectOption>, 'value' | 'onInputChange' | 'onChange'> {
+interface SelectProps
+  extends Omit<Props<SelectOption>, 'value' | 'onInputChange' | 'onChange'> {
   /**
    * Select의 크기를 조정한다.
    */
@@ -87,14 +101,18 @@ export const Select = ({
   onChange: onChangeExternal,
   ...props
 }: SelectProps) => {
-  const [selectValue, setSelectValue] = useState<OptionType>(() => getSelectValue(value, options as SelectOption[]));
+  const [selectValue, setSelectValue] = useState<OptionType>(() =>
+    getSelectValue(value, options as SelectOption[]),
+  );
 
   const onChange = useRef(onChangeExternal);
 
   const handleOptionChange = (option: OptionType) => {
     setSelectValue(option);
 
-    const value = (option as SelectOption).value || (option as SelectOption[]).map((optionItem) => optionItem.value);
+    const value =
+      (option as SelectOption).value ||
+      (option as SelectOption[]).map((optionItem) => optionItem.value);
 
     onChange.current?.(value, option);
   };
@@ -130,7 +148,10 @@ export const Select = ({
               return prev;
             }
 
-            const newInputValues = [...prev, { value: inputValue, label: inputValue }];
+            const newInputValues = [
+              ...prev,
+              { value: inputValue, label: inputValue },
+            ];
 
             return newInputValues;
           });
@@ -160,13 +181,19 @@ export const Select = ({
       control: (provided, state) => ({
         ...provided,
         borderRadius: '4px',
-        backgroundColor: state.isDisabled ? theme.colors.gray1 : theme.colors.white,
+        backgroundColor: state.isDisabled
+          ? theme.colors.gray1
+          : theme.colors.white,
         color: state.isDisabled ? theme.colors.gray2 : theme.colors.white,
-        borderColor: state.isFocused ? theme.colors.primary : theme.colors.gray2,
+        borderColor: state.isFocused
+          ? theme.colors.primary
+          : theme.colors.gray2,
         boxShadow: 'none',
         cursor: inputMode ? 'text' : 'pointer',
         '&:hover': {
-          borderColor: state.isFocused ? theme.colors.primary : theme.colors.gray2,
+          borderColor: state.isFocused
+            ? theme.colors.primary
+            : theme.colors.gray2,
         },
       }),
       valueContainer: (provided, state) => ({
@@ -249,7 +276,9 @@ export const Select = ({
           ? theme.colors.gray2
           : theme.colors.white,
         '&:hover': {
-          backgroundColor: state.isSelected ? theme.colors.gray2 : theme.colors.gray1,
+          backgroundColor: state.isSelected
+            ? theme.colors.gray2
+            : theme.colors.gray1,
         },
       }),
       indicatorSeparator: () => ({
@@ -259,11 +288,16 @@ export const Select = ({
     [inputMode, width],
   );
 
-  const MultiValueRemove = ({ innerProps, data }: MultiValueRemoveProps<SelectOption>) => {
+  const MultiValueRemove = ({
+    innerProps,
+    data,
+  }: MultiValueRemoveProps<SelectOption>) => {
     const handleClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
       if (inputMode) {
         return setInputValues((prev) => {
-          const newInputValues = prev.filter((option) => option.value !== data.value);
+          const newInputValues = prev.filter(
+            (option) => option.value !== data.value,
+          );
 
           onChange.current?.(
             newInputValues.map((option) => option.value),
@@ -283,7 +317,9 @@ export const Select = ({
     );
   };
 
-  const DropdownIndicator = ({ selectProps }: DropdownIndicatorProps<SelectOption>) => {
+  const DropdownIndicator = ({
+    selectProps,
+  }: DropdownIndicatorProps<SelectOption>) => {
     if (!showDropDownIcon || inputMode) {
       return null;
     }
@@ -298,6 +334,7 @@ export const Select = ({
   return (
     <ReactSelect
       {...props}
+      classNamePrefix="apro"
       styles={styles}
       inputValue={inputValue}
       value={inputMode ? inputValues : selectValue}

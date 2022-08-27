@@ -1,14 +1,15 @@
 import { Routes, Route } from 'react-router-dom';
 
-import { serviceWorker } from '@/features/auth/__mock__/browser';
 
-import BaseLayout from '@/features/auth/components/BaseLayout';
 
-import Signin from './Signin';
 import Signup from './Signup';
+import Signin from './Signin';
 import Password from './Password';
 import EmailAuth from './EmailAuth';
 import Complete from './Complete';
+
+import BaseLayout from '@/features/auth/components/BaseLayout';
+import { serviceWorker } from '@/features/auth/__mock__/browser';
 
 if (process.env.NODE_ENV === 'development') {
   serviceWorker.start({ onUnhandledRequest: 'bypass' });

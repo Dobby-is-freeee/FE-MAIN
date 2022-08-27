@@ -1,13 +1,17 @@
-import type { DayValue } from '@hassanmojab/react-modern-calendar-datepicker';
-import React from 'react';
 import styled from 'styled-components';
+import React from 'react';
+import type { DayValue } from '@hassanmojab/react-modern-calendar-datepicker';
 
-import { Star } from '@/assets/images';
-import { IconGeneratorType, PickerChangeHandlerArgs } from '../../containers/StudioCreateFormContainer';
-import { IconGenerator } from './IconGenerator';
-import { ProjectInformation } from './ProjectInformation';
 import { ProjectInviteModal } from './ProjectInviteModal';
+import { ProjectInformation } from './ProjectInformation';
+import { IconGenerator } from './IconGenerator';
+import {
+  IconGeneratorType,
+  PickerChangeHandlerArgs,
+} from '../../containers/StudioCreateFormContainer';
+
 import { LineButton } from '@/components';
+import { Star } from '@/assets/images';
 
 const CreateFormWrap = styled.form``;
 
@@ -95,14 +99,26 @@ export const CreateForm = ({
     <>
       <CreateFormWrap onSubmit={handleSubmit}>
         <FieldGroup>
-          <ProjectInformation startDate={startDate} endDate={endDate} onPickerChange={onPickerChange} />
-          <IconGenerator onGeneratorTypeClick={onGeneratorTypeClick} iconGeneratorType={iconGeneratorType} />
-          <ProjectInviteModal isVisible={isInviteModalVisible} onToggle={onInviteModalVisibleToggle} />
+          <ProjectInformation
+            startDate={startDate}
+            endDate={endDate}
+            onPickerChange={onPickerChange}
+          />
+          <IconGenerator
+            onGeneratorTypeClick={onGeneratorTypeClick}
+            iconGeneratorType={iconGeneratorType}
+          />
+          <ProjectInviteModal
+            isVisible={isInviteModalVisible}
+            onToggle={onInviteModalVisibleToggle}
+          />
         </FieldGroup>
       </CreateFormWrap>
 
       <FormFooter>
-        <FooterExtraText>*프로젝트 정보는 프로젝트를 만든 후에도 수정할 수 있어요.</FooterExtraText>
+        <FooterExtraText>
+          *프로젝트 정보는 프로젝트를 만든 후에도 수정할 수 있어요.
+        </FooterExtraText>
 
         <FooterButtons>
           <LineButton>취소</LineButton>

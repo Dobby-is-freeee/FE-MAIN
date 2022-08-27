@@ -1,10 +1,14 @@
 /* eslint-disable no-alert */
 import { ComponentProps, useState } from 'react';
 import { ComponentStory, ComponentMeta, ArgTypes } from '@storybook/react';
+
 import { ProjectRoomCreator } from '../ProjectRoomCreator';
+
 import { LineButton } from '@/components';
 
-type MyArgTypes = Partial<Record<keyof ComponentProps<typeof ProjectRoomCreator>, ArgTypes[string]>>;
+type MyArgTypes = Partial<
+  Record<keyof ComponentProps<typeof ProjectRoomCreator>, ArgTypes[string]>
+>;
 const argTypes: MyArgTypes = {};
 
 export default {
@@ -24,11 +28,16 @@ const Template: ComponentStory<typeof ProjectRoomCreator> = ({ ...props }) => {
   });
 
   const handleToggle = () => setVisible((prev) => !prev);
-  const handleDateChange = (value: any) => setRoomDate((prev) => ({ ...prev, ...value }));
+  const handleDateChange = (value: any) =>
+    setRoomDate((prev) => ({ ...prev, ...value }));
 
   return (
     <>
-      <LineButton onClick={handleToggle} variant="primary" style={{ width: '150px' }}>
+      <LineButton
+        onClick={handleToggle}
+        variant="primary"
+        style={{ width: '150px' }}
+      >
         오픈 하기
       </LineButton>
       <ProjectRoomCreator
@@ -36,7 +45,8 @@ const Template: ComponentStory<typeof ProjectRoomCreator> = ({ ...props }) => {
         isCreatorVisible={visible}
         onCreatorVisibleToggle={handleToggle}
         onDateChange={handleDateChange}
-        roomDate={roomDate}></ProjectRoomCreator>
+        roomDate={roomDate}
+      ></ProjectRoomCreator>
     </>
   );
 };

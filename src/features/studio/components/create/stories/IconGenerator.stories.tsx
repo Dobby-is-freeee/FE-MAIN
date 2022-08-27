@@ -1,10 +1,13 @@
 /* eslint-disable no-alert */
 import { ComponentProps } from 'react';
 import { ComponentStory, ComponentMeta, ArgTypes } from '@storybook/react';
-import { IconGenerator } from '../IconGenerator';
 import { action } from '@storybook/addon-actions';
 
-type MyArgTypes = Partial<Record<keyof ComponentProps<typeof IconGenerator>, ArgTypes[string]>>;
+import { IconGenerator } from '../IconGenerator';
+
+type MyArgTypes = Partial<
+  Record<keyof ComponentProps<typeof IconGenerator>, ArgTypes[string]>
+>;
 const argTypes: MyArgTypes = {};
 
 export default {
@@ -16,7 +19,9 @@ export default {
 const Template: ComponentStory<typeof IconGenerator> = ({ ...props }) => {
   const onClick = action('click');
 
-  return <IconGenerator {...props} onGeneratorTypeClick={onClick}></IconGenerator>;
+  return (
+    <IconGenerator {...props} onGeneratorTypeClick={onClick}></IconGenerator>
+  );
 };
 
 export const Default = Template.bind({});

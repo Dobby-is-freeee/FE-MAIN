@@ -1,8 +1,12 @@
 import styled from 'styled-components';
 
-import { Icon01, Member } from '@/assets/images';
-import { ProjectItem, ProjectStatus } from '../../containers/ProjectCardContainer';
+import {
+  ProjectItem,
+  ProjectStatus,
+} from '../../containers/ProjectCardContainer';
+
 import { LineButton } from '@/components/ui';
+import { Icon01, Member } from '@/assets/images';
 
 const Wrap = styled.div`
   display: flex;
@@ -99,7 +103,13 @@ const STATUS_DIC: Record<ProjectStatus, ProjectStatusValue> = {
 
 interface ProjectCardProps extends ProjectItem {}
 
-export const ProjectCard = ({ id, createDate, projectName, status, totalMember }: ProjectCardProps) => {
+export const ProjectCard = ({
+  id,
+  createDate,
+  projectName,
+  status,
+  totalMember,
+}: ProjectCardProps) => {
   return (
     <Wrap>
       <ProjectCardBody>

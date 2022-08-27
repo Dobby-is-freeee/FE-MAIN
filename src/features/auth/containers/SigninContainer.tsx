@@ -1,13 +1,15 @@
-import { useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import { useCallback } from 'react';
 
-import { Google, LogoSmall } from '@/assets/images';
-import { LineButton, Title } from '@/components';
-import { requestSignin } from '@/features/auth/api/members';
-import SigninForm, { SigninFormProps } from '@/features/auth/components/SigninForm';
-import { useDispatch } from '@/stores';
 import { loginUser } from '@/stores/auth';
+import { useDispatch } from '@/stores';
+import SigninForm, {
+  SigninFormProps,
+} from '@/features/auth/components/SigninForm';
+import { requestSignin } from '@/features/auth/api/members';
+import { LineButton, Title } from '@/components';
+import { Google, LogoSmall } from '@/assets/images';
 
 export const FormField = styled.article`
   background-color: ${({ theme }) => theme.colors.white};
@@ -82,34 +84,39 @@ function SigninContainer(_: SigninContainerProps) {
     console.log('구글 로그인 구현 예정.');
   }, [dispatch, navigate]);
 
-  const handleSignin = useCallback<SigninFormProps['onSubmit']>(async ({ email, password }) => {
-    try {
-      await requestSignin({ email: email, password: password });
-      // todo check error
-    } catch (e: any) {
-      if (!e.success) {
-        if (e.code === 201) {
-          return {
-            type: 'email',
-            message: '가입된 이메일이 아닙니다.\n 아직 가입을 안하셨다면 회원가입 후 로그인해주세요.',
-          };
+  const handleSignin = useCallback<SigninFormProps['onSubmit']>(
+    async ({ email, password }) => {
+      try {
+        await requestSignin({ email: email, password: password });
+        // todo check error
+      } catch (e: any) {
+        if (!e.success) {
+          if (e.code === 201) {
+            return {
+              type: 'email',
+              message:
+                '가입된 이메일이 아닙니다.\n 아직 가입을 안하셨다면 회원가입 후 로그인해주세요.',
+            };
+          }
+
+          if (e.code === 202) {
+            return {
+              type: 'password',
+              message:
+                '비밀번호가 틀렸습니다.\n 비밀번호를 잊으셨다면 비밀번호 찾기를 진행해주세요.',
+            };
+          }
+
+          if (e.code === 400) {
+            return { type: 'password', message: '입력값 확인이 필요함' };
+          }
         }
 
-        if (e.code === 202) {
-          return {
-            type: 'password',
-            message: '비밀번호가 틀렸습니다.\n 비밀번호를 잊으셨다면 비밀번호 찾기를 진행해주세요.',
-          };
-        }
-
-        if (e.code === 400) {
-          return { type: 'password', message: '입력값 확인이 필요함' };
-        }
+        throw e;
       }
-
-      throw e;
-    }
-  }, []);
+    },
+    [],
+  );
 
   return (
     <>
@@ -124,7 +131,8 @@ function SigninContainer(_: SigninContainerProps) {
       </FormField>
 
       <SignupText>
-        Apro.go가 처음이라면 <SignupButton onClick={handleGoToSignup}>회원가입</SignupButton>
+        Apro.go가 처음이라면{' '}
+        <SignupButton onClick={handleGoToSignup}>회원가입</SignupButton>
       </SignupText>
     </>
   );
