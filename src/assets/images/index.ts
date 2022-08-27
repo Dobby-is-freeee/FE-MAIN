@@ -41,8 +41,12 @@ import CheckBoxSelected from '../images/ic_checkbox_selected.svg';
 import Calendar from '../images/ic_calendar.svg';
 import AddProfileSvg from '../images/ic_add_profile.svg';
 import { ReactComponent as AddProfile } from '../images/ic_add_profile.svg';
+import { ReactComponent as PaginationArrow } from '../images/ic_pagination_arrow.svg';
+import { ReactComponent as PaginationJumpArrow } from '../images/ic_pagination_jump_arrow.svg';
 
 export {
+  PaginationArrow,
+  PaginationJumpArrow,
   AddProfile,
   Calendar,
   Close,

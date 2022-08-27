@@ -1,42 +1,40 @@
+import styled from 'styled-components';
 import type { ColumnType } from 'rc-table/lib/interface';
-import Table from 'rc-table';
 
 import type { AccountByMemberTableModel } from '../../models/account.models';
 
-const columns: ColumnType<AccountByMemberTableModel>[] = [
-  {
-    title: '멤버',
-    dataIndex: 'member',
-    key: 'member',
-    render: ({ image, name }) => {
-      return (
-        <div>
-          <img src={image} alt="member profile image" />
-          <span>{name}</span>
-        </div>
-      );
-    },
-  },
-  {
-    title: '협업툴',
-    dataIndex: 'tools',
-    key: 'tools',
-  },
-  {
-    title: '계정',
-    dataIndex: 'account',
-    key: 'account',
-  },
-];
+import { Table, TablePagination } from '@/components';
+
+const Wrap = styled.div`
+  border: 1px solid ${({ theme }) => theme.colors.gray1};
+  padding: 12px;
+  border-radius: 6px;
+`;
+
+const TablePaginationStyled = styled.div`
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid ${({ theme }) => theme.colors.gray2};
+  padding: 24px 0;
+`;
 
 interface AccountByMemberTableProps {
+  columns: ColumnType<AccountByMemberTableModel>[];
   tableData: AccountByMemberTableModel[];
-  onPageChange: () => void;
+  onPageChange: (page: number) => void;
 }
 
 export const AccountByMemberTable = ({
+  columns,
   tableData = [],
   onPageChange,
 }: AccountByMemberTableProps) => {
-  return <Table columns={columns} data={tableData} />;
+  return (
+    <Wrap>
+      <Table columns={columns} data={tableData} />
+      <TablePaginationStyled>
+        <TablePagination total={tableData.length} onPageChange={onPageChange} />
+      </TablePaginationStyled>
+    </Wrap>
+  );
 };
