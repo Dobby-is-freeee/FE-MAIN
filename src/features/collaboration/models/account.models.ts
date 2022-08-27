@@ -17,6 +17,12 @@ export interface AccountTableModel {
    * 이후 변경 예정
    */
   account: string;
+  /**
+   * 수정 여부
+   *
+   * 추가 or 수정 시 변경된다.
+   */
+  editable?: boolean;
 }
 
 export interface PublicAccountTableModel extends AccountTableModel {

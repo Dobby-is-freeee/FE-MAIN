@@ -8,3 +8,4 @@ export * from './Modal';
 export * from './Select';
 export * from './SolidButton';
 export * from './Title';
+export * from './Table';

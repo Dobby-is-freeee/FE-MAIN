@@ -1,32 +1,31 @@
-import Table from 'rc-table';
-
-import type { ColumnType } from 'rc-table/lib/interface';
+import { ColumnsType } from 'rc-table/lib/interface';
+import styled from 'styled-components';
 import type { AccountTableModel } from '../../models/account.models';
 
-import { CheckBox } from '@/components';
+import { Table } from '@/components';
 
-const columns: ColumnType<AccountTableModel>[] = [
-  {
-    title: <CheckBox id="all" />,
-    dataIndex: 'id',
-    key: 'id',
-    render: (id: number) => <CheckBox id={id.toString()} />,
-  },
-  {
-    title: '협업툴',
-    dataIndex: 'tools',
-    key: 'tools',
-  },
-  {
-    title: '계정',
-    dataIndex: 'account',
-    key: 'account',
-  },
-];
+const Wrap = styled.div`
+  border: 1px solid ${({ theme }) => theme.colors.gray1};
+  padding: 12px;
+  border-radius: 6px;
+`;
+
 interface MyAccountTableProps {
+  columns: ColumnsType<AccountTableModel>;
   tableData: AccountTableModel[];
 }
 
-export const MyAccountTable = ({ tableData = [] }: MyAccountTableProps) => {
-  return <Table columns={columns} data={tableData} />;
+export const MyAccountTable = ({
+  columns,
+  tableData = [],
+}: MyAccountTableProps) => {
+  return (
+    <Wrap>
+      <Table
+        emptyText="계정 정보가 없습니다."
+        columns={columns}
+        data={tableData}
+      />
+    </Wrap>
+  );
 };

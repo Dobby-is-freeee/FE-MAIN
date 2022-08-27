@@ -1,4 +1,5 @@
 import { CheckBoxSelected } from '@/assets/images';
+import { ChangeEventHandler } from 'react';
 import styled, { css } from 'styled-components';
 
 const Wrap = styled.div`
@@ -54,17 +55,34 @@ const CheckInput = styled.input<{ disabled: boolean; small?: boolean }>`
   }
 `;
 
-interface CheckBoxProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  id: string;
+export interface CheckedValue {
+  id: string | number;
+  checked: boolean;
+}
+
+interface CheckBoxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'id'> {
+  id: string | number;
+  onChange?: (checkedValue: CheckedValue) => void;
   label?: string | React.ReactNode;
   small?: boolean;
 }
 
-export const CheckBox = ({ id, label, small, disabled = false, ...props }: CheckBoxProps) => {
+export const CheckBox = ({ id, label, small, disabled = false, onChange, ...props }: CheckBoxProps) => {
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    onChange?.({ id: e.target.id, checked: e.target.checked });
+  };
+
   return (
     <Wrap>
-      <CheckInput {...props} id={id} type="checkbox" disabled={disabled} small={small} />
-      <label htmlFor={id}>{label}</label>
+      <CheckInput
+        {...props}
+        id={String(id)}
+        onChange={handleChange}
+        type="checkbox"
+        disabled={disabled}
+        small={small}
+      />
+      <label htmlFor={String(id)}>{label}</label>
     </Wrap>
   );
 };
