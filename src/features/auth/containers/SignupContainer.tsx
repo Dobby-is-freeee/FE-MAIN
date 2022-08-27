@@ -1,9 +1,17 @@
-import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useCallback } from 'react';
 
-import { Google } from '@/assets/images';
+import {
+  FormField,
+  GoggleButton,
+  Logo,
+  SignupButton,
+  SignupText,
+  TitleWrap,
+} from './SigninContainer';
+
 import SignupForm from '@/features/auth/components/SignupForm';
-import { FormField, GoggleButton, Logo, SignupButton, SignupText, TitleWrap } from './SigninContainer';
+import { Google } from '@/assets/images';
 
 export interface SignupContainerProps {}
 
@@ -31,7 +39,8 @@ function SignupContainer(_: SignupContainerProps) {
         </GoggleButton>
       </FormField>
       <SignupText>
-        이미 가입하셨나요? <SignupButton onClick={handleGoToSignin}>로그인</SignupButton>
+        이미 가입하셨나요?{' '}
+        <SignupButton onClick={handleGoToSignin}>로그인</SignupButton>
       </SignupText>
     </>
   );

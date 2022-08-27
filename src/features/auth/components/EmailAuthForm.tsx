@@ -1,6 +1,7 @@
-import { Mail } from '@/assets/images';
-import { SolidButton } from '@/components';
 import styled from 'styled-components';
+
+import { SolidButton } from '@/components';
+import { Mail } from '@/assets/images';
 
 const TextWrap = styled.div`
   text-align: center;
@@ -59,7 +60,9 @@ export const EmailAuthForm = ({ onRetryEmailClick }: EmailAuthFormProps) => {
 
       <ResendWrapper>
         <p>이메일을 받지 못하셨나요?</p>
-        <SolidButton onClick={onRetryEmailClick}>이메일 다시 보내기</SolidButton>
+        <SolidButton onClick={onRetryEmailClick}>
+          이메일 다시 보내기
+        </SolidButton>
       </ResendWrapper>
     </>
   );

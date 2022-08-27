@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { default as RcTable } from 'rc-table';
 import { TableProps } from 'rc-table/lib/Table';
+import { default as RcTable } from 'rc-table';
 import 'rc-table/assets/index.css';
 
 const TableStyled = styled(RcTable)<any>`

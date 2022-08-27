@@ -1,11 +1,13 @@
 /* eslint-disable no-alert */
 import { ComponentProps } from 'react';
 import { ComponentStory, ComponentMeta, ArgTypes } from '@storybook/react';
-import { MyAccountTable } from '../MyAccountTable';
 
+import { MyAccountTable } from '../MyAccountTable';
 import TABLE_DATA from '../../../_fixtures/account_list.json';
 
-type MyArgTypes = Partial<Record<keyof ComponentProps<typeof MyAccountTable>, ArgTypes[string]>>;
+type MyArgTypes = Partial<
+  Record<keyof ComponentProps<typeof MyAccountTable>, ArgTypes[string]>
+>;
 const argTypes: MyArgTypes = {};
 
 export default {

@@ -1,6 +1,7 @@
 /* eslint-disable no-alert */
 import { ComponentProps } from 'react';
 import { ComponentStory, ComponentMeta, ArgTypes } from '@storybook/react';
+
 import { Table } from '../Table';
 
 type MyArgTypes = Partial<

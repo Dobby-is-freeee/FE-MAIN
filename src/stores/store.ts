@@ -1,9 +1,14 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { TypedUseSelectorHook, useDispatch as useReduxDispatch, useSelector as useReduxSelector } from 'react-redux';
 import logger from 'redux-logger';
+import {
+  TypedUseSelectorHook,
+  useDispatch as useReduxDispatch,
+  useSelector as useReduxSelector,
+} from 'react-redux';
+import { configureStore } from '@reduxjs/toolkit';
+
+import { reducers } from './reducers';
 
 import { isProduction } from '@/config';
-import { reducers } from './reducers';
 
 export const store = configureStore({
   reducer: reducers,

@@ -3,7 +3,9 @@ import { ComponentStory, ComponentMeta, ArgTypes } from '@storybook/react';
 
 import { Modal } from '../Modal';
 
-type MyArgTypes = Partial<Record<keyof ComponentProps<typeof Modal>, ArgTypes[string]>>;
+type MyArgTypes = Partial<
+  Record<keyof ComponentProps<typeof Modal>, ArgTypes[string]>
+>;
 const argTypes: MyArgTypes = {};
 
 export default {

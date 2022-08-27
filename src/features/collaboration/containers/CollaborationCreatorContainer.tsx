@@ -1,5 +1,6 @@
-import { Day } from '@hassanmojab/react-modern-calendar-datepicker';
 import { useState } from 'react';
+import { Day } from '@hassanmojab/react-modern-calendar-datepicker';
+
 import { ProjectRoomCreator } from '../components/collaboration/ProjectRoomCreator';
 
 // FIXME: 서버에게 어떤 값을 줄지 몰라 임의로 설정한 타입임.

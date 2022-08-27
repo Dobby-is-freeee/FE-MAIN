@@ -1,5 +1,6 @@
-import Auth from '@/features/auth';
 import { Navigate, Outlet } from 'react-router-dom';
+
+import Auth from '@/features/auth';
 
 // todo check
 export const publicRoutes = [

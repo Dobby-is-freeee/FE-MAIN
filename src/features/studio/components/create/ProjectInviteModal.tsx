@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
-import { LineButton, Select } from '@/components';
-import { Field, Label } from './CreateForm';
 import { MemberInviteModal } from './MemberInviteModal';
+import { Field, Label } from './CreateForm';
+
+import { LineButton, Select } from '@/components';
 
 const TEAM_MEMBER_OPTIONS = [
   {
@@ -52,7 +53,10 @@ interface ProjectInviteModalProps {
   onToggle: (value?: boolean) => void;
 }
 
-export const ProjectInviteModal = ({ isVisible, onToggle }: ProjectInviteModalProps) => {
+export const ProjectInviteModal = ({
+  isVisible,
+  onToggle,
+}: ProjectInviteModalProps) => {
   // TODO: 서버로 부터 받아올시 수정
   const invitedMember: string[] = [];
 
@@ -64,7 +68,12 @@ export const ProjectInviteModal = ({ isVisible, onToggle }: ProjectInviteModalPr
     <>
       <Field>
         <Label htmlFor="name">팀구성</Label>
-        <Select placeholder="구성원의 포지션을 선택해주세요." isMulti options={TEAM_MEMBER_OPTIONS} isClearable />
+        <Select
+          placeholder="구성원의 포지션을 선택해주세요."
+          isMulti
+          options={TEAM_MEMBER_OPTIONS}
+          isClearable
+        />
       </Field>
       <Field>
         <Label htmlFor="name">멤버</Label>
@@ -73,7 +82,11 @@ export const ProjectInviteModal = ({ isVisible, onToggle }: ProjectInviteModalPr
         </InviteButton>
       </Field>
 
-      <MemberInviteModal isVisible={isVisible} invitedMember={invitedMember} onClose={handleToggle} />
+      <MemberInviteModal
+        isVisible={isVisible}
+        invitedMember={invitedMember}
+        onClose={handleToggle}
+      />
     </>
   );
 };

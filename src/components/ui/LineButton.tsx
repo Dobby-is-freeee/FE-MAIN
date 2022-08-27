@@ -1,15 +1,20 @@
 import styled from 'styled-components';
-import { theme } from '@/styles';
 import { Link } from 'react-router-dom';
+
+import { theme } from '@/styles';
 
 // type ButtonKindType = 'primary' | 'default';
 type ButtonVariantType = 'primary' | 'link' | 'default';
 type ButtonColorType = 'bg' | 'color' | 'border';
 type ButtonColorByVariant = keyof typeof theme.colors;
 
-interface ButtonColorsByVariant extends Record<ButtonColorType, ButtonColorByVariant> {}
+interface ButtonColorsByVariant
+  extends Record<ButtonColorType, ButtonColorByVariant> {}
 
-const BUTTON_COLORS_BY_VARIANT_DIC: Record<ButtonVariantType, ButtonColorsByVariant> = {
+const BUTTON_COLORS_BY_VARIANT_DIC: Record<
+  ButtonVariantType,
+  ButtonColorsByVariant
+> = {
   default: { bg: 'white', color: 'black', border: 'gray2' },
   link: { bg: 'white', color: 'black', border: 'gray2' },
   primary: { bg: 'primary', color: 'white', border: 'primary' },
@@ -24,10 +29,12 @@ function getColor(variant: ButtonVariantType): ButtonColorsByVariant {
 }
 
 const Button = styled.button<ButtonStyleProps>`
-  background-color: ${({ theme, variant }) => theme.colors[getColor(variant).bg]};
+  background-color: ${({ theme, variant }) =>
+    theme.colors[getColor(variant).bg]};
   color: ${({ theme, variant }) => theme.colors[getColor(variant).color]};
   outline: none;
-  border: 1px solid ${({ theme, variant }) => theme.colors[getColor(variant).border]};
+  border: 1px solid
+    ${({ theme, variant }) => theme.colors[getColor(variant).border]};
   cursor: pointer;
   text-decoration: none;
   display: flex;
@@ -60,13 +67,20 @@ const Button = styled.button<ButtonStyleProps>`
 
 const LinkButton = Button.withComponent(Link);
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, ButtonStyleProps {
+interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    ButtonStyleProps {
   children?: React.ReactNode;
   variant: ButtonVariantType;
   to?: string;
 }
 
-export const LineButton = ({ children, variant = 'default', to = '#', ...props }: Partial<ButtonProps>) => {
+export const LineButton = ({
+  children,
+  variant = 'default',
+  to = '#',
+  ...props
+}: Partial<ButtonProps>) => {
   if (variant === 'link') {
     return (
       <LinkButton to={to} variant={variant}>

@@ -1,9 +1,12 @@
 /* eslint-disable no-alert */
 import { ComponentProps } from 'react';
 import { ComponentStory, ComponentMeta, ArgTypes } from '@storybook/react';
+
 import { ToolsRecommend } from '../ToolsRecommend';
 
-type MyArgTypes = Partial<Record<keyof ComponentProps<typeof ToolsRecommend>, ArgTypes[string]>>;
+type MyArgTypes = Partial<
+  Record<keyof ComponentProps<typeof ToolsRecommend>, ArgTypes[string]>
+>;
 const argTypes: MyArgTypes = {};
 
 export default {

@@ -2,9 +2,12 @@
 import { ComponentProps } from 'react';
 import { ComponentStory, ComponentMeta, ArgTypes } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+
 import { Select } from '../Select';
 
-type MyArgTypes = Partial<Record<keyof ComponentProps<typeof Select>, ArgTypes[string]>>;
+type MyArgTypes = Partial<
+  Record<keyof ComponentProps<typeof Select>, ArgTypes[string]>
+>;
 const argTypes: MyArgTypes = {};
 
 export default {
@@ -17,7 +20,9 @@ const Template: ComponentStory<typeof Select> = ({ ...props }) => {
   const onChange = action('change');
   const placeholder = '선택해 보세요.';
 
-  return <Select placeholder={placeholder} onChange={onChange} {...props}></Select>;
+  return (
+    <Select placeholder={placeholder} onChange={onChange} {...props}></Select>
+  );
 };
 
 const OPTIONS = [

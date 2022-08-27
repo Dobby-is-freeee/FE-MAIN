@@ -1,1 +1,8 @@
-.github/*
+node_modules
+src/serviceWorker.ts
+*.d.ts
+build
+README.md
+
+tsconfig.json
+.vscode

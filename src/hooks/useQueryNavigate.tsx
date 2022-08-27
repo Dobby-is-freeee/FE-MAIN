@@ -33,7 +33,9 @@ export const useQueryNavigate = () => {
     const currentQueries = qs.parse(search, { ignoreQueryPrefix: true });
     const mergeQueries = { ...currentQueries, ...newQueries };
 
-    console.log(pathname + qs.stringify(mergeQueries, { addQueryPrefix: true }));
+    console.log(
+      pathname + qs.stringify(mergeQueries, { addQueryPrefix: true }),
+    );
     navigate(pathname + qs.stringify(mergeQueries, { addQueryPrefix: true }));
   };
 };

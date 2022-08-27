@@ -119,7 +119,11 @@ interface MemberInviteModalProps {
   onClose: () => void;
 }
 
-export const MemberInviteModal = ({ invitedMember, isVisible, onClose }: MemberInviteModalProps) => {
+export const MemberInviteModal = ({
+  invitedMember,
+  isVisible,
+  onClose,
+}: MemberInviteModalProps) => {
   return (
     <Modal
       visible={isVisible}
@@ -131,7 +135,12 @@ export const MemberInviteModal = ({ invitedMember, isVisible, onClose }: MemberI
         <ModalInnerWrap>
           <Title level={4}>멤버를 초대해주세요.</Title>
           <SelectWrap>
-            <Select width="445px" isMulti inputMode placeholder="예) example@sideproject.com" />
+            <Select
+              width="445px"
+              isMulti
+              inputMode
+              placeholder="예) example@sideproject.com"
+            />
             <SelectButton>초대하기</SelectButton>
           </SelectWrap>
 
@@ -147,12 +156,16 @@ export const MemberInviteModal = ({ invitedMember, isVisible, onClose }: MemberI
               </MemberList>
             </MemberWrap>
           ) : (
-            <MemberEmpty>초대된 멤버가 없습니다. 멤버를 초대해주세요!</MemberEmpty>
+            <MemberEmpty>
+              초대된 멤버가 없습니다. 멤버를 초대해주세요!
+            </MemberEmpty>
           )}
 
           <MessageWrap>
             <Title level={4}>초대내용 입력</Title>
-            <MessageExtraText>초대내용은 직접 수정할 수 있습니다.</MessageExtraText>
+            <MessageExtraText>
+              초대내용은 직접 수정할 수 있습니다.
+            </MessageExtraText>
 
             <TextAreaWrap>
               <MessageTextArea placeholder="사이드프로젝트를 돕는 프로덕트를 만들어나가요." />

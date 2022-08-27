@@ -1,9 +1,12 @@
 /* eslint-disable no-alert */
 import { ComponentProps } from 'react';
 import { ComponentStory, ComponentMeta, ArgTypes } from '@storybook/react';
+
 import { InputPassword } from '../InputPassword';
 
-type MyArgTypes = Partial<Record<keyof ComponentProps<typeof InputPassword>, ArgTypes[string]>>;
+type MyArgTypes = Partial<
+  Record<keyof ComponentProps<typeof InputPassword>, ArgTypes[string]>
+>;
 const argTypes: MyArgTypes = {};
 
 export default {

@@ -1,8 +1,9 @@
 import styled, { keyframes } from 'styled-components';
 import ReactDOM from 'react-dom';
 
-import { Close } from '@/assets/images';
 import { Title } from './Title';
+
+import { Close } from '@/assets/images';
 
 interface ModalBodyStyleProps {
   width: number | string;
@@ -52,8 +53,10 @@ const ModalBody = styled.div<ModalBodyStyleProps>`
   flex-direction: column;
   justify-content: space-between;
   background-color: #fff;
-  width: ${({ width }) => `${typeof width === 'number' ? `${width}px` : width}`};
-  height: ${({ height }) => `${typeof height === 'number' ? `${height}px` : height}`};
+  width: ${({ width }) =>
+    `${typeof width === 'number' ? `${width}px` : width}`};
+  height: ${({ height }) =>
+    `${typeof height === 'number' ? `${height}px` : height}`};
   top: 50%;
   left: 50%;
   transform-origin: -10% -10%;
@@ -119,7 +122,15 @@ export interface ModalProps {
 
 // TODO: footer 로직 및 ok cancel 버튼 관련 제작 - Chkim
 // TODO: Modal Animation 보완 필요 ex) 닫을 시 애니메이션 - chkim
-export const Modal = ({ visible, content, title, footer, width = 450, height = 258, onClose }: ModalProps) => {
+export const Modal = ({
+  visible,
+  content,
+  title,
+  footer,
+  width = 450,
+  height = 258,
+  onClose,
+}: ModalProps) => {
   if (!visible) {
     return null;
   }

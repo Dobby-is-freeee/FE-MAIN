@@ -1,8 +1,9 @@
-import { CheckBox } from '@/components';
+import type { ColumnType } from 'rc-table/lib/interface';
 import Table from 'rc-table';
 
-import type { ColumnType } from 'rc-table/lib/interface';
 import type { PublicAccountTableModel } from '../../models/account.models';
+
+import { CheckBox } from '@/components';
 
 const columns: ColumnType<PublicAccountTableModel>[] = [
   {
@@ -37,6 +38,8 @@ interface PublicAccountTableProps {
   tableData: PublicAccountTableModel[];
 }
 
-export const PublicAccountTable = ({ tableData = [] }: PublicAccountTableProps) => {
+export const PublicAccountTable = ({
+  tableData = [],
+}: PublicAccountTableProps) => {
   return <Table columns={columns} data={tableData} />;
 };

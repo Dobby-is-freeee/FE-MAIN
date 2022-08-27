@@ -1,11 +1,11 @@
-import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
+import React, { useCallback, useState } from 'react';
 
 import { isEmail } from '@/features/auth/libs/validator';
-import useBoolean from '@/features/auth/hooks/useBoolean';
 import useInput from '@/features/auth/hooks/useInput';
-import { Input, LineButton, SolidButton } from '@/components';
+import useBoolean from '@/features/auth/hooks/useBoolean';
 import { CheckBox } from '@/components/ui';
+import { Input, LineButton, SolidButton } from '@/components';
 
 const StyledForm = styled.form`
   margin-bottom: 12px;
@@ -64,17 +64,23 @@ function SigninForm(props: SigninFormProps) {
   });
 
   const [autoSignin, toggleAutoSignin] = useBoolean({ defaultValue: false });
-  const [error, setError] = useState<{ type: 'email' | 'password'; message: string } | undefined>();
+  const [error, setError] = useState<
+    { type: 'email' | 'password'; message: string } | undefined
+  >();
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      if (email === '') return setError({ type: 'email', message: '이메일 작성 필요' });
-      if (password === '') return setError({ type: 'password', message: '비밀번호 작성 필요' });
-      if (!isValidEmail) return setError({ type: 'email', message: '이메일 양식 맞지 않음' });
+      if (email === '')
+        return setError({ type: 'email', message: '이메일 작성 필요' });
+      if (password === '')
+        return setError({ type: 'password', message: '비밀번호 작성 필요' });
+      if (!isValidEmail)
+        return setError({ type: 'email', message: '이메일 양식 맞지 않음' });
       if (error === undefined) {
         const result = await onSubmit({ email, password });
-        if (result !== undefined) return setError({ type: result.type, message: result.message });
+        if (result !== undefined)
+          return setError({ type: result.type, message: result.message });
         localStorage.setItem('autoSignin', `${autoSignin}`);
       }
     },
@@ -90,7 +96,12 @@ function SigninForm(props: SigninFormProps) {
       </InputWrap>
 
       <OptionsWrapper>
-        <CheckBox label="자동로그인" id="login" onChange={toggleAutoSignin} checked={autoSignin} />
+        <CheckBox
+          label="자동로그인"
+          id="login"
+          onChange={toggleAutoSignin}
+          checked={autoSignin}
+        />
         <LineButton onClick={onClick}>비밀번호 찾기</LineButton>
       </OptionsWrapper>
       <SolidButton type="submit" disabled={error !== undefined}>

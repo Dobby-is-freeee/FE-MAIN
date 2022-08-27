@@ -1,6 +1,7 @@
-import { Fragment, ReactNode, useMemo, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
 import styled, { css } from 'styled-components';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { Fragment, ReactNode, useMemo, useState } from 'react';
 
 import {
   Cooperation,
@@ -11,7 +12,7 @@ import {
   ProjectBlack,
   SettingBlack,
 } from '@/assets/images';
-import { Link } from 'react-router-dom';
+
 
 const Wrap = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
@@ -170,19 +171,20 @@ export const SideNavigation = () => {
 
   const isActiveMenu = (path: string) => pathname === path;
 
-  const handleMoveClickCurried = (path: string, hasChildren?: boolean) => () => {
-    if (hasChildren) {
-      setMenuPaths((prev) => {
-        if (prev.includes(path)) {
-          return prev.filter((prevPath) => prevPath !== path);
-        }
+  const handleMoveClickCurried =
+    (path: string, hasChildren?: boolean) => () => {
+      if (hasChildren) {
+        setMenuPaths((prev) => {
+          if (prev.includes(path)) {
+            return prev.filter((prevPath) => prevPath !== path);
+          }
 
-        return [...prev, path];
-      });
-    }
+          return [...prev, path];
+        });
+      }
 
-    navigate(path);
-  };
+      navigate(path);
+    };
 
   return (
     <Wrap>
@@ -196,7 +198,8 @@ export const SideNavigation = () => {
             {/* TODO: 분할 - chkim */}
             <MenuItemList
               onClick={handleMoveClickCurried(path, hasSubMenu(children))}
-              isActiveMenu={!hasSubMenu(children) && isActiveMenu(path)}>
+              isActiveMenu={!hasSubMenu(children) && isActiveMenu(path)}
+            >
               {value}
             </MenuItemList>
 
@@ -208,7 +211,8 @@ export const SideNavigation = () => {
                       <SubMenuItemList
                         key={path}
                         onClick={handleMoveClickCurried(path)}
-                        isActiveMenu={isActiveMenu(path)}>
+                        isActiveMenu={isActiveMenu(path)}
+                      >
                         {value}
                       </SubMenuItemList>
                     ),
