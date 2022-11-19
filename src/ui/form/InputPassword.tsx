@@ -7,16 +7,22 @@ import { Input, InputProps } from './Input';
 const Wrap = styled.div`
   position: relative;
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  border: 1px solid ${({ theme }) => theme.colors.gray2};
+  background-color: ${({ theme }) => theme.colors.white};
 
+  & > div {
+    width: 100%;
+  }
   input {
-    padding-right: 48px;
+    border: none;
+    padding-right: 36px;
   }
 
   button {
     background-color: transparent;
-    position: absolute;
-    right: 12px;
+    padding-right: 12px;
   }
 `;
 
