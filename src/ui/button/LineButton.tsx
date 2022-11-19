@@ -2,8 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { theme } from '@common/theme';
 
-// type ButtonKindType = 'primary' | 'default';
-type ButtonVariantType = 'primary' | 'link' | 'default';
+type ButtonVariantType = 'link' | 'default';
 type ButtonColorType = 'bg' | 'color' | 'border';
 type ButtonColorByVariant = keyof typeof theme.colors;
 
@@ -16,7 +15,6 @@ const BUTTON_COLORS_BY_VARIANT_DIC: Record<
 > = {
   default: { bg: 'white', color: 'black', border: 'gray2' },
   link: { bg: 'white', color: 'black', border: 'gray2' },
-  primary: { bg: 'primary', color: 'white', border: 'primary' },
 };
 
 interface ButtonStyleProps {
@@ -48,7 +46,6 @@ const Button = styled.button<ButtonStyleProps>`
   letter-spacing: -0.0025em;
   transition: background-color 300ms linear;
 
-  /* TODO: color 타입에 따라 rgba 변경 */
   &:hover {
     background-color: rgba(205, 204, 208, 0.25);
   }

@@ -24,12 +24,6 @@ Default.args = {
   children: '버튼',
 };
 
-export const Primary = Template.bind({});
-Primary.args = {
-  variant: 'primary',
-  children: '버튼2',
-};
-
 export const Link = Template.bind({});
 Link.args = {
   variant: 'link',
