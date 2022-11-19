@@ -11,7 +11,7 @@ type MyArgTypes = Partial<
 const argTypes: MyArgTypes = {};
 
 export default {
-  title: 'components/Select',
+  title: 'ui/form/Select',
   component: Select,
   argTypes,
 } as ComponentMeta<typeof Select>;
@@ -84,4 +84,9 @@ NoOption.args = {
 export const Disabled = Template.bind({});
 Disabled.args = {
   isDisabled: true,
+};
+
+export const Error = Template.bind({});
+Error.args = {
+  errorMessage: '잘못된 값입니다.',
 };

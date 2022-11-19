@@ -1,7 +1,9 @@
 import 'styled-components';
 
-import { ThemeType } from '@/styles';
+import { ThemeType } from '@common/theme';
 
 declare module 'styled-components' {
   export interface DefaultTheme extends ThemeType {}
 }
+
+declare module '*.svg';

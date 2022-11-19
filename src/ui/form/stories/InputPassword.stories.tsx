@@ -10,7 +10,7 @@ type MyArgTypes = Partial<
 const argTypes: MyArgTypes = {};
 
 export default {
-  title: 'components/InputPassword',
+  title: 'ui/form/InputPassword',
   component: InputPassword,
   argTypes,
 } as ComponentMeta<typeof InputPassword>;
@@ -21,3 +21,8 @@ const Template: ComponentStory<typeof InputPassword> = ({ ...props }) => {
 
 export const Default = Template.bind({});
 Default.args = {};
+
+export const Error = Template.bind({});
+Error.args = {
+  errorMessage: '에러입니다.',
+};

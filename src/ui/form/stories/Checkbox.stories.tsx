@@ -10,7 +10,7 @@ type MyArgTypes = Partial<
 const argTypes: MyArgTypes = {};
 
 export default {
-  title: 'components/CheckBox',
+  title: 'ui/form/CheckBox',
   component: CheckBox,
   argTypes,
 } as ComponentMeta<typeof CheckBox>;

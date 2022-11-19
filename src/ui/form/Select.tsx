@@ -52,6 +52,13 @@ const SelectDropDown = styled.div<SelectDropDownStyleProps>`
   }
 `;
 
+const ErrorMessage = styled.div`
+  font-size: 12px;
+  line-height: 20px;
+  margin-top: 4px;
+  color: ${({ theme }) => theme.colors.error};
+`;
+
 // Select 관련 Type
 interface SelectOption {
   label: string | React.ReactNode;
@@ -85,6 +92,10 @@ interface SelectProps
    * input을 이용해 Tag를 만들 수 있다.
    */
   inputMode?: boolean;
+  /**
+   * 에러 메시지
+   */
+  errorMessage?: string;
 }
 
 export const Select = ({
@@ -98,11 +109,14 @@ export const Select = ({
   showDropDownIcon = true,
   noOptionsMessage = () => '옵션이 없습니다.',
   onChange: onChangeExternal,
+  errorMessage,
   ...props
 }: SelectProps) => {
   const [selectValue, setSelectValue] = useState<OptionType>(() =>
     getSelectValue(value, options as SelectOption[]),
   );
+
+  const isError = useMemo(() => !!errorMessage, [errorMessage]);
 
   const onChange = useRef(onChangeExternal);
 
@@ -184,13 +198,17 @@ export const Select = ({
           ? theme.colors.gray1
           : theme.colors.white,
         color: state.isDisabled ? theme.colors.gray2 : theme.colors.white,
-        borderColor: state.isFocused
+        borderColor: isError
+          ? theme.colors.error
+          : state.isFocused
           ? theme.colors.primary
           : theme.colors.gray2,
         boxShadow: 'none',
         cursor: inputMode ? 'text' : 'pointer',
         '&:hover': {
-          borderColor: state.isFocused
+          borderColor: isError
+            ? theme.colors.error
+            : state.isFocused
             ? theme.colors.primary
             : theme.colors.gray2,
         },
@@ -284,7 +302,7 @@ export const Select = ({
         display: 'none',
       }),
     }),
-    [inputMode, width],
+    [inputMode, isError, width],
   );
 
   const MultiValueRemove = ({
@@ -331,23 +349,30 @@ export const Select = ({
   };
 
   return (
-    <ReactSelect
-      {...props}
-      classNamePrefix="apro"
-      styles={styles}
-      inputValue={inputValue}
-      value={inputMode ? inputValues : selectValue}
-      options={options}
-      closeMenuOnSelect={isMulti ? false : props.closeMenuOnSelect}
-      menuIsOpen={inputMode ? false : props.menuIsOpen}
-      isSearchable={inputMode ? true : isSearchable}
-      isClearable={inputMode ? false : isClearable}
-      isMulti={inputMode ? true : isMulti}
-      onInputChange={handleInputChange}
-      noOptionsMessage={noOptionsMessage}
-      onChange={handleOptionChange}
-      onKeyDown={handleKeyDown}
-      components={{ ...props.components, MultiValueRemove, DropdownIndicator }}
-    />
+    <>
+      <ReactSelect
+        {...props}
+        classNamePrefix="apro"
+        styles={styles}
+        inputValue={inputValue}
+        value={inputMode ? inputValues : selectValue}
+        options={options}
+        closeMenuOnSelect={isMulti ? false : props.closeMenuOnSelect}
+        menuIsOpen={inputMode ? false : props.menuIsOpen}
+        isSearchable={inputMode ? true : isSearchable}
+        isClearable={inputMode ? false : isClearable}
+        isMulti={inputMode ? true : isMulti}
+        onInputChange={handleInputChange}
+        noOptionsMessage={noOptionsMessage}
+        onChange={handleOptionChange}
+        onKeyDown={handleKeyDown}
+        components={{
+          ...props.components,
+          MultiValueRemove,
+          DropdownIndicator,
+        }}
+      />
+      <ErrorMessage>{errorMessage}</ErrorMessage>
+    </>
   );
 };

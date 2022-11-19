@@ -25,7 +25,11 @@ export const InputPassword = (props: InputProps) => {
 
   return (
     <Wrap>
-      <Input type={toggle ? 'text' : 'password'} {...props} />
+      <Input
+        errorMessage={props.errorMessage}
+        type={toggle ? 'text' : 'password'}
+        {...props}
+      />
       <button onClick={handleToggle}>
         {toggle ? <EyeHidden /> : <EyeOpen />}
       </button>

@@ -32,6 +32,6 @@
   },
   "include": [
     "src",
-    "./src/svgFile.d.ts"
+    "./src/react-app-env.d.ts"
   ]
 }

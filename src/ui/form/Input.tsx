@@ -1,8 +1,15 @@
-import styled from 'styled-components';
-import { ChangeEventHandler, useState } from 'react';
+import styled, { css } from 'styled-components';
+import {
+  ChangeEventHandler,
+  ReactNode,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 
 interface WrapStyleProps {
   maxLength?: number;
+  isError: boolean;
 }
 
 const Wrap = styled.div`
@@ -30,7 +37,8 @@ const InputStyled = styled.input<WrapStyleProps>`
   }
 
   &:focus {
-    border-color: ${({ theme }) => theme.colors.primary};
+    border-color: ${({ theme, isError }) =>
+      isError ? theme.colors.error : theme.colors.primary};
   }
 
   &:disabled {
@@ -38,6 +46,12 @@ const InputStyled = styled.input<WrapStyleProps>`
     border-color: ${({ theme }) => theme.colors.gray1};
     background-color: ${({ theme }) => theme.colors.gray1};
   }
+
+  ${({ isError }) =>
+    isError &&
+    css`
+      border-color: ${({ theme }) => theme.colors.error};
+    `}
 `;
 
 const Suffix = styled.span`
@@ -53,18 +67,32 @@ const Suffix = styled.span`
   }
 `;
 
-export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {}
+const ErrorMessage = styled.div`
+  font-size: 12px;
+  line-height: 20px;
+  margin-top: 4px;
+  color: ${({ theme }) => theme.colors.error};
+`;
 
-// TODO: 에러메세지 적용 with react-hook-form - cskim
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  errorMessage?: string;
+  suffix?: ReactNode;
+}
+
 export const Input = ({
   onChange,
   maxLength = 0,
   type = 'text',
   autoComplete = 'off',
   spellCheck = false,
+  errorMessage = '',
+  value: outValue,
   ...rest
 }: InputProps) => {
+  const isError = useMemo(() => !!errorMessage, [errorMessage]);
+
+  const [value, setValue] = useState(outValue);
   const [count, setCount] = useState(0);
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -72,17 +100,24 @@ export const Input = ({
       setCount(e.target.value.length);
     }
 
+    setValue(e.target.value);
     onChange?.(e);
   };
+
+  useEffect(() => {
+    setValue(outValue);
+  }, [outValue]);
 
   return (
     <Wrap>
       <InputStyled
         type={type}
+        isError={isError}
         onChange={handleChange}
         maxLength={maxLength || undefined}
         autoComplete={autoComplete}
         spellCheck={spellCheck}
+        value={value}
         {...rest}
       />
       {maxLength ? (
@@ -91,6 +126,8 @@ export const Input = ({
           <span>/{maxLength}</span>
         </Suffix>
       ) : null}
+
+      <ErrorMessage>{errorMessage}</ErrorMessage>
     </Wrap>
   );
 };

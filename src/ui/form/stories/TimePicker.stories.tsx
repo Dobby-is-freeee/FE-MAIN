@@ -10,7 +10,7 @@ type MyArgTypes = Partial<
 const argTypes: MyArgTypes = {};
 
 export default {
-  title: 'components/TimePicker',
+  title: 'ui/form/TimePicker',
   component: TimePicker,
   argTypes,
 } as ComponentMeta<typeof TimePicker>;

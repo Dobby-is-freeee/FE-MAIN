@@ -11,7 +11,7 @@ type MyArgTypes = Partial<
 const argTypes: MyArgTypes = {};
 
 export default {
-  title: 'components/DatePicker',
+  title: 'ui/form/DatePicker',
   component: DatePicker,
   argTypes,
 } as ComponentMeta<typeof DatePicker>;

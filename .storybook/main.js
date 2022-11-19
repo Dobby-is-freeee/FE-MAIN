@@ -1,4 +1,5 @@
 const tsconfigPaths = require('vite-tsconfig-paths').default;
+const svgr = require('vite-plugin-svgr').default;
 
 module.exports = {
   staticDirs: ['../public'],
@@ -12,7 +13,7 @@ module.exports = {
     storyStoreV7: true,
   },
   async viteFinal(config) {
-    config.plugins = [...config.plugins, tsconfigPaths()];
+    config.plugins = [...config.plugins, svgr(), tsconfigPaths()];
     return config;
   },
 };

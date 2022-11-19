@@ -10,7 +10,7 @@ type MyArgTypes = Partial<
 const argTypes: MyArgTypes = {};
 
 export default {
-  title: 'components/Input',
+  title: 'ui/form/Input',
   component: Input,
   argTypes,
 } as ComponentMeta<typeof Input>;
@@ -34,4 +34,10 @@ export const Disabled = Template.bind({});
 Disabled.args = {
   placeholder: '입력',
   disabled: true,
+};
+
+export const Error = Template.bind({});
+Error.args = {
+  value: '벨류',
+  errorMessage: '잘못된 값입니다.',
 };
