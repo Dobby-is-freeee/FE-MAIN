@@ -4,7 +4,7 @@ import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import { useLayoutEffect, useState } from 'react';
 import 'react-tabs/style/react-tabs.css';
 import { useNavigate, useQueryParams } from 'jordy';
-import { PageContainer } from '@ui';
+import { Container } from '@ui';
 
 import { CollaborationTabModel } from '../models/collaboration.model';
 import { CollaborationMainContainers } from '../containers/CollaborationMainContainers';
@@ -67,7 +67,7 @@ export const CollaborationMain = () => {
       </CustomTabList>
 
       <TabPanel>
-        <PageContainer>
+        <Container>
           <CollaborationMainContainers
             isCreatorVisible={isCreatorVisible}
             onCreatorVisibleToggle={handleCreatorVisibleToggle}
@@ -76,14 +76,14 @@ export const CollaborationMain = () => {
             isCreatorVisible={isCreatorVisible}
             onCreatorVisibleToggle={handleCreatorVisibleToggle}
           />
-        </PageContainer>
+        </Container>
       </TabPanel>
       <TabPanel>
-        <PageContainer>
+        <Container>
           <MyAccountContainer />
           <PublicAccountContainer />
           <AccountByMemberContainer />
-        </PageContainer>
+        </Container>
       </TabPanel>
     </Tabs>
   );

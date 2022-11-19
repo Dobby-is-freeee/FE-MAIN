@@ -1,5 +1,5 @@
 import { ModuleRouteModel } from 'jordy';
-import { PageContainer } from '@ui';
+import { Container } from '@ui';
 
 import { StudioMain } from './pages/StudioMain';
 import { StudioCreate } from './pages/StudioCreate';
@@ -8,7 +8,7 @@ import { Empty } from './components/common';
 export const studioRoutes: ModuleRouteModel[] = [
   {
     path: '/studio',
-    wrap: PageContainer,
+    wrap: Container,
     element: StudioMain,
     children: [
       {
