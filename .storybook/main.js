@@ -1,25 +1,18 @@
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
-const path = require('path');
+const tsconfigPaths = require('vite-tsconfig-paths').default;
 
 module.exports = {
+  staticDirs: ['../public'],
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
-  addons: [
-    '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    '@storybook/addon-interactions',
-    '@storybook/preset-create-react-app',
-  ],
-
+  addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
   framework: '@storybook/react',
   core: {
-    builder: '@storybook/builder-webpack5',
+    builder: '@storybook/builder-vite',
   },
-  webpackFinal: async (config) => {
-    config.resolve.plugins.push(
-      new TsconfigPathsPlugin({
-        configFile: path.resolve(__dirname, '../tsconfig.json'),
-      }),
-    );
+  features: {
+    storyStoreV7: true,
+  },
+  async viteFinal(config) {
+    config.plugins = [...config.plugins, tsconfigPaths()];
     return config;
   },
 };

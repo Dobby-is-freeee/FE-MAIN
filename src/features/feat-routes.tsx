@@ -14,9 +14,8 @@ export const protectedRoutes: ModuleRouteModel[] = [
     path: '/',
     wrap: LayoutContainer,
     element: () => <Navigate to="/studio" />,
+    children: [...studioRoutes, ...collaborationRoutes],
   },
-  ...studioRoutes,
-  ...collaborationRoutes,
 ];
 
 export const publicRoutes: ModuleRouteModel[] = [
