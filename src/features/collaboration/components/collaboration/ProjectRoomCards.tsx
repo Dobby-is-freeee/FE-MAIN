@@ -1,10 +1,9 @@
 import styled from 'styled-components';
+import { LineButton, Title } from '@ui';
+import { EmptyCard } from '@common/components/EmptyCard';
+import { Member, Time } from '@assets/images';
 
 import { IMAGE_DIC } from '../../constants';
-
-import { EmptyCard } from '@/components/common/EmptyCard';
-import { LineButton, Title } from '@/components';
-import { Member, Time } from '@/assets/images';
 
 const RoomCardTitle = styled(Title)`
   margin-bottom: 20px;

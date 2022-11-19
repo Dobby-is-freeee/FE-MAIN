@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { loginUser } from '@shared/stores/auth';
+import { useAppDispatch } from '@common/store';
 
 import { CompleteForm } from '../components/CompleteForm';
-
-import { loginUser } from '@/stores/auth';
-import { useDispatch } from '@/stores';
 
 const Wrap = styled.article``;
 
@@ -12,7 +11,7 @@ export interface CompleteContainerProps {}
 
 function CompleteContainer() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleMoveToStudioClick = () => {
     dispatch(loginUser());

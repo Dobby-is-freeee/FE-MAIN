@@ -22,8 +22,12 @@
     "jsx": "react-jsx",
 		"baseUrl": ".",
 		"paths": {
-			"@/*": ["./src/*"],
-
+      "@common/*" : ["./src/common/*"],
+      "@shared/*" : ["./src/shared/*"],
+      "@features/*" : ["./src/features/*"],
+      "@core/*" :  ["./src/core/*"],
+      "@assets/*" : ["./src/assets/*"],
+      "@ui" : ["./src/ui"]
 		}
   },
   "include": [

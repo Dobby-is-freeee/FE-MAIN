@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 import type { ColumnType } from 'rc-table/lib/interface';
+import { Table, TablePagination } from '@ui';
 
 import type { AccountByMemberTableModel } from '../../models/account.models';
-
-import { Table, TablePagination } from '@/components';
 
 const Wrap = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.gray1};

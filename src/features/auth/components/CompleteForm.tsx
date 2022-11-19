@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-
-import { ConfirmMessage, SolidButton, Title } from '@/components';
-import { MailConfirm } from '@/assets/images';
+import { ConfirmMessage, SolidButton, Title } from '@ui';
+import { MailConfirm } from '@assets/images';
 
 const SuccessWrap = styled.div`
   display: flex;

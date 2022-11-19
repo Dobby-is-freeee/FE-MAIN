@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useCallback } from 'react';
+import SignupForm from '@features/auth/components/SignupForm';
+import { Google } from '@assets/images';
 
 import {
   FormField,
@@ -9,9 +11,6 @@ import {
   SignupText,
   TitleWrap,
 } from './SigninContainer';
-
-import SignupForm from '@/features/auth/components/SignupForm';
-import { Google } from '@/assets/images';
 
 export interface SignupContainerProps {}
 

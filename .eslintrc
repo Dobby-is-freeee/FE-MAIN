@@ -32,12 +32,41 @@
     "import/order": [
       "error",
       {
-        "groups": ["builtin", "external", ["parent", "sibling"], "index"],
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          ["parent", "sibling"],
+          "index",
+          "object"
+        ],
         "pathGroups": [
           {
             "pattern": "react",
-            "group": "external",
+            "group": "builtin",
             "position": "before"
+          },
+          {
+            "pattern": "@common/**",
+            "group": "internal"
+          },
+          {
+            "pattern": "@core/**",
+            "group": "internal"
+          },
+          {
+            "pattern": "@shared/**",
+            "group": "internal"
+          },
+          {
+            "pattern": "@features/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "@ui/**",
+            "group": "internal",
+            "position": "after"
           }
         ],
         "alphabetize": {

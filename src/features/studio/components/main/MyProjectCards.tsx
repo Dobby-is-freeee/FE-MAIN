@@ -1,17 +1,15 @@
 import styled from 'styled-components';
 import { useToggle } from 'react-use';
 import { useNavigate } from 'react-router-dom';
+import { Modal, Title, LineButton } from '@ui';
+import { EmptyCard } from '@common/components/EmptyCard';
+import { Error } from '@assets/images';
 
 import { ProjectCard } from '../common';
 import {
   ProjectItem,
   ProjectStatus,
 } from '../../containers/ProjectCardContainer';
-
-import { LineButton } from '@/components/ui';
-import { EmptyCard } from '@/components/common/EmptyCard';
-import { Modal, Title } from '@/components';
-import { Error } from '@/assets/images';
 
 const TitleWrap = styled(Title)`
   color: ${({ theme }) => theme.colors.black};

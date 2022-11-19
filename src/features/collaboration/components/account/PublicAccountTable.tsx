@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import type { ColumnType } from 'rc-table/lib/interface';
+import { Table } from '@ui';
 
 import type { PublicAccountTableModel } from '../../models/account.models';
 
-import { Table } from '@/components';
 
 const Wrap = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.gray1};

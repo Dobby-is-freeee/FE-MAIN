@@ -1,12 +1,11 @@
 import styled from 'styled-components';
+import { Title } from '@ui';
 
 import { ProjectCard } from '../common';
 import {
   ProjectItem,
   ProjectStatus,
 } from '../../containers/ProjectCardContainer';
-
-import { Title } from '@/components';
 
 const TitleWrap = styled(Title)`
   color: ${({ theme }) => theme.colors.black};

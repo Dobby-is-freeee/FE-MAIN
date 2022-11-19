@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useCallback } from 'react';
+import { Title } from '@ui';
 
 import { Logo } from './SigninContainer';
 import { EmailAuthForm } from '../components/EmailAuthForm';
-
-import { Title } from '@/components';
 
 const Wrap = styled.article`
   display: flex;

@@ -1,12 +1,7 @@
-import { AppRoutes } from '@/routes';
-import { AppProvider } from '@/providers/AppProvider';
+import { AppRoutes } from '@features/feat-routes';
 
 function App() {
-  return (
-    <AppProvider>
-      <AppRoutes />
-    </AppProvider>
-  );
+  return <AppRoutes />;
 }
 
 export default App;

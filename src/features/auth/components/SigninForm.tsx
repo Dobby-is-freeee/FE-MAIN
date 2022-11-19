@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 import React, { useCallback, useState } from 'react';
-
-import { isEmail } from '@/features/auth/libs/validator';
-import useInput from '@/features/auth/hooks/useInput';
-import useBoolean from '@/features/auth/hooks/useBoolean';
-import { CheckBox } from '@/components/ui';
-import { Input, LineButton, SolidButton } from '@/components';
+import { CheckBox } from '@ui';
+import { Input, LineButton, SolidButton } from '@ui';
+import { isEmail } from '@features/auth/libs/validator';
+import useInput from '@features/auth/hooks/useInput';
+import useBoolean from '@features/auth/hooks/useBoolean';
 
 const StyledForm = styled.form`
   margin-bottom: 12px;

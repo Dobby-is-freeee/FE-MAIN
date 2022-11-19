@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-
-import { ToolsMask, IconGo } from '@/assets/images';
+import { ToolsMask, IconGo } from '@assets/images';
 
 const Block = styled.div`
   display: flex;

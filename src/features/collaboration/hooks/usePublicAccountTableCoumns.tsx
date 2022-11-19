@@ -1,18 +1,10 @@
 import styled from 'styled-components';
 import { ChangeEventHandler, useCallback, useMemo } from 'react';
 import type { ColumnType } from 'rc-table/lib/interface';
+import { CheckBox, CheckedValue, Input, InputPassword, Select, Tag } from '@ui';
 
 import type { PublicAccountTableModel } from '../models/account.models';
 import { IMAGE_DIC } from '../constants';
-
-import {
-  CheckBox,
-  CheckedValue,
-  Input,
-  InputPassword,
-  Select,
-  Tag,
-} from '@/components';
 
 const Wrap = styled.div`
   display: flex;

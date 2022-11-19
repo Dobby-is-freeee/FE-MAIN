@@ -1,21 +1,19 @@
 import styled from 'styled-components';
 import { ChangeEventHandler, useState } from 'react';
-import { DayValue } from '@hassanmojab/react-modern-calendar-datepicker';
-
-import { RoomDateModel } from '../../containers/CollaborationCreatorContainer';
-import { IMAGE_DIC, MEMBER_LIST } from '../../constants';
-
-import { TimePicker } from '@/components/ui/TimePicker';
 import {
+  TimePicker,
   CheckBox,
   DatePicker,
   Input,
   LineButton,
   Modal,
   Title,
-} from '@/components';
-import { AddProfileSvg } from '@/assets/images';
+} from '@ui';
+import { DayValue } from '@hassanmojab/react-modern-calendar-datepicker';
+import { AddProfileSvg } from '@assets/images';
 
+import { RoomDateModel } from '../../containers/CollaborationCreatorContainer';
+import { IMAGE_DIC, MEMBER_LIST } from '../../constants';
 
 const Wrap = styled.div`
   color: ${({ theme }) => theme.colors.black};

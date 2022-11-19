@@ -1,12 +1,11 @@
 import styled, { css } from 'styled-components';
 import { useClickAway } from 'react-use';
 import { useCallback, useMemo, useRef, useState } from 'react';
+import { Dropdown } from '@assets/images';
 
 import { Field, Label, RequiredIcon } from './CreateForm';
 import { IconGeneratorType } from '../../containers/StudioCreateFormContainer';
 import { COLORS, ICON_INDEX, ICON_SVGS } from '../../constants';
-
-import { Dropdown } from '@/assets/images';
 
 interface OpenButtonStyleProps {
   isOpen: boolean;
@@ -255,8 +254,7 @@ export const IconGenerator = ({
       <ListItem
         key={index}
         selectedIndex={iconIndex}
-        onClick={handleSelectOptionCurried(index, 'icon')}
-      >
+        onClick={handleSelectOptionCurried(index, 'icon')}>
         {renderIcon(index)}
       </ListItem>
     ));
@@ -268,8 +266,7 @@ export const IconGenerator = ({
         bgColor={color}
         key={color}
         onClick={handleSelectOptionCurried(index, 'color')}
-        selectedIndex={colorIndex}
-      >
+        selectedIndex={colorIndex}>
         <div />
       </ColorItem>
     ));
@@ -292,8 +289,7 @@ export const IconGenerator = ({
             <OpenButton
               type="button"
               onClick={handleGeneratorTypeClickCurried('icon')}
-              isOpen={isIcon}
-            >
+              isOpen={isIcon}>
               <Dropdown />
             </OpenButton>
             {isIcon && (
@@ -313,8 +309,7 @@ export const IconGenerator = ({
             <OpenButton
               type="button"
               onClick={handleGeneratorTypeClickCurried('color')}
-              isOpen={isColor}
-            >
+              isOpen={isColor}>
               <Dropdown />
             </OpenButton>
             {isColor && (

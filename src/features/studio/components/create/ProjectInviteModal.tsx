@@ -1,9 +1,9 @@
 import styled from 'styled-components';
+import { LineButton, Select } from '@ui';
 
 import { MemberInviteModal } from './MemberInviteModal';
 import { Field, Label } from './CreateForm';
 
-import { LineButton, Select } from '@/components';
 
 const TEAM_MEMBER_OPTIONS = [
   {
