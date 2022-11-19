@@ -7,7 +7,7 @@ import {
   Icon06,
   Icon07,
   Icon08,
-} from '@/assets/images';
+} from '@assets/images';
 
 export const ICON_INDEX = 8;
 export const ICON_SVGS = [

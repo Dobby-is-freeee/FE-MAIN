@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 import { ColumnType } from 'rc-table/lib/interface';
+import { useNavigate } from 'jordy';
+import { Title } from '@ui';
 
 import { AccountByMemberTableModel } from '../../models/account.models';
 import { IMAGE_DIC } from '../../constants';
 import { AccountByMemberTable } from '../../components/account/AccountByMemberTable';
 import TABLE_DATA from '../../_fixtures/member_account_list.json';
-
-import { useQueryNavigate } from '@/hooks/useQueryNavigate';
-import { Title } from '@/components';
 
 const TitleStyled = styled(Title)`
   margin-bottom: 20px;
@@ -66,7 +65,7 @@ const columns: ColumnType<AccountByMemberTableModel>[] = [
 ];
 
 export const AccountByMemberContainer = () => {
-  const navigate = useQueryNavigate();
+  const navigate = useNavigate();
 
   const handlePageChange = (page: number) => {
     navigate({ page });

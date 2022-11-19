@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 import { useToggle } from 'react-use';
 import { useState } from 'react';
+import { generateDayValue, Title } from '@ui';
 import { DayValue } from '@hassanmojab/react-modern-calendar-datepicker';
 
 import { CreateForm, RequiredIcon } from '../components/create/CreateForm';
-
-import { generateDayValue, Title } from '@/components';
 
 const TitleWrap = styled.span`
   display: flex;

@@ -1,7 +1,5 @@
 import styled from 'styled-components';
-
-import { InputPassword } from '@/components/ui';
-import { Input, SolidButton, CheckBox } from '@/components';
+import { InputPassword, Input, SolidButton, CheckBox } from '@ui';
 
 const Wrapper = styled.div`
   margin-bottom: 12px;

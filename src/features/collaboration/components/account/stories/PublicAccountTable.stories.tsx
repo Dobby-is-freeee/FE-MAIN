@@ -1,13 +1,12 @@
 /* eslint-disable no-alert */
 import styled from 'styled-components';
 import { ComponentProps } from 'react';
+import { CheckBox, Tag } from '@ui';
 import { ArgTypes, ComponentMeta, ComponentStory } from '@storybook/react';
+import { IMAGE_DIC } from '@features/collaboration/constants';
 
 import { PublicAccountTable } from '../PublicAccountTable';
 import TABLE_DATA from '../../../_fixtures/public_account_list.json';
-
-import { IMAGE_DIC } from '@/features/collaboration/constants';
-import { CheckBox, Tag } from '@/components';
 
 const Wrap = styled.div`
   display: flex;

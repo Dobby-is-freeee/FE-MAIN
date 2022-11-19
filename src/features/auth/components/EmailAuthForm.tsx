@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-
-import { SolidButton } from '@/components';
-import { Mail } from '@/assets/images';
+import { SolidButton } from '@ui';
+import { Mail } from '@assets/images';
 
 const TextWrap = styled.div`
   text-align: center;

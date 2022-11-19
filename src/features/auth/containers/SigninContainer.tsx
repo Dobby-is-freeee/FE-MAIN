@@ -1,15 +1,13 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { useCallback } from 'react';
+import { Title, LineButton } from '@ui';
+import { loginUser } from '@shared/stores/auth';
+import { LogoSmall, Google } from '@assets/images';
 
-import { loginUser } from '@/stores/auth';
-import { useDispatch } from '@/stores';
-import SigninForm, {
-  SigninFormProps,
-} from '@/features/auth/components/SigninForm';
-import { requestSignin } from '@/features/auth/api/members';
-import { LineButton, Title } from '@/components';
-import { Google, LogoSmall } from '@/assets/images';
+import SigninForm, { SigninFormProps } from '../components/SigninForm';
+import { requestSignin } from '../api/members';
 
 export const FormField = styled.article`
   background-color: ${({ theme }) => theme.colors.white};

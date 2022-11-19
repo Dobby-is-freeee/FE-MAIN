@@ -1,12 +1,11 @@
 import styled from 'styled-components';
+import { LineButton } from '@ui';
+import { Icon01, Member } from '@assets/images';
 
 import {
   ProjectItem,
   ProjectStatus,
 } from '../../containers/ProjectCardContainer';
-
-import { LineButton } from '@/components/ui';
-import { Icon01, Member } from '@/assets/images';
 
 const Wrap = styled.div`
   display: flex;

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-
-import { Title, LineButton } from '@/components';
+import { Title, LineButton } from '@ui';
 
 const TableOutTitleWrap = styled.div`
   display: flex;

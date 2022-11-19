@@ -1,10 +1,9 @@
 /* eslint-disable no-alert */
 import { ComponentProps, useState } from 'react';
+import { LineButton } from '@ui';
 import { ComponentStory, ComponentMeta, ArgTypes } from '@storybook/react';
 
 import { ProjectRoomCreator } from '../ProjectRoomCreator';
-
-import { LineButton } from '@/components';
 
 type MyArgTypes = Partial<
   Record<keyof ComponentProps<typeof ProjectRoomCreator>, ArgTypes[string]>
@@ -36,8 +35,7 @@ const Template: ComponentStory<typeof ProjectRoomCreator> = ({ ...props }) => {
       <LineButton
         onClick={handleToggle}
         variant="primary"
-        style={{ width: '150px' }}
-      >
+        style={{ width: '150px' }}>
         오픈 하기
       </LineButton>
       <ProjectRoomCreator
@@ -45,8 +43,7 @@ const Template: ComponentStory<typeof ProjectRoomCreator> = ({ ...props }) => {
         isCreatorVisible={visible}
         onCreatorVisibleToggle={handleToggle}
         onDateChange={handleDateChange}
-        roomDate={roomDate}
-      ></ProjectRoomCreator>
+        roomDate={roomDate}></ProjectRoomCreator>
     </>
   );
 };

@@ -1,12 +1,4 @@
-import {
-  Notion,
-  Slack,
-  Figma,
-  Zoom,
-  Discord,
-  Sketch,
-  Xd,
-} from '@/assets/logos';
+import { Notion, Slack, Figma, Zoom, Discord, Sketch, Xd } from '@assets/logos';
 
 export const IMAGE_DIC: Record<string, string> = {
   notion: Notion,

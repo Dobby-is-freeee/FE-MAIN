@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { DatePicker, Input } from '@ui';
 import { DayValue, Day } from '@hassanmojab/react-modern-calendar-datepicker';
 
 import { Field, Label, RequiredIcon } from './CreateForm';
@@ -7,7 +8,6 @@ import {
   PickerType,
 } from '../../containers/StudioCreateFormContainer';
 
-import { DatePicker, Input } from '@/components';
 
 const ProjectRangePickerWrap = styled.div`
   display: flex;

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-
-import { LineButton, Modal, Select, SolidButton, Title } from '@/components';
-import { AddProfile, LinkIcon } from '@/assets/images';
+import { LineButton, Modal, Select, SolidButton, Title } from '@ui';
+import { AddProfile, LinkIcon } from '@assets/images';
 
 const ModalInnerWrap = styled.div`
   display: flex;

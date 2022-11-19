@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import React from 'react';
+import { LineButton } from '@ui';
 import type { DayValue } from '@hassanmojab/react-modern-calendar-datepicker';
+import { Star } from '@assets/images';
 
 import { ProjectInviteModal } from './ProjectInviteModal';
 import { ProjectInformation } from './ProjectInformation';
@@ -9,9 +11,6 @@ import {
   IconGeneratorType,
   PickerChangeHandlerArgs,
 } from '../../containers/StudioCreateFormContainer';
-
-import { LineButton } from '@/components';
-import { Star } from '@/assets/images';
 
 const CreateFormWrap = styled.form``;
 
